@@ -1,5 +1,11 @@
+import Global from "./style/Global";
+
 const App = () => {
-  return <></>;
+  return (
+    <>
+      <Global />
+    </>
+  );
 };
 
 export default App;
