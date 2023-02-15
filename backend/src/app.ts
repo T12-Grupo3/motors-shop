@@ -4,6 +4,7 @@ import "express-async-errors"
 // import swaggerUi from "swagger-ui-express"
 // import swaggerDocs from "./swagger.json"
 import cors from "cors"
+import advertsRoutes from "./routes/adverts.routes"
 
 
 
@@ -20,7 +21,7 @@ app.use(cors(corsOptions));
 
 app.use(express.json());
 
-// app.use("/adverts", advertsRoutes);
+app.use("/adverts", advertsRoutes);
 
 // app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
