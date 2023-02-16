@@ -1,7 +1,10 @@
-
 import { DataSource } from "typeorm";
 import "dotenv/config";
+// import path from "path";
+import { Adverts } from "./entities/adverts.entity";
+import { initial1676560303106 } from "./migrations/1676560303106-initial";
 
+const isProduction = process.env.NODE_ENV === "production";
 const AppDataSource = new DataSource(
   process.env.NODE_ENV === "test"
     ? {
@@ -12,16 +15,16 @@ const AppDataSource = new DataSource(
       }
     : {
         type: "postgres",
-        host: process.env.DB_HOST,
-        port: 5432,
-        username: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB,
-        logging: true,
+        url: process.env.DATABASE_URL,
+        ssl: isProduction
+          ? {
+              rejectUnauthorized: false,
+            }
+          : false,
         synchronize: false,
-        entities: ["src/entities/*.ts"],
-        migrations: ["src/migrations/*.ts"],
+        logging: isProduction ? false : true,
+        entities: [Adverts],
+        migrations: [initial1676560303106],
       }
 );
-
 export default AppDataSource;
