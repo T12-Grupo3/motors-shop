@@ -2,7 +2,7 @@ import { DataSource } from "typeorm";
 import "dotenv/config";
 // import path from "path";
 import { Adverts } from "./entities/adverts.entity";
-import{ initial1676483267066 } from "./migrations/1676483267066-initial"
+import { initial1676560303106 } from "./migrations/1676560303106-initial";
 
 const isProduction = process.env.NODE_ENV === "production";
 const AppDataSource = new DataSource(
@@ -24,7 +24,7 @@ const AppDataSource = new DataSource(
         synchronize: false,
         logging: isProduction ? false : true,
         entities: [Adverts],
-        migrations: [initial1676483267066],
+        migrations: [initial1676560303106],
       }
 );
 export default AppDataSource;
