@@ -13,8 +13,8 @@ export interface IAdverts {
   type_adverts: string;
   kilometers_adverts: string;
   description_adverts: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt_adverts: Date;
+  updatedAt_adverts: Date;
   isAvailable: boolean;
 }
 

@@ -3,7 +3,9 @@ import express from "express"
 import "express-async-errors"
 // import swaggerUi from "swagger-ui-express"
 // import swaggerDocs from "./swagger.json"
-import cors from "cors"
+// import cors from "cors"
+var cors = require('cors')
+
 import advertsRoutes from "./routes/adverts.routes"
 
 
