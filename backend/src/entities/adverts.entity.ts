@@ -6,6 +6,7 @@ import {
   UpdateDateColumn,
   OneToMany,
 } from "typeorm";
+import { Exclude } from "class-transformer";
 import { v4 as uuid } from "uuid";
 
 @Entity("adverts")
@@ -21,6 +22,9 @@ export class Adverts {
 
   @Column({ length: 50 })
   type_adverts: string;
+
+  @Column({ length: 50 })
+  type_veicule: string;
 
   @Column({ length: 20 })
   kilometers_adverts: string;
