@@ -18,6 +18,9 @@ year_adverts: string
 @Column({length: 50})
 type_adverts: string
 
+@Column({length: 50})
+type_veicule: string
+
 @Column({length: 20})
 kilometers_adverts: string
 
