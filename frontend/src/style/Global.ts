@@ -44,5 +44,40 @@ export default createGlobalStyle`
     --color-random-10: #6100FF;
     --color-random-11: #5700E3;
     --color-random-12: #30007D;
+
+
+    /* Typograph */
+
+    --font-heading-1: 700;
+    --font-heading-2: 600;
+    --font-heading-3: 500;
+    
+    --font-body-1: 600;
+    --font-body-2: 500;
+
+    --font-button-big-text: 16px;
+    --font-button-medium-text: 14px; 
+ }
+
+ h1 {
+   font-weight: --font-heading-1;
+ }
+
+ h2, h3 {
+   font-weight: --font-heading-2;
+ }
+
+ h4, h5, h6 {
+   font-weight: --font-heading-3;
+ }
+
+ input::placeholder {
+   font-size: 16px;
+   font-weight: 400;
+ }
+
+ label {
+    font-size: 14px;
+   font-weight: 500;
  }
 `;
