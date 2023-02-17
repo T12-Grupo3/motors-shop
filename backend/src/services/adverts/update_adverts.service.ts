@@ -7,6 +7,7 @@ const updateAdvertService = async ({
   title_adverts,
   year_adverts,
   type_adverts,
+  type_veicule,
   kilometers_adverts,
   description_adverts,
 }: IAdvertsUpdate) => {
@@ -18,6 +19,7 @@ const updateAdvertService = async ({
     title_adverts: title_adverts || findAdvert!.title_adverts,
     year_adverts,
     type_adverts,
+    type_veicule,
     kilometers_adverts,
     description_adverts,
   };
