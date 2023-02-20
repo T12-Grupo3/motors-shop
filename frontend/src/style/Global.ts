@@ -71,15 +71,15 @@ export default createGlobalStyle`
  }
 
  h1 {
-   font-weight: --font-heading-1;
+   font-weight: --heading-1;
  }
 
  h2, h3 {
-   font-weight: --font-heading-2;
+   font-weight: --heading-2;
  }
 
  h4, h5, h6 {
-   font-weight: --font-heading-3;
+   font-weight: --heading-3;
  }
 
  input::placeholder {
@@ -90,5 +90,18 @@ export default createGlobalStyle`
  label {
     font-size: 14px;
    font-weight: 500;
+ }
+
+ li {
+  list-style: none;
+ }
+
+ a {
+  text-decoration: none;
+  color: var(--color-grey-2);
+ }
+
+ button {
+  cursor: pointer;
  }
 `;
