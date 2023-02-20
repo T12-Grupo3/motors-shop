@@ -1,14 +1,20 @@
+import { Request, Response } from "express";
+import { instanceToPlain } from "class-transformer";
+import { IAdvertsRequest } from "../../interfaces/adverts";
+import createAdvertsService from "../../services/adverts/create_adverts.service";
 
-import {Request, Response} from 'express'
-import createAdvertsService from '../../services/adverts/create_adverts.service'
 
-const createAdvertsController = async (request: Request, response: Response) => {
-    const adverts = request.body
+const createAdvertsController = async(req: Request, res: Response) => {
 
-    const newAdverts = await createAdvertsService(adverts)
+    
+    const {title_adverts, year_adverts, type_adverts, kilometers_adverts, type_veicule, description_adverts }:IAdvertsRequest = req.body;
 
-    return response.status(201).json(newAdverts)
-}
+    const newAdverts = await createAdvertsService({title_adverts, year_adverts, type_adverts, type_veicule, kilometers_adverts, description_adverts });
+
+    return res.status(201).json(instanceToPlain(newAdverts));
+
+
+};
 
 export default createAdvertsController
 
