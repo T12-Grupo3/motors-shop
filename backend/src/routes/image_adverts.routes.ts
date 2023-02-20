@@ -1,17 +1,19 @@
 import { Router } from "express";
-import createAdvertsController from "../controllers/adverts/create_adverts.controller";
-import deleteAdvertsController from "../controllers/adverts/delete_adverts.controller";
-import ListAdvertsController from "../controllers/adverts/list_adverts.controller";
-import listAdvertsIdController from "../controllers/adverts/list_adverts_id.controller";
-import updateAdvertController from "../controllers/adverts/update_adverts.controller";
+
+import createImageAdvertsController from "../controllers/image_adverts/create_image_adverts.controller";
+import deleteImageAdvertsController from "../controllers/image_adverts/delete_image_adverts.controller";
+import listImageAdvertsController from "../controllers/image_adverts/list_image_adverts.controller";
+import listImageAdvertsIdController from "../controllers/image_adverts/list_image_adverts_id.controller";
+import updateImageAdvertsController from "../controllers/image_adverts/update_image_adverts.controller";
 
 const imageAdvertsRoutes = Router();
 
-imageAdvertsRoutes.post("", createAdvertsController);
-imageAdvertsRoutes.get("", ListAdvertsController);
-imageAdvertsRoutes.get("/:id", listAdvertsIdController);
-imageAdvertsRoutes.patch("/:id", updateAdvertController);
+imageAdvertsRoutes.post("", createImageAdvertsController);
+imageAdvertsRoutes.get("", listImageAdvertsController);
+imageAdvertsRoutes.get("/:id", listImageAdvertsIdController);
+imageAdvertsRoutes.delete("/:id", deleteImageAdvertsController);
+imageAdvertsRoutes.patch("/:id", updateImageAdvertsController);
 
-imageAdvertsRoutes.delete("/:id", deleteAdvertsController);
+
 
 export default imageAdvertsRoutes;

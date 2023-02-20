@@ -8,7 +8,6 @@ import { Adverts } from "../../entities/adverts.entity";
 
 
 const createImageAdvertsService = async({image_adverts, description_adverts, advertsId }:IImageAdvertsCreate): Promise<ImageAdverts> => {
-  console.log("DADOS DO PARAMETROS:",image_adverts, description_adverts, advertsId)
 
 const imageAdvertsRepository = AppDataSource.getRepository(ImageAdverts);
 
@@ -20,7 +19,6 @@ const findAdvert = await advertsRepository.findOneBy({
   id: advertsId 
 });
 
-console.log("DADOS DO FINDADVERTS:",findAdvert)
 
 if (!findAdvert) {
     throw new AppError("Advert is not exists", 404);

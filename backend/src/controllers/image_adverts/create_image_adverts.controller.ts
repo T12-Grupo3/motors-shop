@@ -12,7 +12,6 @@ const createImageAdvertsController = async(req: Request, res: Response) => {
 
     const newImageAdvert = await createImageAdvertsService({image_adverts, description_adverts, advertsId});
 
-    console.log("DADOS NEWADVERTS-CONTROLLER:",newImageAdvert)
     return res.status(201).json(instanceToPlain(newImageAdvert));
 
 
