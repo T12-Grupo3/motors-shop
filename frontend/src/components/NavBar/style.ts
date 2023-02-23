@@ -1,14 +1,19 @@
 import styled from "styled-components";
 
-export const StyledDiv = styled.div`
+export const StyledContainer = styled.div`
+  margin: 0 auto;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  margin: 0 auto;
-
   height: 80px;
   width: 95%;
+`;
+
+export const StyledDiv = styled.div`
+  position: fixed;
+  width: 100%;
 
   background-color: var(--color-grey-10);
 
@@ -28,7 +33,18 @@ export const StyledDiv = styled.div`
 
 export const StyledLoggout = styled.li`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  align-items: center;
 
-  width: 35%;
+  width: 40%;
+`;
+
+export const StyledLogged = styled(StyledLoggout)`
+  button {
+    color: var(--color-grey-2);
+    font-size: 16px;
+
+    background-color: var(--color-grey-10);
+    border: none;
+  }
 `;
