@@ -10,6 +10,7 @@ export const ContainerProduct = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center ;
+  margin-top: 50px;
 
 .dashMain{
     width: 90%;
@@ -18,7 +19,7 @@ export const ContainerProduct = styled.div`
     flex-direction: row;
     justify-content: space-evenly;
     gap: 35px;
-    margin-top: 20px;
+    margin-top: 50px;
     
     
 

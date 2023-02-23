@@ -1,4 +1,6 @@
 
+import Footer from "../../components/Footer";
+import NavBar from "../../components/NavBar";
 import { ContainerProduct } from "./style";
 
 
@@ -7,8 +9,10 @@ export default function Product() {
 
   
   return (
+    <>
+      <NavBar />
     <ContainerProduct>
-       <h1>PAGINA PRODUCT</h1>
+      
       <div className="dashMain">
         <div className="dashLeft">
           <div className="imgCar">
@@ -119,6 +123,8 @@ export default function Product() {
       </div>
       
     </ContainerProduct>
+    <Footer />
+    </>
   )
 
 }

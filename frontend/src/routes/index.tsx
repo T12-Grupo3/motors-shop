@@ -2,12 +2,14 @@ import { Route, Routes, Navigate } from "react-router";
 import Home from "../pages/home";
 import Product from "../pages/product"
 
-const mainRoutes = () => {
+const MainRoutes = () => {
+  return( 
   <Routes>
     <Route path="/" element={<Home />} />
     <Route path="*" element={<Navigate replace to={"home"} />} />
     <Route path="/product" element={ <Product /> } />
-  </Routes>;
+  </Routes>
+  )
 };
 
-export default mainRoutes;
+export default MainRoutes;
