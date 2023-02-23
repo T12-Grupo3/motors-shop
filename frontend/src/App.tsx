@@ -1,14 +1,15 @@
-import RoutesMain from "./routes";
 import Global from "./style/Global";
+import Home from "./pages/home/index";
+import MainRoutes from "./routes";
 
 function App() {
 
 
   return (
-    <div className="App">
-      <RoutesMain />
-      
-    </div>
+    <>
+      <Global />
+      <MainRoutes />
+    </>
   );
 }
 
