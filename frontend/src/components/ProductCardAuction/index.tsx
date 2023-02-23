@@ -16,7 +16,7 @@ const ProductCardAuction = ({
   user,
   year_adverts,
 }: iAuction) => {
-  const [isAuctionOnwer, setIsAuctionOwner] = useState(true);
+  const [isAuctionOnwer, setIsAuctionOwner] = useState(false);
   return (
     <StyledAuctionContainer>
       <StyledDescription>

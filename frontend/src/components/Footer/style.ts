@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const ContainerFooter = styled.div`
   background-color: #5126EA;
   color: #F8F9FA;
-  width: 1600px;
+  width: 100%;
   height: auto;
   display: flex;
   flex-direction: row;
@@ -21,8 +21,8 @@ export const ContainerFooter = styled.div`
     gap: 10px;
 
     /* position: absolute; */
-    width: 1600px;
-    height: 140px;
+    width: 100%;
+    height: 40px;
     left: 0px;
     top: 1951px;
 
@@ -58,6 +58,8 @@ export const ContainerFooter = styled.div`
 
 .buttonFooter{
     
+    padding: 7px 15px;
+
     width: 53px;
     height: 50px;
     left: 1488px;
