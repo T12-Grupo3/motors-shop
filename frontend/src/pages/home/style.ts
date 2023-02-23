@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { StyledContainer } from "../../style/container";
 
 export const StyledContent = styled.div`
-  background-color: var(--color-brand-1);
+  background-color: var(--color-brand-2);
   color: var(--color-grey-10);
 
   height: 600px;
@@ -31,7 +31,7 @@ export const StyledContentContainer = styled(StyledContainer)`
 
   text-align: center;
 
-  width: 52%;
+  width: 60%;
 `;
 
 export const StyledProductsContainer = styled(StyledContainer)`
@@ -39,4 +39,9 @@ export const StyledProductsContainer = styled(StyledContainer)`
     font-weight: var(--heading-5-600);
     font-size: 24px;
   }
+`;
+
+export const StyledAuction = styled.div`
+  /* overflow-y: auto; */
+  /* display: flex; */
 `;

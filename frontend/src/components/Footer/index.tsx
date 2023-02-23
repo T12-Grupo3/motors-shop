@@ -1,9 +1,7 @@
-
+import { Link } from "react-router-dom";
 import { ContainerFooter } from "./style";
 
-
 const Footer = () => {
-  
   return (
     <ContainerFooter>
       <div className="footerMain">
@@ -13,11 +11,15 @@ const Footer = () => {
             alt="motors shop"
           />
         </div>
-        <div> 
-        <span className="spanFooter" >© 2022 -  Todos os direitos reservados.</span>
+        <div>
+          <span className="spanFooter">
+            © 2022 - Todos os direitos reservados.
+          </span>
         </div>
-        <div> 
-        <button className="buttonFooter">^</button>
+        <div>
+          <a href="#" className="buttonFooter">
+            ^
+          </a>
         </div>
       </div>
     </ContainerFooter>
