@@ -1,4 +1,5 @@
 import NavBar from "../../components/NavBar";
+import ProductCard from "../../components/ProductCard";
 import {
   StyledContent,
   StyledContentContainer,
@@ -30,6 +31,7 @@ const Home = () => {
 
         <div id="cars">
           <h5>Carros</h5>
+          <ProductCard/>
         </div>
 
         <div>
