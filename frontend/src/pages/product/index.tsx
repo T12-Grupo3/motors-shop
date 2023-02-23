@@ -110,12 +110,12 @@ export default function Product() {
           </ul>
         </div>
         <div className="cardProfile">
-        <div className="imgProfile">
-          <img className="imgProfile" src="https://i.im.ge/2023/02/23/7u52PC.foto-perfil.png" alt="" />
-        </div>
-        <p className="pProfile">Marcus Roberto</p>
-        <p className="textProfile">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis voluptatem animi molestiae quisquam nemo pariatur ipsa consequuntur quaerat? Dolorum deserunt est quaerat officiis. Deserunt doloremque, aliquid temporibus praesentium laboriosam nostrum?</p>
-        <button className="buttonProfile">Ver todos anúncios</button>
+          <div className="imgProfile">
+            <img className="imgProfile" src="https://i.im.ge/2023/02/23/7u52PC.foto-perfil.png" alt="" />
+          </div>
+          <p className="pProfile">Marcus Roberto</p>
+          <p className="textProfile">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis voluptatem animi molestiae quisquam nemo pariatur ipsa consequuntur quaerat? Dolorum deserunt est quaerat officiis. Deserunt doloremque, aliquid temporibus praesentium laboriosam nostrum?</p>
+          <button className="buttonProfile">Ver todos anúncios</button>
         </div>
       
       </div>

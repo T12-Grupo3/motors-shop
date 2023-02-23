@@ -1,14 +1,17 @@
 import Global from "./style/Global";
 
 import MainRoutes from "./routes";
+import AuthProvider from "./Context/AuthProvider";
 
 function App() {
 
 
   return (
     <>
-      <Global />
-      <MainRoutes />
+      <AuthProvider>
+        <Global />
+        <MainRoutes />
+      </AuthProvider>
     </>
   );
 }
