@@ -70,26 +70,28 @@ export default createGlobalStyle`
     --button-medium-text: 14px; 
  }
 
- h1 {
-   font-weight: --heading-1;
- }
+ body {
+  width: 100%;
+  height: 100%;
+  
+  margin: 0;
+  padding: 0;
 
- h2, h3 {
-   font-weight: --heading-2;
- }
+  font-family: 'Inter', sans-serif; 
+}
 
- h4, h5, h6 {
-   font-weight: --heading-3;
- }
+h2 {
+  font-family: "Lexend", sans-serif;
+}
 
- input::placeholder {
-   font-size: 16px;
-   font-weight: 400;
- }
+input::placeholder {
+  font-size: 16px;
+  font-weight: 400;
+}
 
  label {
-    font-size: 14px;
-   font-weight: 500;
+  font-size: 14px;
+  font-weight: 500;
  }
 
  li {
@@ -102,6 +104,8 @@ export default createGlobalStyle`
  }
 
  button {
+  font-family: 'Inter', sans-serif;
+   
   cursor: pointer;
  }
 `;

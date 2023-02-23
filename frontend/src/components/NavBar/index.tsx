@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  StyledContainer,
+  StyledNavContainer,
   StyledDiv,
   StyledLogged,
   StyledLoggout,
@@ -17,7 +17,7 @@ const NavBar = () => {
 
   return (
     <StyledDiv>
-      <StyledContainer>
+      <StyledNavContainer>
         <div>
           <img
             src={require("../../utils/image/motors-shop.png")}
@@ -26,6 +26,7 @@ const NavBar = () => {
         </div>
         <nav>
           <li>
+            {/* <a href="/home#cars">cars</a> */}
             <Link to={"/"}>Carros</Link>
           </li>
           <li>
@@ -49,7 +50,7 @@ const NavBar = () => {
             </>
           )}
         </nav>
-      </StyledContainer>
+      </StyledNavContainer>
     </StyledDiv>
   );
 };
