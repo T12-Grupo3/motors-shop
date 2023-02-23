@@ -1,3 +1,4 @@
+import NavBar from "./components/NavBar";
 import Global from "./style/Global";
 import Home from "./pages/home/index";
 

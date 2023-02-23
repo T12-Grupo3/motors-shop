@@ -8,13 +8,14 @@ import {
 } from "typeorm";
 import { Exclude } from "class-transformer";
 import { v4 as uuid } from "uuid";
+import { ImageAdverts } from "./image_adverts.entity";
 
 @Entity("adverts")
 export class Adverts {
   @PrimaryGeneratedColumn("uuid")
   readonly id: string;
 
-  @Column({ length: 200 })
+  @Column({ length: 200})
   title_adverts: string;
 
   @Column({ length: 10 })
@@ -23,8 +24,8 @@ export class Adverts {
   @Column({ length: 50 })
   type_adverts: string;
 
-  @Column({ length: 50 })
-  type_veicule: string;
+  @Column({length: 50})
+  type_veicule: string
 
   @Column({ length: 20 })
   kilometers_adverts: string;
@@ -40,4 +41,8 @@ export class Adverts {
 
   @UpdateDateColumn()
   updatedAt_adverts: Date;
+
+  @OneToMany(()=>ImageAdverts, (imagesAdverts)=> imagesAdverts.advert)
+  imageAdverts: ImageAdverts[]
+
 }

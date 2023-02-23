@@ -48,27 +48,38 @@ export default createGlobalStyle`
 
     /* Typograph */
 
-    --font-heading-1: 700;
-    --font-heading-2: 600;
-    --font-heading-3: 500;
-    
-    --font-body-1: 600;
-    --font-body-2: 500;
+    --heading-1-700: 700;
+    --heading-2-600: 600;
+    --heading-3-600: 600;
+    --heading-3-500: 500;
+    --heading-4-600: 600;
+    --heading-4-500: 500;
+    --heading-5-600: 600;
+    --heading-5-500: 500;
+    --heading-6-600: 600;
+    --heading-6-500: 500;
+    --heading-7-600: 600;
+    --heading-7-500: 500;
 
-    --font-button-big-text: 16px;
-    --font-button-medium-text: 14px; 
+    --body-1-600: 600;
+    --body-1-400: 400;
+    --body-2-500: 500;
+    --body-2-400: 400;
+
+    --button-big-text: 16px;
+    --button-medium-text: 14px; 
  }
 
  h1 {
-   font-weight: --font-heading-1;
+   font-weight: --heading-1;
  }
 
  h2, h3 {
-   font-weight: --font-heading-2;
+   font-weight: --heading-2;
  }
 
  h4, h5, h6 {
-   font-weight: --font-heading-3;
+   font-weight: --heading-3;
  }
 
  input::placeholder {
@@ -79,5 +90,18 @@ export default createGlobalStyle`
  label {
     font-size: 14px;
    font-weight: 500;
+ }
+
+ li {
+  list-style: none;
+ }
+
+ a {
+  text-decoration: none;
+  color: var(--color-grey-2);
+ }
+
+ button {
+  cursor: pointer;
  }
 `;
