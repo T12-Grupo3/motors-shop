@@ -1,11 +1,15 @@
+import RoutesMain from "./routes";
 import Global from "./style/Global";
 
-const App = () => {
+function App() {
+
+
   return (
-    <>
-      <Global />
-    </>
+    <div className="App">
+      <RoutesMain />
+      
+    </div>
   );
-};
+}
 
 export default App;
