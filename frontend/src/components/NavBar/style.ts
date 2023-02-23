@@ -1,18 +1,19 @@
 import styled from "styled-components";
+import { StyledContainer } from "../../style/container";
 
-export const StyledContainer = styled.div`
-  margin: 0 auto;
-
+export const StyledNavContainer = styled(StyledContainer)`
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   height: 80px;
-  width: 95%;
 `;
 
 export const StyledDiv = styled.div`
   position: fixed;
+  top: 0;
+  right: 0;
+
   width: 100%;
 
   background-color: var(--color-grey-10);
