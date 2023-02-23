@@ -28,8 +28,8 @@ const ProductCardAuction = ({
         </div>
         <StyledTags>
           <div>
-            <strong>{year_adverts}</strong>
-            <strong>{`${kilometers_adverts} KM`}</strong>
+            <span>{year_adverts}</span>
+            <span>{`${kilometers_adverts} KM`}</span>
           </div>
           <p>R$ {price_adverts.toFixed(2)}</p>
         </StyledTags>

@@ -2,7 +2,9 @@ export interface iUser {
   name: string;
 }
 
-export interface iAuction {
+export interface iAuction extends iProduct {}
+
+export interface iProduct {
   title_adverts: string;
   description_adverts: string;
   user: iUser;

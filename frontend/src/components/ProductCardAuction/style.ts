@@ -46,7 +46,7 @@ export const StyledTags = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  strong {
+  span {
     background-color: var(--color-brand-4);
     color: var(--color-brand-1);
     font-size: 14px;

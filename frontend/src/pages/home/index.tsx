@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
+import ProductCard from "../../components/ProductCard";
 import ProductCardAuction from "../../components/ProductCardAuction";
 import { AuthContext } from "../../Context/AuthProvider";
 import {
@@ -54,8 +55,28 @@ const Home = () => {
           )}
         </StyledAuction>
 
-        <h5>Carros</h5>
-        <div id="cars"></div>
+        <div id="cars">
+          <h5>Carros</h5>
+          {auctions.map(
+            ({
+              description_adverts,
+              price_adverts,
+              title_adverts,
+              user,
+              year_adverts,
+              kilometers_adverts,
+            }) => (
+              <ProductCard
+                description_adverts={description_adverts}
+                kilometers_adverts={kilometers_adverts}
+                price_adverts={price_adverts}
+                title_adverts={title_adverts}
+                year_adverts={year_adverts}
+                user={user}
+              />
+            )
+          )}
+        </div>
 
         <h5>Motos</h5>
         <div></div>
