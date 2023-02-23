@@ -1,8 +1,20 @@
-# Getting Started with Create React App
+##PARA RODAR A APLICAÇÂO LOCALMENTE:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### fazer o clone dest repositório:
+####git@github.com:T12-Grupo3/motors-shop.git
 
-## Available Scripts
+### Acessar o diretório >frontend<
+#### cd frontend
+
+### Rodar o comando para instalação das dependências:
+#### npm install
+ou
+#### yarn
+
+### Iniciar/rodar o servidor local:
+#### npm start
+ou
+#### yarn start
 
 In the project directory, you can run:
 
