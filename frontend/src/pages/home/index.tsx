@@ -1,7 +1,9 @@
+import { useContext } from "react";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 import ProductCard from "../../components/ProductCard";
 import ProductCardAuction from "../../components/ProductCardAuction";
+import { AuthContext } from "../../Context/AuthProvider";
 import {
   StyledAuction,
   StyledContent,
@@ -9,49 +11,9 @@ import {
   StyledProductsContainer,
 } from "./style";
 
-const user1 = { name: "Rodrigo Tavares" };
-const user2 = { name: "Tiago" };
-
-const auctions = [
-  {
-    title_adverts: "Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200 ",
-    description_adverts:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
-    user: user1,
-    year_adverts: 2013,
-    kilometers_adverts: 0,
-    price_adverts: 99999.99,
-  },
-  // {
-  //   title_adverts: "Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200 ",
-  //   description_adverts:
-  //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
-  //   user: user2,
-  //   year_adverts: 2013,
-  //   kilometers_adverts: 0,
-  //   price_adverts: 99999.99,
-  // },
-  // {
-  //   title_adverts: "Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200 ",
-  //   description_adverts:
-  //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
-  //   user: user2,
-  //   year_adverts: 2013,
-  //   kilometers_adverts: 0,
-  //   price_adverts: 99999.99,
-  // },
-  // {
-  //   title_adverts: "Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200 ",
-  //   description_adverts:
-  //     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem...",
-  //   user: user2,
-  //   year_adverts: 2013,
-  //   kilometers_adverts: 0,
-  //   price_adverts: 99999.99,
-  // },
-];
-
 const Home = () => {
+  const {auctions} = useContext(AuthContext)
+
   return (
     <>
       <NavBar />
