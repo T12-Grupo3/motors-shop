@@ -1,12 +1,18 @@
+import { useContext } from "react";
+import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
-import ProductCard from "../../components/ProductCard";
+import ProductCardAuction from "../../components/ProductCardAuction";
+import { AuthContext } from "../../Context/AuthProvider";
 import {
+  StyledAuction,
   StyledContent,
   StyledContentContainer,
   StyledProductsContainer,
 } from "./style";
 
 const Home = () => {
+  const {auctions} = useContext(AuthContext)
+
   return (
     <>
       <NavBar />
@@ -25,19 +31,38 @@ const Home = () => {
       </StyledContent>
 
       <StyledProductsContainer>
-        <div>
-          <h5>Leilão</h5>
-        </div>
+        <h5>Leilão</h5>
+        <StyledAuction>
+          {auctions.map(
+            ({
+              description_adverts,
+              price_adverts,
+              title_adverts,
+              user,
+              year_adverts,
+              kilometers_adverts,
+            }) => (
+              <ProductCardAuction
+                description_adverts={description_adverts}
+                kilometers_adverts={kilometers_adverts}
+                price_adverts={price_adverts}
+                title_adverts={title_adverts}
+                year_adverts={year_adverts}
+                user={user}
+              />
+            )
+          )}
+        </StyledAuction>
 
         <div id="cars">
           <h5>Carros</h5>
-          <ProductCard/>
         </div>
 
-        <div>
-          <h5>Motos</h5>
-        </div>
+        <h5>Motos</h5>
+        <div></div>
       </StyledProductsContainer>
+
+      <Footer />
     </>
   );
 };

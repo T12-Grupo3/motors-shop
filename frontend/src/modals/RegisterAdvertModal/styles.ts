@@ -8,6 +8,7 @@ export const Button = styled.button`
   font-family: "Inter";
   font-size: 16px;
   font-weight: var(--font-heading-2);
+  background-color: transparent;
   color: var(--color-brand-1);
   cursor: pointer;
 `;
