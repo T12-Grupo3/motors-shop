@@ -237,13 +237,13 @@ export default function RegisterAdvertModal() {
                   >
 
                     <option
-                    value="carro"
+                    value="car"
                     className="btn-tipo-veiculo"
                     >Carro
                     </option>
 
                     <option
-                    value="moto"
+                    value="motorcycle"
                     className="btn-tipo-veiculo"
                     >Moto
                     </option>
@@ -279,14 +279,14 @@ export default function RegisterAdvertModal() {
                 </p>
 
                 <div className="div-btn-cancela-submit">
-                  <button className="btn-cancelar" onClick={handleClose}>
-                    Cancelar
-                  </button>
-                  <button className="btn-submit" type="submit">
+                  <button className="btn-submit" type="submit" onClick={handleClose}>
                     Criar anúncio
                   </button>
                 </div>
               </form>
+                  <button className="btn-cancelar" onClick={handleClose}>
+                    Cancelar
+                  </button>
             </Container>
           </Box>
         </Fade>
