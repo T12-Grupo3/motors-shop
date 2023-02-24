@@ -3,6 +3,7 @@ import Footer from "../../components/Footer"
 import NavBar from "../../components/NavBar"
 import ProductCardAuction from "../../components/ProductCardAuction"
 import { AuthContext } from "../../Context/AuthProvider"
+import EditAdvertModal from "../../modals/EditAdvertModal"
 import RegisterAdvertModal from "../../modals/RegisterAdvertModal"
 import { StyledAuction, StyledProductsContainer } from "../home/style"
 import { ContainerNavProfile, ContainerUserProfile, StyledContainerProfile } from "./style"
@@ -24,6 +25,7 @@ const ProfileView = () =>{
                     </div>
                     <p className="textProfile">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis voluptatem animi molestiae quisquam nemo pariatur ipsa consequuntur quaerat? Dolorum deserunt est quaerat officiis. Deserunt doloremque, aliquid temporibus praesentium laboriosam nostrum?</p>
                     <RegisterAdvertModal />
+                    <EditAdvertModal />
 
             </ContainerUserProfile>
 

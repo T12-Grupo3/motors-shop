@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { iProduct } from "../../interfaces/adverts.interfaces";
 import {
-  ContainerProductCard,
   StyledProductCaracteristcs,
   StyledProductCard,
   StyledProductDescription,
@@ -51,7 +50,5 @@ const ProductCard = ({
     </StyledProductCard>
   );
 };
-
-  };
   
 export default ProductCard;

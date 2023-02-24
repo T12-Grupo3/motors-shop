@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
-import ProductCard from "../../components/ProductCard";
+// import ProductCard from "../../components/ProductCard";
 import ProductCardAuction from "../../components/ProductCardAuction";
 import { AuthContext } from "../../Context/AuthProvider";
 import {

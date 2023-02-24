@@ -1,9 +1,10 @@
-import { iAdvertRequest } from "../../interfaces/adverts.interfaces";
+import { IRequestAdverts } from "../../interfaces/adverts.interfaces";
 import api from "../api";
 
-const api_create_adverts = async (data: iAdvertRequest) => {
+const api_create_adverts = async (data: IRequestAdverts) => {
   try {
     const res = await api.post(`/adverts`, data);
+    console.log("CONSEGUIMOS, ADVERTS CRIADO!")
 
     return res.data;
   } catch (error) {
