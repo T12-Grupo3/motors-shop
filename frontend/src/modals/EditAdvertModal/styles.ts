@@ -16,6 +16,24 @@ export const Container = styled.div`
   height: 530px;
   overflow-y: scroll;
 
+  .div-header-modal{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 30px;
+    margin-bottom: 10px;
+
+    button{
+      background-color: transparent;
+      border: 2px solid  #4529e6;
+      border-radius: 30px;
+      cursor: pointer;
+      align-content: center;
+      font-size: 20px;
+      color: #4529e6;
+    }
+  }
+
   .h3-anuncio {
     font-family: "inter";
     font-weight: var(--font-heading-3);
