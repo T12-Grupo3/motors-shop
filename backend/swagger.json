@@ -1,0 +1,904 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "API de Anúncios de Veículos",
+      "description": "API para cadastrar, listar, editar e remover anúncios de veículos",
+      "version": "1.0.0"
+    },
+    "host": "localhost:8000",
+    "basePath": "/",
+    "schemes": [
+      "http"
+    ],
+    "tags": [
+        "adverts", "ImageAdverts"
+    ],
+    "paths": {
+      "/adverts": {
+        "post": {
+            "tags": [
+                "Adverts"
+            ],
+          "summary": "Cria um novo anúncio",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title_adverts": {
+                    "type": "string",
+                    "example": "Pajero TR4"
+                  },
+                  "year_adverts": {
+                    "type": "string",
+                    "example": "2012"
+                  },
+                  "type_adverts": {
+                    "type": "string",
+                    "example": "Venda"
+                  },
+                  "type_veicule": {
+                    "type": "string",
+                    "example": "Carro"
+                  },
+                  "kilometers_adverts": {
+                    "type": "string",
+                    "example": "101000"
+                  },
+                  "description_adverts": {
+                    "type": "string",
+                    "example": "Carro em execelente estado de conservação"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Anúncio criado com sucesso",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title_adverts": {
+                    "type": "string",
+                    "example": "Pajero TR4"
+                  },
+                  "year_adverts": {
+                    "type": "string",
+                    "example": "2012"
+                  },
+                  "type_adverts": {
+                    "type": "string",
+                    "example": "Venda"
+                  },
+                  "type_veicule": {
+                    "type": "string",
+                    "example": "Carro"
+                  },
+                  "kilometers_adverts": {
+                    "type": "string",
+                    "example": "101000"
+                  },
+                  "description_adverts": {
+                    "type": "string",
+                    "example": "Carro em execelente estado de conservação"
+                  },
+                  "id": {
+                    "type": "string",
+                    "example": "48455b18-a93b-410b-a297-4d27bbc69a2f"
+                  },
+                  "isAvailable": {
+                    "type": "boolean",
+                    "example": true
+                  },
+                  "createdAt_adverts": {
+                    "type": "string",
+                    "example": "2023-02-18T12:45:01.296Z"
+                  },
+                  "updatedAt_adverts": {
+                    "type": "string",
+                    "example": "2023-02-18T12:45:01.296Z"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "get": {
+            "tags": [
+                "Adverts"
+            ],
+            "responses": {
+              "200": {
+                "description": "Array de anúncios",
+                 "schema": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "example": "48455b18-a93b-410b-a297-4d27bbc69a2f"
+                          },
+                          "title_adverts": {
+                            "type": "string",
+                            "example": "Pajero TR4"
+                          },
+                          "year_adverts": {
+                            "type": "string",
+                            "example": "2012"
+                          },
+                          "type_adverts": {
+                            "type": "string",
+                            "example": "Venda"
+                          },
+                          "type_veicule": {
+                            "type": "string",
+                            "example": "Carro"
+                          },
+                          "kilometers_adverts": {
+                            "type": "string",
+                            "example": "101000"
+                          },
+                          "description_adverts": {
+                            "type": "string",
+                            "example": "Carro em execelente estado de conservação"
+                          },
+                          "isAvailable": {
+                            "type": "boolean",
+                            "example": true
+                          },
+                          "createdAt_adverts": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2023-02-18T12:45:01.296Z"
+                          },
+                          "updatedAt_adverts": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2023-02-18T12:45:01.296Z"
+                          }
+                        }
+                      }
+                    }
+                  
+                
+              }
+            }
+        }
+        },
+       "/adverts/{advertId}": {
+        "get": {
+            "tags": [
+                "Adverts"
+            ],
+            "summary": "Get an advert by ID",
+            "parameters": [
+            {
+                "name": "advertId",
+                "in": "path",
+                "description": "ID of the advert to get",
+                "required": true,
+                "schema": {
+                "type": "string",
+                "format": "uuid"
+                }
+            }
+            ],
+            "responses": {
+            "200": {
+                "description": "Successful response",
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                        "type": "string",
+                        "format": "uuid"
+                        },
+                        "title_adverts": {
+                        "type": "string"
+                        },
+                        "year_adverts": {
+                        "type": "string"
+                        },
+                        "type_adverts": {
+                        "type": "string"
+                        },
+                        "type_veicule": {
+                        "type": "string"
+                        },
+                        "kilometers_adverts": {
+                        "type": "string"
+                        },
+                        "description_adverts": {
+                        "type": "string"
+                        },
+                        "isAvailable": {
+                        "type": "boolean"
+                        },
+                        "createdAt_adverts": {
+                        "type": "string",
+                        "format": "date-time"
+                        },
+                        "updatedAt_adverts": {
+                        "type": "string",
+                        "format": "date-time"
+                        }
+                    }
+                    },
+                    "example": {
+                    "id": "94446e9e-20bd-4559-8b6e-e386b941b4b7",
+                    "title_adverts": "Komboza 23",
+                    "year_adverts": "2004",
+                    "type_adverts": "Venda",
+                    "type_veicule": "Carro",
+                    "kilometers_adverts": "120000",
+                    "description_adverts": "Carro em execelente estado moderado",
+                    "isAvailable": false,
+                    "createdAt_adverts": "2023-02-17T14:32:57.831Z",
+                    "updatedAt_adverts": "2023-02-17T15:02:31.516Z"
+                    }
+                
+                
+            },
+            "404": {
+                "description": "Advert not found"
+            }
+            }
+        },
+        "patch": {
+            "tags": [
+                "Adverts"
+            ],
+            "summary": "Update advert by ID",
+            "description": "Update advert by ID",
+            "consumes": [
+            "application/json"
+            ],
+            "produces": [
+            "application/json"
+            ],
+            "parameters": [
+            {
+                "in": "body",
+                "name": "Body",
+                "required": true,
+                "schema":  {
+                    "type": "object",
+                    "properties": {
+                    "title_adverts": {
+                        "type": "string",
+                        "example": "Pajero TR4"
+                    },
+                    "year_adverts": {
+                        "type": "string",
+                        "example": "2012"
+                    },
+                    "type_adverts": {
+                        "type": "string",
+                        "example": "Venda"
+                    },
+                    "type_veicule": {
+                        "type": "string",
+                        "example": "Carro"
+                    },
+                    "kilometers_adverts": {
+                        "type": "string",
+                        "example": "101000"
+                    },
+                    "description_adverts": {
+                        "type": "string",
+                        "example": "Carro em execelente estado de conservação"
+                    }
+                    }
+                }
+            }],
+            "responses": {
+            "200": {
+                "description": "Successful operation",
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "message": {
+                        "type": "string"
+                        },
+                        "advert": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                            "type": "string",
+                            "format": "uuid"
+                            },
+                            "title_adverts": {
+                            "type": "string"
+                            },
+                            "year_adverts": {
+                            "type": "string"
+                            },
+                            "type_adverts": {
+                            "type": "string"
+                            },
+                            "type_veicule": {
+                            "type": "string"
+                            },
+                            "kilometers_adverts": {
+                            "type": "string"
+                            },
+                            "description_adverts": {
+                            "type": "string"
+                            },
+                            "isAvailable": {
+                            "type": "boolean"
+                            },
+                            "createdAt_adverts": {
+                            "type": "string",
+                            "format": "date-time"
+                            },
+                            "updatedAt_adverts": {
+                            "type": "string",
+                            "format": "date-time"
+                            }
+                        }
+                        }
+                    }
+                    }
+                
+                
+            },
+            "404": {
+                "description": "Advert not found"
+            },
+            "500": {
+                "description": "Server error"
+            }
+            }
+        },
+        "parameters": [
+                {
+                "name": "id",
+                "in": "path",
+                "description": "ID of the advert to delete",
+                "required": true,
+                "schema": {
+                    "type": "string",
+                    "example": "65b368a3-1fb4-42b1-9b8f-889b361e24f9"
+                }
+                }
+        ],
+        "delete": {
+            "tags": [
+                "Adverts"
+            ],
+            "summary": "Deletes an advert by ID",
+            "description": "",
+            "requestBody": {
+            "description": "Advert object to delete with new isAvailable status",
+            "required": true,
+            "content": {
+                "application/json": {
+                "schema": {
+                    "type": "object",
+                    "required": [
+                    "isAvailable"
+                    ],
+                    "properties": {
+                    "isAvailable": {
+                        "type": "boolean",
+                        "example": false
+                    }
+                    }
+                }
+                }
+            }
+            },
+            "responses": {
+            "204": {
+                "description": "Advert successfully deleted",
+                "content": {
+                "application/json": {}
+                }
+            },
+            "400": {
+                "description": "Advert not isAvailable",
+                "content": {
+                "application/json": {}
+                }
+            },
+            "404": {
+                "description": "Advert not found",
+                "content": {
+                "application/json": {}
+                }
+            }
+            }
+        }
+        },
+      "/imageadverts": {
+        "post": {
+            "tags": [
+            "ImageAdverts"
+            ],
+            "summary": "Adiciona uma imagem em um anúncio",
+            "description": "Adiciona uma nova imagem em um anúncio existente.",
+            "parameters": [{ 
+                "in": "body",
+                "name": "body",
+                "required": true,
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                    "image_adverts": {
+                        "type": "string",
+                        "description": "URL da imagem a ser adicionada"
+                        },
+                        "description_adverts": {
+                            "type": "string",
+                            "description": "Descrição da imagem adicionada"
+                        },
+                        "advertsId": {
+                            "type": "string",
+                            "description": "ID do anúncio ao qual a imagem será adicionada"
+                        }
+                        },
+                        "required": [
+                        "image_adverts",
+                        "description_adverts",
+                        "advertsId"
+                        ]
+                    }
+                    
+                
+                
+        }],
+            "responses": {
+            "201": {
+                "description": "Imagem adicionada com sucesso",
+                
+                    "schema": {
+                    "type": "object",
+                    "properties": {
+                        "image_adverts": {
+                        "type": "string",
+                        "description": "URL da imagem"
+                        },
+                        "description_adverts": {
+                        "type": "string",
+                        "description": "Descrição da imagem"
+                        },
+                        "advert": {
+                        "type": "object",
+                        "description": "Informações do anúncio ao qual a imagem foi adicionada",
+                        "properties": {
+                            "id": {
+                            "type": "string",
+                            "description": "ID do anúncio"
+                            },
+                            "title_adverts": {
+                            "type": "string",
+                            "description": "Título do anúncio"
+                            },
+                            "year_adverts": {
+                            "type": "string",
+                            "description": "Ano do veículo anunciado"
+                            },
+                            "type_adverts": {
+                            "type": "string",
+                            "description": "Tipo de anúncio (Venda, Troca, etc.)"
+                            },
+                            "type_veicule": {
+                            "type": "string",
+                            "description": "Tipo de veículo (Carro, Moto, etc.)"
+                            },
+                            "kilometers_adverts": {
+                            "type": "string",
+                            "description": "Quilometragem do veículo anunciado"
+                            },
+                            "description_adverts": {
+                            "type": "string",
+                            "description": "Descrição do veículo anunciado"
+                            },
+                            "isAvailable": {
+                            "type": "boolean",
+                            "description": "Indica se o veículo ainda está disponível para venda"
+                            },
+                            "createdAt_adverts": {
+                            "type": "string",
+                            "description": "Data de criação do anúncio"
+                            },
+                            "updatedAt_adverts": {
+                            "type": "string",
+                            "description": "Data de atualização do anúncio"
+                            }
+                        }
+                        },
+                        "id": {
+                        "type": "string",
+                        "description": "ID da imagem adicionada"
+                        },
+                        "createdAt_adverts": {
+                        "type": "string",
+                        "description": "Data de criação da imagem adicionada"
+                        },
+                        "updatedAt_adverts": {
+                        "type": "string",
+                        "description": "Data de atualização da imagem adicionada"
+                        }
+                    }
+                    },
+                    "example": {
+                    "image_adverts": "https://img1.icarros.com/dbimg/galeriaimgmodelo/7/32938_1.jpg",
+                    "description_adverts": "Foto 01",
+                    "advert": {
+                        "id": "48455b18-a93b-410b-a297-4d27bbc69a2f",
+                        "title_adverts": "Pajero TR4",
+                        "year_adverts": "2012",
+                        "type_adverts": "Venda",
+                        "type_veicule": "Carro",
+                        "kilometers_adverts": "101000",
+                        "description_adverts": "Carro em excelente estado de conservação",
+                        "isAvailable": true,
+                        "createdAt_adverts": "2023-02-18T12:45:01.296Z",
+                        "updatedAt_adverts": "2023-02-18T12:45:01.296Z"
+                    },
+                    "id": "fa95c779-4794-4279-ad67-be4042cd9dc5",
+                            "createdAt_adverts": "2023-02-20T17:04:53.711Z",
+                            "updatedAt_adverts": "2023-02-20T17:04:53.711Z"
+                            }
+                        
+                        
+                    },
+                    "400": {
+                        "description": "Invalid input data",
+                        "content": {
+                        "application/json": {
+                            "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                "type": "string",
+                                "description": "Description of the error"
+                                }
+                            }
+                            },
+                            "example": {
+                            "message": "Invalid input data. Check the provided information."
+                            }
+                        }
+                        }
+                    },
+                    "404": {
+                        "description": "Advert not found",
+                        "content": {
+                        "application/json": {
+                            "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                "type": "string",
+                                "description": "Description of the error"
+                                }
+                            }
+                            },
+                            "example": {
+                            "message": "Advert not found."
+                            }
+                        }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "content": {
+                            "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Server error"
+                                    }
+                                }
+                                },
+                                "example": {
+                                "message": "Server error"
+                                }
+                            }
+                            }
+                        }
+                    }
+        },
+        "get": {
+            "tags": [
+                "Image Adverts"
+            ],
+            "description": "Get all image adverts",
+            "operationId": "getImageAdverts",
+            "responses": {
+                "200": {
+                "description": "List of image adverts",
+                    "schema": {
+                        "type": "array",
+                        "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                            "type": "string",
+                            "example": "785003a2-ed5a-499e-a969-26bbbce65794"
+                            },
+                            "image_adverts": {
+                            "type": "string",
+                            "example": "https://img1.icarros.com/dbimg/galeriaimgmodelo/7/32938_1.jpg"
+                            },
+                            "description_adverts": {
+                            "type": "string",
+                            "example": "Foto 01"
+                            },
+                            "createdAt_adverts": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2023-02-20T17:17:06.252Z"
+                            },
+                            "updatedAt_adverts": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2023-02-20T17:17:06.252Z"
+                            }
+                        }
+                        }
+                    }
+                            
+                        
+                        }
+                    }
+        }
+        },
+       "/imageadverts/{imageAdvertId}": {
+        "get": {
+        "tags": [
+            "Image Adverts"
+        ],
+        "summary": "Get an Image Advert by ID",
+        "description": "Returns a single Image Advert",
+        "parameters": [
+            {
+            "name": "id",
+            "in": "path",
+            "description": "ID of Image Advert to return",
+            "required": true,
+            "schema": {
+                "type": "string",
+                "format": "uuid"
+            }
+            }
+        ],
+        "responses": {
+            "200": {
+            "description": "Success",
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid",
+                        "example": "785003a2-ed5a-499e-a969-26bbbce65794"
+                    },
+                    "image_adverts": {
+                        "type": "string",
+                        "example": "https://teste_de_update"
+                    },
+                    "description_adverts": {
+                        "type": "string",
+                        "example": "Foto upadate 01"
+                    },
+                    "createdAt_adverts": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-02-20T17:17:06.252Z"
+                    },
+                    "updatedAt_adverts": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-02-20T19:24:02.611Z"
+                    }
+                }
+            },
+                    "example": {
+                        "id": "785003a2-ed5a-499e-a969-26bbbce65794",
+                        "image_adverts": "https://teste_de_update",
+                        "description_adverts": "Foto upadate 01",
+                        "createdAt_adverts": "2023-02-20T17:17:06.252Z",
+                        "updatedAt_adverts": "2023-02-20T19:24:02.611Z"
+                    }
+
+            },
+            "404": {
+            "description": "Image Advert not found"
+            }
+                    }
+        },
+        "patch": {
+            "tags": [
+                "Image Adverts"
+            ],
+             "summary": "Atualiza a imagem do anúncio",
+              "description": "Atualiza a imagem do anúncio com o ID informado",
+              "consumes": [
+                "application/json"
+                ],
+                "produces": [
+                "application/json"
+                ],
+                "parameters": [
+                {
+                "in": "body",
+                "name": "Body",
+                "required": true,
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "image_adverts": {
+                          "type": "string",
+                          "format": "uri",
+                          "description": "URL da imagem do anúncio",
+                          "example": "https://img1.icarros.com/dbimg/galeriaimgmodelo/7/32938_1.jpg"
+                        },
+                        "description_adverts": {
+                          "type": "string",
+                          "description": "Descrição da imagem do anúncio",
+                          "example": "Foto 01"
+                        },
+                        "advertsId": {
+                          "type": "string",
+                          "format": "uuid",
+                          "description": "ID do anúncio ao qual a imagem pertence",
+                          "example": "48455b18-a93b-410b-a297-4d27bbc69a2f"
+                        }
+                      }
+                    }
+                  }],
+                  "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "image_adverts": {
+                                    "type": "string",
+                                    "example": "https://img1.icarros.com/dbimg/galeriaimgmodelo/7/32938_1.jpg"
+                                },
+                                "description_adverts": {
+                                    "type": "string",
+                                    "example": "Foto 01"
+                                },
+                                "advert": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "48455b18-a93b-410b-a297-4d27bbc69a2f"
+                                        },
+                                        "title_adverts": {
+                                            "type": "string",
+                                            "example": "Pajero TR4"
+                                        },
+                                        "year_adverts": {
+                                            "type": "string",
+                                            "example": "2012"
+                                        },
+                                        "type_adverts": {
+                                            "type": "string",
+                                            "example": "Venda"
+                                        },
+                                        "type_veicule": {
+                                            "type": "string",
+                                            "example": "Carro"
+                                        },
+                                        "kilometers_adverts": {
+                                            "type": "string",
+                                            "example": "101000"
+                                        },
+                                        "description_adverts": {
+                                            "type": "string",
+                                            "example": "Carro em execelente estado de conservação"
+                                        },
+                                        "isAvailable": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "createdAt_adverts": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2023-02-18T12:45:01.296Z"
+                                        },
+                                        "updatedAt_adverts": {
+                                            "type": "string",
+                                            "format": "date-time",
+                                            "example": "2023-02-18T12:45:01.296Z"
+                                        }
+                                    }
+                                },
+                                "id": {
+                                    "type": "string",
+                                    "example": "fa95c779-4794-4279-ad67-be4042cd9dc5"
+                                },
+                                "createdAt_adverts": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "example": "2023-02-20T17:04:53.711Z"
+                                },
+                                "updatedAt_adverts": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "example": "2023-02-20T17:04:53.711Z"
+                                }
+                            }
+                        }
+                    }
+                }
+        },
+        "delete": {
+            "tags": [
+                "Image Adverts"
+            ],
+            "summary": "Deleta uma imagem de anúncio pelo ID",
+            "description": "",
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "description": "ID da imagem do anúncio",
+                "required": true,
+                "schema": {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              }
+            ],
+            "responses": {
+              "204": {
+                "description": "Imagem do anúncio deletada com sucesso",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "description": "Mensagem de sucesso"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "404": {
+                "description": "Imagem do anúncio não encontrada",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "description": "Mensagem de erro"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+        }
+        }
+
+    }
+}
+    
