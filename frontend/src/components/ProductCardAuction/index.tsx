@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { iAuction } from "../../interfaces/adverts.interfaces";
+import { iProduct } from "../../interfaces/adverts.interfaces";
 import {
   StyledAuctionContainer,
   StyledDescription,
@@ -15,7 +15,7 @@ const ProductCardAuction = ({
   title_adverts,
   user,
   year_adverts,
-}: iAuction) => {
+}: iProduct) => {
   const [isAuctionOnwer, setIsAuctionOwner] = useState(false);
   return (
     <StyledAuctionContainer>
