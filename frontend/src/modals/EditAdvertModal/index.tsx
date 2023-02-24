@@ -11,8 +11,8 @@ import { Container, Button } from "./styles";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { iAdvertUpdate } from "../../interfaces/adverts.interfaces";
 import schemaUpdateAdverts from "../../Validations/schemaUpdateAdverts";
-import { AuthContext } from "../../Context/AuthProvider";
 import { Error } from "../../style/error";
+import { AdvertContext } from "../../Context/AdvertContext";
 
 type Inputs = {
   example: string;
@@ -35,7 +35,7 @@ export default function EditAdvertModal() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  // const {updateAdverts} = useContext(AuthContext)
+  // const {updateAdverts} = useContext(AdvertContext)
 
   const updateAdverts = (data: iAdvertUpdate) =>{
     console.log(data)
