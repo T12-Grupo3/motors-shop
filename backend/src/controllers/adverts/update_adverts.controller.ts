@@ -7,6 +7,7 @@ const updateAdvertController = async (req: Request, res: Response) => {
     year_adverts,
     type_adverts,
     type_veicule,
+    price_adverts,
     kilometers_adverts,
     description_adverts,
   } = req.body;
@@ -25,6 +26,7 @@ const updateAdvertController = async (req: Request, res: Response) => {
     year_adverts,
     type_adverts,
     type_veicule,
+    price_adverts,
     kilometers_adverts,
     description_adverts,
   });

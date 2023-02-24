@@ -7,7 +7,7 @@ import { AppError } from "../../errors/appError";
 
 
 
-const updateImageAdvertsService = async({ image_adverts, description_adverts }: IImageAdvertsRequest, id: string): Promise<IImageAdvertsRequest>  => {
+const updateImageAdvertsService = async({ image_adverts, description_image }: IImageAdvertsRequest, id: string): Promise<IImageAdvertsRequest>  => {
 
     const imageAdvertsRepository = AppDataSource.getRepository(ImageAdverts)
 
@@ -26,7 +26,7 @@ const updateImageAdvertsService = async({ image_adverts, description_adverts }: 
         id,
         {
             image_adverts: image_adverts ? image_adverts : findImageAdverts.image_adverts,
-            description_adverts: description_adverts ? description_adverts : findImageAdverts.description_adverts,
+            description_image: description_image ? description_image : findImageAdverts.description_image,
             
         }
     )
@@ -36,7 +36,7 @@ const updateImageAdvertsService = async({ image_adverts, description_adverts }: 
     })
 
 
-    return {image_adverts,description_adverts}
+    return {image_adverts,description_image}
 
 }
 

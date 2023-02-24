@@ -3,7 +3,7 @@ import "dotenv/config";
 // import path from "path";
 import { Adverts } from "./entities/adverts.entity";
 import { ImageAdverts } from "./entities/image_adverts.entity";
-import { ajustenorelacionamento1676723800179 } from "./migrations/1676723800179-ajustenorelacionamento";
+import { initial1677247397447 } from "./migrations/1677247397447-initial";
 
 
 
@@ -27,7 +27,7 @@ const AppDataSource = new DataSource(
         synchronize: false,
         logging: isProduction ? false : true,
         entities: [Adverts, ImageAdverts],
-        migrations: [ajustenorelacionamento1676723800179],
+        migrations: [initial1677247397447],
       }
 );
 export default AppDataSource;
