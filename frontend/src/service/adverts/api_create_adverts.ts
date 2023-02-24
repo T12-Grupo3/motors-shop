@@ -1,7 +1,7 @@
-import { iAdvert } from "../../interfaces/adverts.interfaces";
+import { iAdvertRequest } from "../../interfaces/adverts.interfaces";
 import api from "../api";
 
-const api_create_adverts = async (data: iAdvert) => {
+const api_create_adverts = async (data: iAdvertRequest) => {
   try {
     const res = await api.post(`/adverts`, data);
 
