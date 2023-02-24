@@ -3,16 +3,15 @@ import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Input } from "@mui/material";
 import ReactDOM from "react-dom";
 import { Container, Button } from "./styles";
 import schemaRegisterAdverts from "../../Validations/schemaRegisterAdverts";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IRequestAdverts } from "../../interfaces/adverts.interfaces";
-import { AuthContext } from "../../Context/AuthProvider";
+import { AdvertContext } from "../../Context/AdvertContext";
 import { Error } from "../../style/error";
-import api_create_adverts from "../../service/adverts/api_create_adverts";
 
 
 const style = {
@@ -32,11 +31,8 @@ export default function RegisterAdvertModal() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  // const {createAdverts} = useContext(AuthContext)
+  const {api_create_adverts} = useContext(AdvertContext)
 
-  const createAdverts = (data: IRequestAdverts)=>{
-    console.log(data)
-  }
 
   // Função para selecionar tipo de anuncio
 
