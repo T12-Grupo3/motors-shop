@@ -57,25 +57,7 @@ const Home = () => {
 
         <div id="cars">
           <h5>Carros</h5>
-          {auctions.map(
-            ({
-              description_adverts,
-              price_adverts,
-              title_adverts,
-              user,
-              year_adverts,
-              kilometers_adverts,
-            }) => (
-              <ProductCard
-                description_adverts={description_adverts}
-                kilometers_adverts={kilometers_adverts}
-                price_adverts={price_adverts}
-                title_adverts={title_adverts}
-                year_adverts={year_adverts}
-                user={user}
-              />
-            )
-          )}
+
         </div>
 
         <h5>Motos</h5>
