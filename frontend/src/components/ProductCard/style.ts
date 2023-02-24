@@ -1,43 +1,69 @@
 import styled from "styled-components";
 
+export const StyledProductCard = styled.div`
+  width: 25%;
+`;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 45px 59px;
-    gap: 10px;
+export const StyledProductImg = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    /* position: absolute; */
-    width: 312px;
+  background-color: var(--color-grey-7);
 
-    left: 0px;
-    top: 1951px;
+  padding: 5px;
 
-    /* Grey Scale/grey-0 */
+  img {
+    width: 80%;
+  }
+`;
 
+export const StyledProductDescription = styled.div`
+  h2 {
+    font-size: 16px;
+    font-weight: var(--heading-7-600);
+  }
 
-    width: 262px;
-    height: 150.28px;
-    left: 25px;
-    top: 1px;
+  p {
+    color: var(--color-grey-2);
+    font-weight: var(--body-2-400);
+    font-size: 14px;
+  }
+`;
 
-    background: url(EXTERIOR-frontSidePilotNear-1653845164710-removebg-preview.png);
+export const StyledProductUser = styled.div`
+  width: 55%;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    width: 100%;
-    height: auto;
-    left: 182px;
-    top: 491px;
+  span {
+    color: var(--color-grey-2);
+    font-size: 14px;
+    font-weight: var(--body-2-500);
+  }
+`;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 8px;
+export const StyledProductCaracteristcs = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
+  span {
+    background-color: var(--color-brand-4);
+    color: var(--color-brand-1);
+    font-size: 14px;
+
+    border-radius: 5px;
+
+    padding: 5px;
+    margin-right: 10px;
+  }
+
+  p {
+    color: var(--color-grey-1);
+    font-size: 16px;
+    font-weight: var(--heading-7-500);
+  }
+`;
