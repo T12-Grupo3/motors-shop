@@ -1,8 +1,8 @@
 import { createContext, ReactNode } from "react";
-import { iAuction } from "../interfaces/adverts.interfaces";
+import { iProduct } from "../interfaces/adverts.interfaces";
 
 export interface IContext{
-    auctions: Array<iAuction>
+    auctions: Array<iProduct>
 
 }
 

@@ -1,32 +1,57 @@
-import { ContainerProductCard } from "./style"
+import { useState } from "react";
+import { iProduct } from "../../interfaces/adverts.interfaces";
+import {
+  ContainerProductCard,
+  StyledProductCaracteristcs,
+  StyledProductCard,
+  StyledProductDescription,
+  StyledProductImg,
+  StyledProductUser,
+} from "./style";
 
-const ProductCard = () => {
+const ProductCard = ({
+  description_adverts,
+  kilometers_adverts,
+  price_adverts,
+  title_adverts,
+  year_adverts,
+  user,
+}: iProduct) => {
+  const [isOwned] = useState(false);
 
   return (
-      <ContainerProductCard>
-        <div className="productCardMain">
-          <div className="imgCard">
-            <img className="image" src="https://www.automaistv.com.br/wp-content/uploads/2022/06/mitsubishi_pajero_mini_final_anniversary_edited-750x450.jpg" alt="" />
-          </div>
-          <div className="descriptionCard">
-            <p className="nameCarCard">Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200 </p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In ab harum, tempora iste a illo, dolore eos nisi veniam maiores ratione vitae nemo recusandae quas cumque quisquam consequuntur vero officia?</p>
-          <div className="liComents"> 
-                <span className="nikeClient">NC</span>  
-                <span className="liName">Nome do Cliente</span>
-                
-          </div> 
-          <div className="caracteristc">
-              <div className="DataCard">
-              <span className="anoCard">2013</span>
-              <span className="kmCard">0 KM</span>
-              </div>
-              <div className="precoCard">R$ 50.000,00</div>
-            </div>
+    <StyledProductCard>
+      <StyledProductImg>
+        <img
+          src="https://www.automaistv.com.br/wp-content/uploads/2022/06/mitsubishi_pajero_mini_final_anniversary_edited-750x450.jpg"
+          alt=""
+        />
+      </StyledProductImg>
+      <StyledProductDescription>
+        <h2>{title_adverts}</h2>
+        <p>{description_adverts}</p>
+      </StyledProductDescription>
+
+      {isOwned ? (
+        <></>
+      ) : (
+        <StyledProductUser>
+          <span>NC</span>
+          <span>{user.name}</span>
+        </StyledProductUser>
+      )}
+
+      <StyledProductCaracteristcs>
+        <div>
+          <span>{year_adverts}</span>
+          <span> {`${kilometers_adverts} KM`} </span>
         </div>
-        </div>
-      </ContainerProductCard>
-    );
+        <p>{`R$ ${price_adverts.toFixed(2)}`}</p>
+      </StyledProductCaracteristcs>
+    </StyledProductCard>
+  );
+};
+
   };
   
 export default ProductCard;

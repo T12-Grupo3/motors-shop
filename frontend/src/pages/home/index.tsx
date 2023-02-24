@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
+import ProductCard from "../../components/ProductCard";
 import ProductCardAuction from "../../components/ProductCardAuction";
 import { AuthContext } from "../../Context/AuthProvider";
 import {
@@ -56,6 +57,7 @@ const Home = () => {
 
         <div id="cars">
           <h5>Carros</h5>
+
         </div>
 
         <h5>Motos</h5>
