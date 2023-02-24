@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useContext, useState } from "react"
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -7,10 +7,13 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Input } from "@mui/material";
 import ReactDOM from "react-dom";
 import { Container, Button } from "./styles";
+import schemaRegisterAdverts from "../../Validations/schemaRegisterAdverts";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { IRequestAdverts } from "../../interfaces/adverts.interfaces";
+import { AuthContext } from "../../Context/AuthProvider";
+import { Error } from "../../style/error";
+import api_create_adverts from "../../service/adverts/api_create_adverts";
 
-type Inputs = {
-  example: string;
-};
 
 const style = {
   position: "absolute" as "absolute",
@@ -25,9 +28,15 @@ const style = {
 };
 
 export default function RegisterAdvertModal() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  // const {createAdverts} = useContext(AuthContext)
+
+  const createAdverts = (data: IRequestAdverts)=>{
+    console.log(data)
+  }
 
   // Função para selecionar tipo de anuncio
 
@@ -96,6 +105,7 @@ export default function RegisterAdvertModal() {
     const novoInput = document.createElement("div");
     ReactDOM.render(
       <Input
+        {...register('image_adverts')}
         placeholder="Inserir URL da imagem"
         type="url"
         inputProps={{ className: "galeria-input" }}
@@ -111,7 +121,7 @@ export default function RegisterAdvertModal() {
 
   // função para mudar o preço para lance inciial
 
-  const [tipoAnuncio, setTipoAnuncio] = React.useState("venda");
+  const [tipoAnuncio, setTipoAnuncio] = useState("venda");
 
   function handleTipoAnuncioChange(event: React.MouseEvent<HTMLButtonElement>) {
     if (event.currentTarget.classList.contains("btn-leilão")) {
@@ -121,15 +131,13 @@ export default function RegisterAdvertModal() {
     }
   }
 
-  //
-
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+    formState: { errors }
+  } = useForm<IRequestAdverts>({
+    resolver: yupResolver(schemaRegisterAdverts)
+  });
 
   return (
     <div>
@@ -145,34 +153,38 @@ export default function RegisterAdvertModal() {
         <Fade in={open}>
           <Box sx={style}>
             <Container>
-              <form onSubmit={handleSubmit(onSubmit)}>
+              <form onSubmit={handleSubmit(api_create_adverts)}>
                 <h3 className="h3-anuncio">Criar anuncio</h3>
 
-                <p className="p-tipo-anuncio">Tipo de anuncio</p>
-                <div className="div-btn-tipo-anuncio">
-                  <button
+                <label className="p-tipo-anuncio">Tipo de anuncio</label>
+                <select
+                  {...register("type_adverts")}
+                  className="div-btn-tipo-anuncio" >
+                  
+                  <option
+                    value="sell"
                     className="btn-tipo-anuncio btn-venda"
-                    onClick={handleTipoAnuncioChange}
-                  >
-                    Venda
-                  </button>
-                  <button
+                    >Venda
+                  </option>
+
+                  <option
+                    value="auction"
                     className="btn-tipo-anuncio btn-leilão"
-                    onClick={handleTipoAnuncioChange}
-                  >
-                    Leilão
-                  </button>
-                </div>
+                    >Leilão
+                  </option>
+                </select>
+                <Error>{errors.type_adverts?.message}</Error>
 
                 <div>
                   <p className="p-info-veiculo">Infomações do veículo</p>
 
                   <p className="p-titulo-anuncio">Título</p>
                   <Input
+                    {...register('title_adverts')}
                     className="input-titulo"
                     placeholder="Digitar título"
-                    required
                   />
+                  <Error>{errors.title_adverts?.message}</Error>
                 </div>
 
                 <div className="div-info-p-aqp">
@@ -187,42 +199,81 @@ export default function RegisterAdvertModal() {
                 </div>
 
                 <div className="div-info-input-aqp">
-                  <Input placeholder="Digitar ano" type="number" required />
-                  <Input placeholder="0" type="number" required />
-                  <Input placeholder="Digitar preço" type="number" required />
+                  <Input
+                  {...register('year_adverts')}
+                  placeholder="Digitar ano"
+                  type="number"
+                  />
+                  <Error>{errors.year_adverts?.message}</Error>
+
+                  <Input
+                  {...register('kilometers_adverts')}
+                  placeholder="0"
+                  type="number"
+                  />
+                  <Error>{errors.kilometers_adverts?.message}</Error>
+
+                  <Input
+                  {...register('price_adverts')}
+                  placeholder="Digitar preço"
+                  type="number"
+                  />
+                  <Error>{errors.price_adverts?.message}</Error>
+
                 </div>
 
                 <div>
                   <p className="p-descricao-anuncio">Descrição</p>
                   <Input
+                    {...register('description_adverts')}
                     className="input-descricao"
                     placeholder="Digitar descrição"
-                    required
+                  
                   />
+                  <Error>{errors.description_adverts?.message}</Error>
+
                 </div>
 
-                <p className="p-tipo-veiculo">Tipo de veículo</p>
-                <div className="div-btn-tipo-veiculo">
-                  <button className="btn-tipo-veiculo">Carro</button>
-                  <button className="btn-tipo-veiculo">Moto</button>
-                </div>
+                <label className="p-tipo-veiculo">Tipo de veículo</label>
+                  <select
+                    className="div-btn-tipo-veiculo"
+                    {...register('type_veicule')}
+                  >
+
+                    <option
+                    value="carro"
+                    className="btn-tipo-veiculo"
+                    >Carro
+                    </option>
+
+                    <option
+                    value="moto"
+                    className="btn-tipo-veiculo"
+                    >Moto
+                    </option>
+                  </select>
+                <Error>{errors.type_veicule?.message}</Error>
 
                 <div id="minha-galeria">
                   <div id="galeria">
                     <div>
                       <p className="p-img-capa">Imagem da capa</p>
                       <Input
+                        {...register('image_adverts')}
                         placeholder="Inserir URL da imagem"
                         type="url"
-                        required
                       />
+                    <Error>{errors.image_adverts?.message}</Error>
+
 
                       <p className="p-img-galeria">1° Imagem da galeria</p>
                       <Input
+                        {...register('image_adverts')}
                         placeholder="Inserir URL da imagem"
                         type="url"
-                        required
                       />
+                      {/* <Error>{errors.image_adverts?.message}</Error> */}
+                      
                     </div>
                   </div>
                 </div>
