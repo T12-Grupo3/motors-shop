@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { iProduct } from "../../interfaces/adverts.interfaces";
+import { iAdvertProduct } from "../../interfaces/adverts.interfaces";
 import {
   StyledAuctionContainer,
   StyledDescription,
@@ -13,10 +13,9 @@ const ProductCardAuction = ({
   kilometers_adverts,
   price_adverts,
   title_adverts,
-  user,
   year_adverts,
-}: iProduct) => {
-  const [isAuctionOnwer, setIsAuctionOwner] = useState(false);
+}: iAdvertProduct) => {
+  const [isAuctionOnwer] = useState(false);
   return (
     <StyledAuctionContainer>
       <StyledDescription>
@@ -24,14 +23,14 @@ const ProductCardAuction = ({
           <h2>{title_adverts}</h2>
           <p>{description_adverts}</p>
           <div></div>
-          <p>{user.name}</p>
+          {/* <p>{user.name}</p> */}
         </div>
         <StyledTags>
           <div>
             <span>{year_adverts}</span>
             <span>{`${kilometers_adverts} KM`}</span>
           </div>
-          <p>R$ {price_adverts.toFixed(2)}</p>
+          <p>R$ {price_adverts}</p>
         </StyledTags>
       </StyledDescription>
 

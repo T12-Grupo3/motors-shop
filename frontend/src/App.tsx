@@ -1,17 +1,15 @@
 import Global from "./style/Global";
 
 import MainRoutes from "./routes";
-import AuthProvider from "./Context/AuthProvider";
+import AdvertProvider from "./Context/AdvertContext";
 
 function App() {
-
-
   return (
     <>
-      <AuthProvider>
+      <AdvertProvider>
         <Global />
         <MainRoutes />
-      </AuthProvider>
+      </AdvertProvider>
     </>
   );
 }
