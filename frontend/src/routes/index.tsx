@@ -6,7 +6,7 @@ import ProfileView from "../pages/ProfileView";
 const MainRoutes = () => {
   return( 
   <Routes>
-    <Route path="/" element={<Home />} />
+    <Route path="/home" element={<Home />} />
     <Route path="*" element={<Navigate replace to={"home"} />} />
     <Route path="/product" element={ <Product /> } />
     <Route path="/profileview" element={<ProfileView />} />

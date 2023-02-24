@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { iProduct } from "../../interfaces/adverts.interfaces";
+import { iAdvertProduct } from "../../interfaces/adverts.interfaces";
 import {
   StyledProductCaracteristcs,
   StyledProductCard,
@@ -14,8 +14,7 @@ const ProductCard = ({
   price_adverts,
   title_adverts,
   year_adverts,
-  user,
-}: iProduct) => {
+}: iAdvertProduct) => {
   const [isOwned] = useState(false);
 
   return (
@@ -36,7 +35,7 @@ const ProductCard = ({
       ) : (
         <StyledProductUser>
           <span>NC</span>
-          <span>{user.name}</span>
+          {/* <span>{user.name}</span> */}
         </StyledProductUser>
       )}
 
@@ -45,10 +44,10 @@ const ProductCard = ({
           <span>{year_adverts}</span>
           <span> {`${kilometers_adverts} KM`} </span>
         </div>
-        <p>{`R$ ${price_adverts.toFixed(2)}`}</p>
+        <p>{`R$ ${price_adverts}`}</p>
       </StyledProductCaracteristcs>
     </StyledProductCard>
   );
 };
-  
+
 export default ProductCard;
