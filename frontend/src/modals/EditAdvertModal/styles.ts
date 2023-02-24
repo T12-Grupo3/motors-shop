@@ -122,13 +122,20 @@ export const Container = styled.div`
     width: 200px;
   }
 
-  .p-tipo-veiculo,
-  .p-publicado {
+  .p-tipo-veiculo{
     font-family: "Inter";
     font-weight: var(--font-heading-3);
     font-size: 14px;
     line-height: 24px;
     padding-top: 40px;
+    color: #000000;
+  }
+  .p-publicado {
+    font-family: "Inter";
+    font-weight: var(--font-heading-3);
+    font-size: 14px;
+    line-height: 24px;
+    /* padding-top: 40px; */
     color: #000000;
   }
 

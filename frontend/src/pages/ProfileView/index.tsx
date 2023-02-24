@@ -1,8 +1,10 @@
+
 import { useContext } from "react";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 import ProductCardAuction from "../../components/ProductCardAuction";
 import { AdvertContext } from "../../Context/AdvertContext";
+import EditAdvertModal from "../../modals/EditAdvertModal"
 import RegisterAdvertModal from "../../modals/RegisterAdvertModal";
 import { StyledAuction, StyledProductsContainer } from "../home/style";
 import {
@@ -10,6 +12,7 @@ import {
   ContainerUserProfile,
   StyledContainerProfile,
 } from "./style";
+
 
 const ProfileView = () => {
   const { auctions } = useContext(AdvertContext);
