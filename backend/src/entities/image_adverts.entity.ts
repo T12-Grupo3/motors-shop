@@ -13,7 +13,7 @@ readonly id: string
 image_adverts: string
 
 @Column({length: 240})
-description_adverts: string
+description_image: string
 
 @CreateDateColumn()
 createdAt_adverts: Date

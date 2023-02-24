@@ -30,6 +30,9 @@ export class Adverts {
   @Column({ length: 20 })
   kilometers_adverts: string;
 
+  @Column()
+  price_adverts: number;
+
   @Column({ length: 240 })
   description_adverts: string;
 

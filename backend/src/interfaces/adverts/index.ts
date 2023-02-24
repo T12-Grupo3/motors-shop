@@ -3,6 +3,7 @@ export interface IAdvertsRequest {
   year_adverts: string;
   type_adverts: string;
   type_veicule: string
+  price_adverts: number
   kilometers_adverts: string;
   description_adverts: string;
 }
@@ -13,6 +14,7 @@ export interface IAdverts {
   year_adverts: string;
   type_adverts: string;
   type_veicule: string
+  price_adverts: number
   kilometers_adverts: string;
   description_adverts: string;
   createdAt_adverts: Date;
@@ -26,6 +28,7 @@ export interface IAdvertsUpdate {
   year_adverts: string;
   type_adverts: string;
   type_veicule: string;
+  price_adverts: number
   kilometers_adverts: string;
   description_adverts: string;
  

@@ -8,6 +8,7 @@ const updateAdvertService = async ({
   year_adverts,
   type_adverts,
   type_veicule,
+  price_adverts,
   kilometers_adverts,
   description_adverts,
 }: IAdvertsUpdate) => {
@@ -20,6 +21,7 @@ const updateAdvertService = async ({
     year_adverts,
     type_adverts,
     type_veicule,
+    price_adverts,
     kilometers_adverts,
     description_adverts,
   };

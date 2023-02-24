@@ -5,7 +5,7 @@ import { Adverts } from "../../entities/adverts.entity";
 
 
 
-const createAdvertsService = async({title_adverts, year_adverts, type_adverts, type_veicule, kilometers_adverts, description_adverts }:IAdvertsRequest): Promise<Adverts> => {
+const createAdvertsService = async({title_adverts, year_adverts, type_adverts, type_veicule, price_adverts, kilometers_adverts, description_adverts }:IAdvertsRequest): Promise<Adverts> => {
      
 const advertsRepository = AppDataSource.getRepository(Adverts);
 
@@ -14,6 +14,7 @@ const newAdverts = advertsRepository.create({
      year_adverts, 
      type_adverts, 
      type_veicule,
+     price_adverts,
      kilometers_adverts, 
     description_adverts
 
