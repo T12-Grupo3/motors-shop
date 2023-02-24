@@ -54,3 +54,7 @@ export interface iAdvert {
   createdAt_adverts: Date;
   updatedAt_adverts: Date;
 }
+
+export interface iIdAdvert {
+  id_adverts: string
+}

@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, ReactNode, useEffect, useState, Dispatch, SetStateAction } from "react";
 import { iAdvert, iAdvertUpdate, iImageAdvertRequest, IRequestAdverts } from "../interfaces/adverts.interfaces";
 import api from "../service/api";
 
@@ -6,12 +6,14 @@ export interface IContext {
   auctions: iAdvert[];
   cars: iAdvert[];
   motorcycles: iAdvert[];
+  adverts: iAdvert[]
   api_create_adverts: (props: IRequestAdverts)=>void;
   api_create_image_advert: (props: iImageAdvertRequest)=>void;
   api_delete_advert: (props: string)=>void;
-  api_read_adverts: ()=>void;
-  api_read_id_advert: (props: string)=>void;
-  api_update_advert: (idProps: string, props: iAdvertUpdate)=>void
+  api_read_adverts: ()=> Promise<iAdvert[]>;
+  api_read_id_advert: (props: string)=>Promise<iAdvert>;
+  api_update_advert: (idProps: string, props: iAdvertUpdate)=>void;
+  setAdverts: Dispatch<SetStateAction<iAdvert[]>>
 }
 
 export interface IProviderProps {
@@ -61,6 +63,7 @@ const AdvertProvider = ({ children }: IProviderProps) => {
   const api_create_image_advert = async (data: iImageAdvertRequest) => {
     try {
       const res = await api.post("/imageadverts", data);
+      console.log(res)
   
       return res.data;
     } catch (error) {
@@ -110,12 +113,14 @@ const AdvertProvider = ({ children }: IProviderProps) => {
         auctions,
         cars,
         motorcycles,
+        adverts,
         api_create_adverts,
         api_create_image_advert,
         api_delete_advert,
         api_read_adverts,
         api_read_id_advert,
-        api_update_advert
+        api_update_advert,
+        setAdverts
       }}
     >
       {children}

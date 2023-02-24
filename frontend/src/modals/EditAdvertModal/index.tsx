@@ -9,7 +9,7 @@ import { Input } from "@mui/material";
 import ReactDOM from "react-dom";
 import { Container, Button } from "./styles";
 import { yupResolver } from '@hookform/resolvers/yup';
-import { iAdvertUpdate } from "../../interfaces/adverts.interfaces";
+import { iAdvertUpdate, iIdAdvert } from "../../interfaces/adverts.interfaces";
 import schemaUpdateAdverts from "../../Validations/schemaUpdateAdverts";
 import { Error } from "../../style/error";
 import { AdvertContext } from "../../Context/AdvertContext";
@@ -30,15 +30,27 @@ const style = {
   borderRadius: 2,
 };
 
-export default function EditAdvertModal() {
+export default function EditAdvertModal({id_adverts}: iIdAdvert) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  // const {updateAdverts} = useContext(AdvertContext)
+  const {api_update_advert, api_delete_advert, api_read_id_advert} = useContext(AdvertContext)
 
-  const updateAdverts = (data: iAdvertUpdate) =>{
-    console.log(data)
+  const updateAdverts = async (data: iAdvertUpdate) =>{
+    await api_update_advert(id_adverts, data)
+    handleClose()
+  }
+
+  const deleteAdverts = async () =>{
+    await api_delete_advert(id_adverts)
+    handleClose()
+  }
+
+  // tentativa de caturar os valores dos inputs cadastrados, para o modal de edição.
+  const getAdverts = async ()=>{
+    const advertObj = await api_read_id_advert(id_adverts)
+
   }
 
 
@@ -160,8 +172,6 @@ export default function EditAdvertModal() {
     }
   }
 
-  //
-
   const {
     register,
     handleSubmit,
@@ -169,7 +179,6 @@ export default function EditAdvertModal() {
   } = useForm<iAdvertUpdate>({
     resolver: yupResolver(schemaUpdateAdverts)
   });
-  // const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
   return (
     <div>
@@ -186,7 +195,11 @@ export default function EditAdvertModal() {
           <Box sx={style}>
             <Container>
               <form onSubmit={handleSubmit(updateAdverts)}>
-                <h3 className="h3-anuncio">Editar anúncio</h3>
+                <div className="div-header-modal">
+                  <h3 className="h3-anuncio">Editar anúncio</h3>
+                  <button onClick={handleClose}>X</button>
+
+                </div>
 
                 <label className="p-tipo-anuncio">Tipo de anuncio</label>
                 <select
@@ -196,6 +209,7 @@ export default function EditAdvertModal() {
                   <option
                     className="btn-tipo-anuncio btn-venda"
                     value="sell"
+                    // defaultValue="sell"
                   >Venda
                   </option>
 
@@ -215,6 +229,7 @@ export default function EditAdvertModal() {
                     {...register('title_adverts')}
                     className="input-titulo"
                     placeholder="Digitar título"
+                    // value={advertObj.title_adverts}
                   />
                   <Error>{errors.title_adverts?.message}</Error>
                 </div>
@@ -264,27 +279,26 @@ export default function EditAdvertModal() {
                 </div>
                 <div>
                 
-                  <label className="p-tipo-veiculo">Tipo de veículo</label>
-                    <select
-                      className="div-btn-tipo-veiculo"
-                      {...register('type_veicule')}
-                    >
+                <label className="p-tipo-veiculo">Tipo de veículo</label>
+                  <select
+                    className="div-btn-tipo-veiculo"
+                    {...register('type_veicule')}
+                  >
 
-                      <option
-                        value="carro"
-                        className="btn-tipo-veiculo"
-                      >Carro
-                      </option>
-
-                      <option
-                      value="moto"
+                    <option
+                      value="car"
                       className="btn-tipo-veiculo"
-                      >Moto
-                      </option>
+                    >Carro
+                    </option>
 
-                    </select>
-                      <Error>{errors.type_veicule?.message}</Error>
+                    <option
+                    value="motorcycle"
+                    className="btn-tipo-veiculo"
+                    >Moto
+                    </option>
 
+                  </select>
+                    <Error>{errors.type_veicule?.message}</Error>
 
                 </div>
                 <div>
@@ -337,7 +351,7 @@ export default function EditAdvertModal() {
                 </p>
 
                 <div className="div-btn-cancela-submit">
-                  <button className="btn-excluir" onClick={handleClose}>
+                  <button className="btn-excluir" onClick={deleteAdverts}>
                     Excluir anúncio
                   </button>
                   <button className="btn-submit" type="submit">

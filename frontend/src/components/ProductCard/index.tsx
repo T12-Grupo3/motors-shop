@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { iAdvertProduct } from "../../interfaces/adverts.interfaces";
+import EditAdvertModal from "../../modals/EditAdvertModal";
 import {
   StyledProductCaracteristcs,
   StyledProductCard,
@@ -46,6 +47,7 @@ const ProductCard = ({
         </div>
         <p>{`R$ ${price_adverts}`}</p>
       </StyledProductCaracteristcs>
+
     </StyledProductCard>
   );
 };
