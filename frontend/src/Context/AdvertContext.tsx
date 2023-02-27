@@ -46,9 +46,6 @@ const AdvertProvider = ({ children }: IProviderProps) => {
     };
 
     getAdverts();
-
-    console.log(refreshKey)
-
   }, [refreshKey]);
 
   const sells = adverts.filter(

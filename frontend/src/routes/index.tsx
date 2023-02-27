@@ -8,7 +8,7 @@ const MainRoutes = () => {
   <Routes>
     <Route path="/home" element={<Home />} />
     <Route path="*" element={<Navigate replace to={"home"} />} />
-    <Route path="/product" element={ <Product /> } />
+    <Route path="/product/:id" element={ <Product /> } />
     <Route path="/profileview" element={<ProfileView />} />
 
   </Routes>

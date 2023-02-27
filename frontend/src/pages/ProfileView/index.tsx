@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 import ProductCard from "../../components/ProductCard";
@@ -61,6 +62,7 @@ const ProfileView = () => {
                   price_adverts={price_adverts}
                   title_adverts={title_adverts}
                   year_adverts={year_adverts}
+                  id={id}
                 />
               )
             )}
@@ -86,6 +88,7 @@ const ProfileView = () => {
                     price_adverts={price_adverts}
                   />
                   <EditAdvertModal id_adverts={id} />
+                  <Link to={`/product/${id}`}>Ver como</Link>
                 </>
               )
             )}

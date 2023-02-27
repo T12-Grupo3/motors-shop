@@ -19,10 +19,12 @@ const NavBar = () => {
     <StyledDiv>
       <StyledNavContainer>
         <div>
-          <img
-            src={require("../../utils/image/motors-shop.png")}
-            alt="motors shop"
-          />
+          <Link to={"/home"}>
+            <img
+              src={require("../../utils/image/motors-shop.png")}
+              alt="motors shop"
+            />
+          </Link>
         </div>
         <nav>
           <li>
