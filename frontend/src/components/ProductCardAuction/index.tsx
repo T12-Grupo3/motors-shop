@@ -14,6 +14,7 @@ const ProductCardAuction = ({
   price_adverts,
   title_adverts,
   year_adverts,
+  id,
 }: iAdvertProduct) => {
   const [isAuctionOnwer] = useState(false);
   return (
@@ -37,11 +38,11 @@ const ProductCardAuction = ({
       {isAuctionOnwer ? (
         <div>
           <button>Editar</button>
-          <button>Ver como</button>
+          <Link to={`/product/${id}`}>Ver como</Link>
         </div>
       ) : (
         <StyledAuctionPage>
-          <Link to={"/"}>
+          <Link to={`/product/${id}`}>
             <p>Acessar página do leilão</p>
             <p>{`--->`}</p>
           </Link>

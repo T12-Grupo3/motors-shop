@@ -50,6 +50,7 @@ const Home = () => {
                 price_adverts={price_adverts}
                 title_adverts={title_adverts}
                 year_adverts={year_adverts}
+                id={id}
               />
             )
           )}
