@@ -1,11 +1,10 @@
-
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 import ProductCard from "../../components/ProductCard";
 import ProductCardAuction from "../../components/ProductCardAuction";
 import { AdvertContext } from "../../Context/AdvertContext";
-import EditAdvertModal from "../../modals/EditAdvertModal"
+import EditAdvertModal from "../../modals/EditAdvertModal";
 import RegisterAdvertModal from "../../modals/RegisterAdvertModal";
 import { StyledAuction, StyledProductsContainer } from "../home/style";
 import {
@@ -14,19 +13,8 @@ import {
   StyledContainerProfile,
 } from "./style";
 
-
 const ProfileView = () => {
-  const { adverts, auctions, cars, motorcycles, api_read_adverts, setAdverts } = useContext(AdvertContext);
-
-  useEffect(() => {
-    const getAdverts = async () => {
-      const res = await api_read_adverts();
-
-      setAdverts(res);
-    };
-
-    getAdverts();
-  }, []);
+  const { auctions, cars, motorcycles } = useContext(AdvertContext);
 
   return (
     <>
@@ -78,59 +66,55 @@ const ProfileView = () => {
             )}
           </StyledAuction>
           <h5>Carros</h5>
-        <div id="cars">
-          {cars.map(
-            ({
-              description_adverts,
-              id,
-              kilometers_adverts,
-              title_adverts,
-              price_adverts,
-              year_adverts,
-            }) => (
-              <>
-                <ProductCard
-                  key={id}
-                  description_adverts={description_adverts}
-                  kilometers_adverts={kilometers_adverts}
-                  title_adverts={title_adverts}
-                  year_adverts={year_adverts}
-                  price_adverts={price_adverts}
-                />
-                <EditAdvertModal
-                id_adverts={id}
-                />
-              </>
-            )
-          )}
-        </div>
-        <h5>Motos</h5>
-        <div id="motos">
-          {motorcycles.map(
-            ({
-              description_adverts,
-              id,
-              kilometers_adverts,
-              title_adverts,
-              price_adverts,
-              year_adverts,
-            }) => (
-              <>
-                <ProductCard
-                  key={id}
-                  description_adverts={description_adverts}
-                  kilometers_adverts={kilometers_adverts}
-                  title_adverts={title_adverts}
-                  year_adverts={year_adverts}
-                  price_adverts={price_adverts}
-                />
-                <EditAdvertModal
-                id_adverts={id}
-                />
-              </>
-            )
-          )}
-        </div>
+          <div id="cars">
+            {cars.map(
+              ({
+                description_adverts,
+                id,
+                kilometers_adverts,
+                title_adverts,
+                price_adverts,
+                year_adverts,
+              }) => (
+                <>
+                  <ProductCard
+                    key={id}
+                    description_adverts={description_adverts}
+                    kilometers_adverts={kilometers_adverts}
+                    title_adverts={title_adverts}
+                    year_adverts={year_adverts}
+                    price_adverts={price_adverts}
+                  />
+                  <EditAdvertModal id_adverts={id} />
+                </>
+              )
+            )}
+          </div>
+          <h5>Motos</h5>
+          <div id="motos">
+            {motorcycles.map(
+              ({
+                description_adverts,
+                id,
+                kilometers_adverts,
+                title_adverts,
+                price_adverts,
+                year_adverts,
+              }) => (
+                <>
+                  <ProductCard
+                    key={id}
+                    description_adverts={description_adverts}
+                    kilometers_adverts={kilometers_adverts}
+                    title_adverts={title_adverts}
+                    year_adverts={year_adverts}
+                    price_adverts={price_adverts}
+                  />
+                  <EditAdvertModal id_adverts={id} />
+                </>
+              )
+            )}
+          </div>
         </StyledProductsContainer>
       </StyledContainerProfile>
       <Footer />

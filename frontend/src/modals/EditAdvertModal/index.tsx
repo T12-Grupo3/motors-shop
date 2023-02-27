@@ -37,13 +37,13 @@ export default function EditAdvertModal({id_adverts}: iIdAdvert) {
 
   const {api_update_advert, api_delete_advert, api_read_id_advert} = useContext(AdvertContext)
 
-  const updateAdverts = async (data: iAdvertUpdate) =>{
-    await api_update_advert(id_adverts, data)
+  const updateAdverts =  (data: iAdvertUpdate) =>{
+    api_update_advert(id_adverts, data)
     handleClose()
   }
 
-  const deleteAdverts = async () =>{
-    await api_delete_advert(id_adverts)
+  const deleteAdverts = () =>{
+    api_delete_advert(id_adverts)
     handleClose()
   }
 
