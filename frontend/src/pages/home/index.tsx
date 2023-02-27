@@ -12,7 +12,7 @@ import {
 } from "./style";
 
 const Home = () => {
-  const { auctions, cars } = useContext(AdvertContext);
+  const { auctions, cars, motorcycles } = useContext(AdvertContext);
 
   return (
     <>
@@ -79,7 +79,27 @@ const Home = () => {
         </div>
 
         <h5>Motos</h5>
-        <div></div>
+        <div>
+          {motorcycles.map(
+            ({
+              description_adverts,
+              id,
+              kilometers_adverts,
+              title_adverts,
+              price_adverts,
+              year_adverts,
+            }) => (
+              <ProductCard
+                key={id}
+                description_adverts={description_adverts}
+                kilometers_adverts={kilometers_adverts}
+                title_adverts={title_adverts}
+                year_adverts={year_adverts}
+                price_adverts={price_adverts}
+              />
+            )
+          )}
+        </div>
       </StyledProductsContainer>
 
       <Footer />

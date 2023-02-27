@@ -10,7 +10,7 @@ const advertsRoutes = Router();
 
 advertsRoutes.post("", createAdvertsController);
 advertsRoutes.get("", ListAdvertsController);
-advertsRoutes.get("/:id", advertListImageAdvertController);
+advertsRoutes.get("/:id", listAdvertsIdController);
 // advertsRoutes.get("/:id/imageadvert", advertListImageAdvertController);
 advertsRoutes.patch("/:id", updateAdvertController);
 
