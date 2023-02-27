@@ -3,9 +3,7 @@ import "dotenv/config";
 // import path from "path";
 import { Adverts } from "./entities/adverts.entity";
 import { ImageAdverts } from "./entities/image_adverts.entity";
-import { initial1677247397447 } from "./migrations/1677247397447-initial";
-
-
+import { adverts1677480858441 } from "./migrations/1677480858441-adverts";
 
 const isProduction = process.env.NODE_ENV === "production";
 const AppDataSource = new DataSource(
@@ -27,7 +25,7 @@ const AppDataSource = new DataSource(
         synchronize: false,
         logging: isProduction ? false : true,
         entities: [Adverts, ImageAdverts],
-        migrations: [initial1677247397447],
+        migrations: [adverts1677480858441],
       }
 );
 export default AppDataSource;

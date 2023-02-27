@@ -3,35 +3,18 @@ import { Adverts } from "../../entities/adverts.entity";
 import { AppError } from "../../errors/appError";
 import { IAdverts, IAdvertsDelete } from "../../interfaces/adverts";
 
-const deleteAdvertsService = async({ isAvailable  }: IAdvertsDelete, id: string): Promise<Adverts> => {
+const deleteAdvertsService = async (id: string): Promise<string> => {
+  const advertRepository = AppDataSource.getRepository(Adverts);
 
-  const advertRepository = AppDataSource.getRepository(Adverts)
+  const deleted_advert = await advertRepository.findOneBy({ id });
 
-  const findAdvert = await advertRepository.findOneBy({
-      id
-  })
-
-  if(!findAdvert){
-      throw new AppError('Advert not found', 404)
+  if (!deleted_advert) {
+    throw new AppError("Advert not found");
   }
 
-  if(!findAdvert.isAvailable){
-      throw new AppError('Advert not isAvailable', 400)
-  }
- 
-  await advertRepository.update(
-      id,
-      {
-        isAvailable: false 
-                }
-  )
+  await advertRepository.delete({ id });
 
-  const advert = await advertRepository.findOneBy({
-      id
-  })
-
-  return advert!
-
-}
+  return "Advert deleted";
+};
 
 export default deleteAdvertsService;
