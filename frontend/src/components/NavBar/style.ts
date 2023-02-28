@@ -7,16 +7,18 @@ export const StyledNavContainer = styled(StyledContainer)`
   align-items: center;
 
   height: 80px;
-`;
+
+  `;
 
 export const StyledDiv = styled.div`
   position: fixed;
   top: 0;
   right: 0;
-
+  
   width: 100%;
-
+  
   background-color: var(--color-grey-10);
+  border-bottom: 2px solid var(--color-grey-6);
 
   font-size: 16px;
   font-weight: var(--body-1-600);
