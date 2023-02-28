@@ -7,7 +7,7 @@ import { Adverts } from "../../entities/adverts.entity";
 
 
 
-const createImageAdvertsService = async({image_adverts, description_image, advertsId }:IImageAdvertsCreate): Promise<ImageAdverts> => {
+const createImageAdvertsService = async({image_adverts, description_image, advertsId }:IImageAdvertsCreate, ): Promise<ImageAdverts> => {
 
 const imageAdvertsRepository = AppDataSource.getRepository(ImageAdverts);
 

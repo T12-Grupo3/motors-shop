@@ -6,6 +6,7 @@ export interface IAdvertsRequest {
   price_adverts: number
   kilometers_adverts: string;
   description_adverts: string;
+  userId: string;
 }
 
 export interface IAdverts {
@@ -20,6 +21,7 @@ export interface IAdverts {
   createdAt_adverts: Date;
   updatedAt_adverts: Date;
   isAvailable: boolean;
+  userId: string;
 }
 
 export interface IAdvertsUpdate {
@@ -31,6 +33,7 @@ export interface IAdvertsUpdate {
   price_adverts: number
   kilometers_adverts: string;
   description_adverts: string;
+
  
 }
 
