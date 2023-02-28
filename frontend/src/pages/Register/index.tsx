@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import InputMask from "../../components/Input";
 import Input from "../../components/Input";
 import NavBar from "../../components/NavBar";
 import { iUserRequest } from "../../interfaces/user.interface";
@@ -22,6 +23,7 @@ const Register = () => {
     data.isAdm = isSeller;
 
     console.log(data);
+    console.log(adress)
   };
 
   return (
@@ -47,21 +49,21 @@ const Register = () => {
                 type="email"
                 placeholder="Ex: samuel@kenzie.com.br"
               />
-              <Input
+              <InputMask
                 id="cpf"
                 title="CPF"
                 register={register}
                 placeholder="000.000.000-00"
                 mask="999.999.999-99"
               />
-              <Input
+              <InputMask
                 id="phone_number"
                 title="Celular"
                 register={register}
                 placeholder="(DDD) 90000-0000"
                 mask="(99) 99999-9999"
               />
-              <Input
+              <InputMask
                 id="birth_date"
                 title="Data de nascimento"
                 register={register}
@@ -75,7 +77,7 @@ const Register = () => {
                 placeholder="description_user"
               />
               <p>Informações de endereço</p>
-              <Input
+              <InputMask
                 id="zipCode"
                 title="CEP"
                 register={register}
@@ -113,6 +115,9 @@ const Register = () => {
                 register={register}
                 placeholder="Ex: apart 307"
               />
+
+              
+              <input type="text" {...register('bob')} />
 
               <p>Tipo de conta</p>
               <div>

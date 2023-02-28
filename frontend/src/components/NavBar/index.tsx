@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   StyledNavContainer,
   StyledDiv,
@@ -14,6 +14,7 @@ const user = {
 
 const NavBar = () => {
   const [isLogged, setIsLogged] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <StyledDiv>
@@ -47,7 +48,12 @@ const NavBar = () => {
             <>
               <StyledLoggout>
                 <Link to={"/"}>Fazer login</Link>
-                <button onClick={() => setIsLogged(true)}>Cadastrar</button>
+
+                <button
+                  onClick={() => navigate("/register", { replace: true })}
+                >
+                  Cadastrar
+                </button>
               </StyledLoggout>
             </>
           )}
