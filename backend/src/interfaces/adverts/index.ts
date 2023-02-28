@@ -6,6 +6,8 @@ export interface IAdvertsRequest {
   price_adverts: number
   kilometers_adverts: string;
   description_adverts: string;
+  galery_image: string[];
+  cover_image_adverts: string;
   userId: string;
 }
 
