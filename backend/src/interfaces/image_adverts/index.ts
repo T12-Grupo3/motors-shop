@@ -1,4 +1,5 @@
 import { BaseEntity } from 'typeorm';
+import { IAdverts } from '../adverts';
 
 export interface IImageAdvertsRequest {
     image_adverts: string;
@@ -11,8 +12,8 @@ export interface IImageAdvertsRequest {
   }
 
   export interface IImageAdvertsCreate {
-    image_adverts: string;
-    advertsId: string;
+    galery_image: string;
+    advert: IAdverts
   }
 
   export interface IImageAdvertsDelete extends BaseEntity {

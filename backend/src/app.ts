@@ -5,7 +5,7 @@ import swaggerUi from "swagger-ui-express"
 
 import cors from "cors"
 import advertsRoutes from "./routes/adverts.routes"
-import imageAdvertsRoutes from "./routes/image_adverts.routes"
+// import imageAdvertsRoutes from "./routes/image_adverts.routes"
 import swaggerDocument from '../swagger.json'
 import usersRoutes from "./routes/users.routes"
 import commentsRoutes from "./routes/comments.routes"
@@ -29,7 +29,7 @@ app.use("/login", loginRoutes);
 app.use("/users", usersRoutes);
 app.use("/comments", commentsRoutes);
 app.use("/adverts", advertsRoutes);
-app.use("/imageadverts", imageAdvertsRoutes);
+// app.use("/imageadverts", imageAdvertsRoutes);
 
 
 export default app

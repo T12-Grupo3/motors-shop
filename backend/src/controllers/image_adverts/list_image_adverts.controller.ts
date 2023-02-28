@@ -8,8 +8,6 @@ const listImageAdvertsController = async(req: Request, res: Response) => {
     const imageAdvertsList = await ListImageAdvertsService();
 
     return res.status(201).json(instanceToPlain(imageAdvertsList));
-
-
 };
 
 export default listImageAdvertsController

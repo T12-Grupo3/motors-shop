@@ -1,16 +1,16 @@
-import { Entity, Column,  PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import { Entity, Column,  PrimaryGeneratedColumn, OneToOne, ManyToOne } from "typeorm";
 import { Adverts } from "./adverts.entity";
 
 @Entity("image_adverts")
 export class ImageAdverts{
-@PrimaryGeneratedColumn("uuid")
+    @PrimaryGeneratedColumn("uuid")
 
-readonly id: string
+    readonly id: string
 
-@Column({length: 200})
-image_adverts: string
+    @Column()
+    galery_image: string
 
-@ManyToOne(()=> Adverts)
-advert: Adverts
+    @ManyToOne(()=> Adverts)
+    advert: Adverts
 
 }
