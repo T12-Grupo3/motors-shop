@@ -33,6 +33,12 @@ export default function RegisterAdvertModal() {
 
   const {api_create_adverts} = useContext(AdvertContext)
 
+  const handleForm = async (data: IRequestAdverts) =>{
+    // console.log(data)
+    data.galery_image = ["https://t.ctcdn.com.br/5XPASDBUosgmBv5Ptpxcd6eTJso=/512x288/smart/filters:format(webp)/i257652.jpeg"]
+    api_create_adverts(data)
+
+  }
 
   // Função para selecionar tipo de anuncio
 
@@ -101,7 +107,6 @@ export default function RegisterAdvertModal() {
     const novoInput = document.createElement("div");
     ReactDOM.render(
       <Input
-        {...register('image_adverts')}
         placeholder="Inserir URL da imagem"
         type="url"
         inputProps={{ className: "galeria-input" }}
@@ -149,7 +154,7 @@ export default function RegisterAdvertModal() {
         <Fade in={open}>
           <Box sx={style}>
             <Container>
-              <form onSubmit={handleSubmit(api_create_adverts)}>
+              <form onSubmit={handleSubmit(handleForm)}>
                 <h3 className="h3-anuncio">Criar anuncio</h3>
 
                 <label className="p-tipo-anuncio">Tipo de anuncio</label>
@@ -255,16 +260,16 @@ export default function RegisterAdvertModal() {
                     <div>
                       <p className="p-img-capa">Imagem da capa</p>
                       <Input
-                        {...register('image_adverts')}
+                        {...register('cover_image_adverts')}
                         placeholder="Inserir URL da imagem"
                         type="url"
                       />
-                    <Error>{errors.image_adverts?.message}</Error>
+                    <Error>{errors.cover_image_adverts?.message}</Error>
 
 
                       <p className="p-img-galeria">1° Imagem da galeria</p>
                       <Input
-                        {...register('image_adverts')}
+                        // {...register('galery_image')}
                         placeholder="Inserir URL da imagem"
                         type="url"
                       />

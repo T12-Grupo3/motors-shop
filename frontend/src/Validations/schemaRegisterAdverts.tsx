@@ -29,9 +29,8 @@ const schemaRegisterAdverts = yup.object().shape({
     .string()
     .required('Campo obrigatório'),
 
-    image_adverts: yup
+    cover_image_adverts: yup
     .string()
-    .required('Adicione pelo menos uma imagem')
     
 })
 

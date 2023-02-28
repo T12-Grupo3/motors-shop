@@ -19,7 +19,7 @@ export interface IContext {
   cars: iAdvert[];
   motorcycles: iAdvert[];
   adverts: iAdvert[];
-  api_create_adverts: (data: IRequestAdverts) => void;
+  api_create_adverts: (data: IRequestAdverts) => Promise<iAdvert>;
   api_create_image_advert: (data: iImageAdvertRequest) => void;
   api_delete_advert: (id_adverts: string) => void;
   api_read_adverts: () => Promise<iAdvert[]>;
@@ -43,7 +43,7 @@ const AdvertProvider = ({ children }: IProviderProps) => {
       const res = await api_read_adverts();
 
       setAdverts(res);
-    };
+    }
 
     getAdverts();
   }, [refreshKey]);
