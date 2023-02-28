@@ -28,13 +28,13 @@ if(address.state.length > 2){
 
  const addressesRepository = AppDataSource.getRepository(Addresses);
  const findAddresses = await addressesRepository.findOne({
-     where: {
+    where: {
         street: address.street, 
         zipCode: address.zipCode,
         number: address.number,
         city: address.city,
         state: address.state
-            }
+    }
  });
  
  const createAddresses = addressesRepository.create({

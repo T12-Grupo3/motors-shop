@@ -3,9 +3,7 @@ import { instanceToPlain } from "class-transformer";
 import { IAdvertsRequest } from "../../interfaces/adverts";
 import createAdvertsService from "../../services/adverts/create_adverts.service";
 
-
 const createAdvertsController = async(req: Request, res: Response) => {
-
     
     const {title_adverts, year_adverts, type_adverts, kilometers_adverts, type_veicule, price_adverts,  description_adverts, userId }:IAdvertsRequest = req.body;
 
