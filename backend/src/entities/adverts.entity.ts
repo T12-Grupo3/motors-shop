@@ -5,10 +5,13 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  ManyToOne,
 } from "typeorm";
 import { Exclude } from "class-transformer";
 import { v4 as uuid } from "uuid";
 import { ImageAdverts } from "./image_adverts.entity";
+import { User } from "./user.entity";
+import { Comments } from "./comments.entity";
 
 @Entity("adverts")
 export class Adverts {
@@ -50,4 +53,11 @@ export class Adverts {
     onDelete: "CASCADE",
   })
   imageAdverts: ImageAdverts[];
+
+  @ManyToOne(()=> User)
+  user: User
+
+  @OneToMany(() => Comments, (comments) => comments.adverts)
+    comments: Comments[];
+
 }
