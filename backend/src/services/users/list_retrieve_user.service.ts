@@ -12,6 +12,7 @@ const retrieveUserService = async (userId: string): Promise<IUser> => {
 		},
 		relations: {
 			address: true,
+			adverts: true,
 			comments: true
 		}
 	});
