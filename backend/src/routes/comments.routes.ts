@@ -1,15 +1,16 @@
 import { Router } from "express";
 import createCommentsController from "../controllers/comments/create_comments.controller";
-import listCommentsAdvertController from "../controllers/comments/list_comments_advert.controller";
 import listCommentsController from "../controllers/comments/lis_comments.controller";
+import authUserMiddleware from "../middleware/authUser.middleware";
+import isUserMiddleware from "../middleware/isUserMiddleware";
 
 
 
 const commentsRoutes = Router();
 
-commentsRoutes.post("", createCommentsController);
+commentsRoutes.post("", authUserMiddleware , isUserMiddleware, createCommentsController);
 commentsRoutes.get("/", listCommentsController);
-commentsRoutes.get("/advert/:id", listCommentsAdvertController);
+
 
 
 
