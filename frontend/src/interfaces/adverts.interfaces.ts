@@ -1,3 +1,5 @@
+import { iUserRequest, iUserResponse } from "./user.interface";
+
 export interface iAdvertProduct {
   title_adverts: string;
   description_adverts: string;
@@ -19,7 +21,8 @@ export interface IRequestAdverts {
   type_veicule: string;
   kilometers_adverts: string;
   description_adverts: string;
-  image_adverts: Array<string>;
+  cover_image_adverts: string;
+  galery_image: string[];
   price_adverts: number;
 }
 
@@ -36,9 +39,7 @@ export interface iAdvertUpdate {
 }
 
 export interface iImageAdvertRequest {
-  image_adverts: string;
-  description_image: string;
-  advertsId: string;
+  galery_image: string[];
 }
 
 export interface iAdvert {
@@ -54,6 +55,7 @@ export interface iAdvert {
   createdAt_adverts: Date;
   updatedAt_adverts: Date;
   imageAdverts: iImageAdvertRequest[];
+  user: iUserResponse
 }
 
 export interface iIdAdvert {
