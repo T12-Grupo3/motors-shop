@@ -78,6 +78,7 @@ export default createGlobalStyle`
   padding: 0;
 
   font-family: 'Inter', sans-serif; 
+  background-color: var(--color-grey-8);
 }
 
 h2 {
@@ -103,7 +104,7 @@ input::placeholder {
   color: var(--color-grey-2);
  }
 
- button {
+ button, input[type=button] {
   font-family: 'Inter', sans-serif;
    
   cursor: pointer;
