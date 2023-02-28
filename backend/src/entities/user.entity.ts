@@ -54,8 +54,8 @@ address: Addresses
   adverts: Adverts[];
 
 @OneToMany(() => Comments, (comments) => comments.user, {
-eager: true,
-onDelete: "CASCADE",
+  eager: true,
+  onDelete: "CASCADE",
 })
 comments: Comments[];
 

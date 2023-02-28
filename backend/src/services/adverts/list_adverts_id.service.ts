@@ -11,10 +11,11 @@ const listAdvertsIdService = async (idAdvert:string ) :Promise<Adverts> => {
         where:{
             id:idAdvert
         },
-        // relations:{
-        //     user :true
+        relations:{
+            comments :true,
+            // user :true
         
-        // }
+        }
     });
     
    
