@@ -6,6 +6,7 @@ import {
   UpdateDateColumn,
   OneToMany,
   ManyToOne,
+  OneToOne,
 } from "typeorm";
 import { Exclude } from "class-transformer";
 import { v4 as uuid } from "uuid";
@@ -48,11 +49,15 @@ export class Adverts {
   @UpdateDateColumn()
   updatedAt_adverts: Date;
 
+  @Column({length: 200})
+  cover_image_adverts: string
+
   @OneToMany(() => ImageAdverts, (imagesAdverts) => imagesAdverts.advert, {
     eager: true,
     onDelete: "CASCADE",
   })
   imageAdverts: ImageAdverts[];
+
 
   @ManyToOne(()=> User)
   user: User
