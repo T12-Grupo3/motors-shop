@@ -74,10 +74,10 @@ export const InputLogin = styled.input`
     height: 48px;
     padding-left: 10px;
     
-    border: 2px solid var(--color-grey-7);
+    border: 2px solid var(--color-grey-3);
     border-radius: 5px;
     background-color: var(--color-grey-10);
-    color: var(--color-grey-7);
+    color: var(--color-grey-3);
     font-size: 16px;
     font-weight: 400;
     font-family: "inter";
