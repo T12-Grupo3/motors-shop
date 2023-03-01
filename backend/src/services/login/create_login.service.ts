@@ -8,38 +8,38 @@ import bcrypt, { compareSync } from "bcrypt";
 
 
 
-const createLoginService = async({email,password}:IUserLogin): Promise<string> => {
+const createLoginService = async({email,password}:IUserLogin) => {
 
     const userRepository = AppDataSource.getRepository(User);
-    const account = await userRepository.findOneBy({
+    const user = await userRepository.findOneBy({
         email: email
     })
     
-    if(!account){
+    if(!user){
         throw new AppError("Invalid email", 401)
     }
 
-    const passwordMatch =  bcrypt.compareSync(password, account.password)
+    const passwordMatch =  bcrypt.compareSync(password, user.password)
 
     if(!passwordMatch){
         throw new AppError("Invalid password", 403)
     }
-    // if(!account.isActive){
+    // if(!user.isActive){
     //     throw new AppError('User not active', 404 )
     // }
 
          
     const token = jwt.sign({
-        isAdm: account.isAdm,
-        email: account.email
+        isAdm: user.isAdm,
+        email: user.email
     },
     process.env.SECRET_KEY as string,
     {
         expiresIn: "24h",
-        subject: account.id
+        subject: user.id
     })
 
-    return token
+    return {token, user}
 
 }
 

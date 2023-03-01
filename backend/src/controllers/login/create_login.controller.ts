@@ -8,7 +8,7 @@ const createLoginController = async (req: Request, res: Response) => {
 
         const createLogin: IUserLogin = req.body;
         const token = await createLoginService(createLogin)
-        return res.status(200).json({token})
+        return res.status(200).json(token)
 
    
     };
