@@ -47,7 +47,7 @@ const NavBar = () => {
           ) : (
             <>
               <StyledLoggout>
-                <Link to={"/"}>Fazer login</Link>
+                <Link to={"/login"}>Fazer login</Link>
 
                 <button
                   onClick={() => navigate("/register", { replace: true })}

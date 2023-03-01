@@ -41,3 +41,8 @@ export interface iAdressRequest {
   state: string;
   complement: string;
 }
+
+export interface iLoginRequest {
+  email: string;
+  password: string;
+}

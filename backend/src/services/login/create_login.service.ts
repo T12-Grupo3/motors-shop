@@ -8,7 +8,7 @@ import bcrypt, { compareSync } from "bcrypt";
 
 
 
-const createLoginService = async({email,password}:IUserLogin): Promise<string> => {
+const createLoginService = async({email, password}: IUserLogin): Promise<string> => {
 
     const userRepository = AppDataSource.getRepository(User);
     const account = await userRepository.findOneBy({

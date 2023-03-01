@@ -117,7 +117,7 @@ const Register = () => {
               />
 
               
-              <input type="text" {...register('bob')} />
+              {/* <input type="text" {...register('bob')} /> */}
 
               <p>Tipo de conta</p>
               <div>
