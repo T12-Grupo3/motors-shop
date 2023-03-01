@@ -32,6 +32,7 @@ export default function Product() {
     description_adverts,
     kilometers_adverts,
     price_adverts,
+    cover_image_adverts,
   } = product;
 
   return (
@@ -42,7 +43,7 @@ export default function Product() {
           <div className="dashLeft">
             <div className="imgCar">
               <img
-                src="https://www.automaistv.com.br/wp-content/uploads/2022/06/mitsubishi_pajero_mini_final_anniversary_edited-750x450.jpg"
+                src={cover_image_adverts}
                 alt=""
               />
             </div>
@@ -53,7 +54,7 @@ export default function Product() {
                   <span className="ano">{year_adverts}</span>
                   <span className="km">{`${kilometers_adverts} KM`}</span>
                 </div>
-                <div className="preco">{`R$ ${price_adverts}}`}</div>
+                <div className="preco">{`R$ ${price_adverts}`}</div>
               </div>
               <button className="button">Comprar</button>
             </div>
