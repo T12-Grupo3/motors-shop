@@ -1,10 +1,11 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { AppError } from "../errors/appError";
 
 const handleAppErrorMiddleware = async (
   error: Error,
   req: Request,
-  res: Response
+  res: Response,
+  next: NextFunction
 ) => {
   if (error instanceof AppError) {
     return res.status(error.statusCode).json({ message: error.message });
