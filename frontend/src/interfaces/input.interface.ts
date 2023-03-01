@@ -6,7 +6,7 @@ export interface iInput extends iInputRegister {
   title: string;
   register: UseFormRegister<iUserRegisterRecieve>;
   placeholder: string;
-  mask?: "999.999.999-99" | "(99) 99999-9999" | "9999-99-99" | "99999.99";
+  mask?: "999.999.999-99" | "(99) 99999-9999" | "9999-99-99" | "99999.999";
 }
 
 interface iInputRegister {
@@ -25,4 +25,8 @@ interface iInputRegister {
     | "city"
     | "state"
     | "complement";
+}
+
+export interface iButtonRegister {
+  isAdm?: boolean;
 }
