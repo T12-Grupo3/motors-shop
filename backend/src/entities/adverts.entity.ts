@@ -49,7 +49,7 @@ export class Adverts {
   @UpdateDateColumn()
   updatedAt_adverts: Date;
 
-  @Column({length: 200})
+  @Column()
   cover_image_adverts: string
 
   @OneToMany(() => ImageAdverts, (imagesAdverts) => imagesAdverts.advert, {

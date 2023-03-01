@@ -14,7 +14,7 @@ const advertsRoutes = Router();
 advertsRoutes.post("", createAdvertsController);
 
 advertsRoutes.get("", ListAdvertsController);
-advertsRoutes.get("/:id", authUserMiddleware , isUserMiddleware, listAdvertsIdController);
+advertsRoutes.get("/:id", listAdvertsIdController);
 
 advertsRoutes.patch("/:id", authUserMiddleware , isUserMiddleware, isAdmMiddlewar, updateAdvertController);
 

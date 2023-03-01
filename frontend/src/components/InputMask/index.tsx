@@ -1,8 +1,8 @@
 import ReactInputMask from "react-input-mask";
 import { iInput } from "../../interfaces/input.interface";
-import { StyledInputDiv } from "./style";
+import { StyledInputDiv } from "../Input/style";
 
-const InputMask = ({
+const Input = ({
   type = "text",
   id,
   title,
@@ -10,14 +10,19 @@ const InputMask = ({
   placeholder,
   mask = "999.999.999-99",
 }: iInput) => {
-  console.log("rendeer");
   return (
     <StyledInputDiv>
       <label htmlFor={id}>{title}</label>
 
-      <input type={type} id={id} {...register(id)} placeholder={placeholder} />
+      <ReactInputMask
+        mask={mask}
+        placeholder={placeholder}
+        id={id}
+        {...register(id)}
+        type={type}
+      />
     </StyledInputDiv>
   );
 };
 
-export default InputMask;
+export default Input;
