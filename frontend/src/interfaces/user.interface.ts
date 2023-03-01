@@ -39,6 +39,11 @@ export interface iAdressRequest {
   complement: string;
 }
 
+export interface iLoginRequest {
+  email: string;
+  password: string;
+}
+
 export interface iUserRegisterRecieve extends iAdressRequest {
   name: string;
   email: string;
@@ -57,3 +62,4 @@ export interface iUserContext {
 export interface iUserProvider {
   children: ReactNode;
 }
+
