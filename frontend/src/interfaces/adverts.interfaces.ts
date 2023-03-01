@@ -26,6 +26,11 @@ export interface IRequestAdverts {
   price_adverts: number;
 }
 
+export interface IRequestAdvertsExtended extends IRequestAdverts {
+  tipoAnuncio: string;
+  tipoVeiculo: string;
+}
+
 export interface iAdvertUpdate {
   title_adverts?: string;
   year_adverts?: number;
@@ -55,7 +60,7 @@ export interface iAdvert {
   createdAt_adverts: Date;
   updatedAt_adverts: Date;
   imageAdverts: iImageAdvertRequest[];
-  user: iUserResponse
+  user: iUserResponse;
 }
 
 export interface iIdAdvert {

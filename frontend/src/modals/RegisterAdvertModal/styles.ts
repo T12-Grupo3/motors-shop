@@ -189,3 +189,34 @@ export const Container = styled.div`
     cursor: pointer;
   }
 `;
+
+export const Input = styled.input`
+border: 1.5px solid #E9ECEF;
+border-radius: 4px;
+height: 48px;
+width: 96px;
+padding: 0px 16px 0px 16px;
+
+
+Input::placeholder {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-grey-3)
+  font-family: 'Inter';
+}
+`;
+
+export const Input2 = styled.input`
+
+border: 1.5px solid #E9ECEF;
+border-radius: 4px;
+height: 48px;
+width: 196px;
+
+Input::placeholder {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-grey-3)
+  font-family: 'Inter';
+}
+`;
