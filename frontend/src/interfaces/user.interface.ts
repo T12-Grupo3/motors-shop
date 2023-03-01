@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, SetStateAction } from "react";
 import { iAdvert } from "./adverts.interfaces";
 
 export interface iUserResponse {
@@ -57,6 +57,14 @@ export interface iUserRegisterRecieve extends iAdressRequest {
 
 export interface iUserContext {
   api_create_user: (data: iUserRequest) => Promise<iUserResponse>;
+  api_signin_user: (props: iLoginRequest) => Promise<void>;
+  user: iUserResponse;
+  isLogged: boolean
+  setIsLogged: React.Dispatch<SetStateAction<boolean>>;
+  logoutProfileView: ()=>void;
+  changeName: ()=>void;
+  firstName: string
+  lastName: string
 }
 
 export interface iUserProvider {

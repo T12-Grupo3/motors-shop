@@ -1,10 +1,11 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 import ProductCard from "../../components/ProductCard";
 import ProductCardAuction from "../../components/ProductCardAuction";
 import { AdvertContext } from "../../Context/AdvertContext";
+import { UserContext } from "../../Context/UserContext";
 import EditAdvertModal from "../../modals/EditAdvertModal";
 import RegisterAdvertModal from "../../modals/RegisterAdvertModal";
 import { StyledAuction, StyledProductsContainer } from "../home/style";
@@ -17,27 +18,33 @@ import {
 const ProfileView = () => {
   const { auctions, cars, motorcycles } = useContext(AdvertContext);
 
+
+  const {user, changeName, firstName, lastName} = useContext(UserContext)
+
+  useEffect(()=>{
+    changeName()
+  
+  }, [])
+
   return (
     <>
       <NavBar />
       <ContainerNavProfile />
       <ContainerUserProfile>
         <div className="imgProfile">
-          <img
-            className="imgProfile"
-            src="https://i.im.ge/2023/02/23/7u52PC.foto-perfil.png"
-            alt=""
-          />
+          <p> {firstName}{lastName} </p>
         </div>
         <div className="divName">
-          <p className="profileName">Marcus Roberto</p>
-          <p className="paragraphAdvertiser">Anunciante</p>
+          <p className="profileName"> {user?.name} </p>
+          {
+            user.isAdm ? 
+              <p className="paragraphAdvertiser">Anunciante</p>
+            :
+              <p className="paragraphAdvertiser">Comprador</p>
+          }
         </div>
         <p className="textProfile">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis
-          voluptatem animi molestiae quisquam nemo pariatur ipsa consequuntur
-          quaerat? Dolorum deserunt est quaerat officiis. Deserunt doloremque,
-          aliquid temporibus praesentium laboriosam nostrum?
+          {user?.description_user}
         </p>
         <RegisterAdvertModal />
       </ContainerUserProfile>

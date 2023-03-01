@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../Context/UserContext";
 import {
   StyledNavContainer,
   StyledDiv,
@@ -7,14 +8,10 @@ import {
   StyledLoggout,
 } from "./style";
 
-const user = {
-  name: "Samuel Leão",
-  avatar: "https://cdn-icons-png.flaticon.com/512/6386/6386976.png",
-};
-
 const NavBar = () => {
-  const [isLogged, setIsLogged] = useState(false);
   const navigate = useNavigate();
+
+  const {isLogged, setIsLogged, logoutProfileView, user, firstName, lastName} = useContext(UserContext)
 
   return (
     <StyledDiv>
@@ -41,8 +38,10 @@ const NavBar = () => {
 
           {isLogged ? (
             <StyledLogged>
-              <img src={user.avatar} alt="" width={"20px"} />
-              <button onClick={() => setIsLogged(false)}>{user.name}</button>
+              <div className="imgProfile">
+                <p> {firstName}{lastName} </p>
+              </div>
+              <button onClick={() => logoutProfileView()}>{user.name}</button>
             </StyledLogged>
           ) : (
             <>
