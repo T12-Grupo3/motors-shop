@@ -1,29 +1,59 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import InputMask from "../../components/Input";
+import InputMask from "../../components/InputMask";
 import Input from "../../components/Input";
 import NavBar from "../../components/NavBar";
-import { iUserRequest } from "../../interfaces/user.interface";
+import {
+  iUserRegisterRecieve,
+  iUserRequest,
+} from "../../interfaces/user.interface";
 import { StyledRegisterContainer } from "./style";
+import { yupResolver } from "@hookform/resolvers/yup";
+import schemaRegisterUsers from "../../Validations/schemaRegisterUsers";
+import { UserContext } from "../../Context/UserContext";
 
 const Register = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<iUserRequest>();
+  } = useForm<iUserRegisterRecieve>({
+    resolver: yupResolver(schemaRegisterUsers),
+  });
 
   const [isSeller, setisSeller] = useState(false);
+  const { api_create_user } = useContext(UserContext);
 
-  const onSubmit = (data: iUserRequest) => {
-    const { street, zipCode, number, city, state, complement } = data;
+  const onSubmit = async ({
+    name,
+    email,
+    phone_number,
+    password,
+    cpf,
+    description_user,
+    birth_date,
+    street,
+    zipCode,
+    number,
+    city,
+    state,
+    complement,
+  }: iUserRegisterRecieve) => {
+    const address = { street, zipCode, number, city, state, complement };
 
-    const adress = { street, zipCode, number, city, state, complement };
+    const user: iUserRequest = {
+      name,
+      email,
+      phone_number,
+      password,
+      cpf,
+      description_user,
+      birth_date,
+      isAdm: isSeller,
+      address,
+    };
 
-    data.isAdm = isSeller;
-
-    console.log(data);
-    console.log(adress)
+    api_create_user(user);
   };
 
   return (
@@ -42,6 +72,7 @@ const Register = () => {
                 register={register}
                 placeholder="Ex: Samuel Leão"
               />
+
               <Input
                 id="email"
                 title="Email"
@@ -67,8 +98,8 @@ const Register = () => {
                 id="birth_date"
                 title="Data de nascimento"
                 register={register}
-                placeholder="00/00/00"
-                mask="99/99/99"
+                placeholder="YYYY-MMM-DD"
+                mask="9999-99-99"
               />
               <Input
                 id="description_user"
@@ -116,9 +147,6 @@ const Register = () => {
                 placeholder="Ex: apart 307"
               />
 
-              
-              <input type="text" {...register('bob')} />
-
               <p>Tipo de conta</p>
               <div>
                 <input
@@ -145,8 +173,10 @@ const Register = () => {
                 placeholder=""
                 type="password"
               />
+              <span>{errors.password?.message}</span>
+
               <Input
-                id="confirm_password"
+                id="password_confirm"
                 title="confirm_password"
                 register={register}
                 placeholder="confirm_password"
