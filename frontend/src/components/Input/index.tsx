@@ -2,7 +2,7 @@ import ReactInputMask from "react-input-mask";
 import { iInput } from "../../interfaces/input.interface";
 import { StyledInputDiv } from "./style";
 
-const InputMask = ({
+const Input = ({
   type = "text",
   id,
   title,
@@ -10,7 +10,6 @@ const InputMask = ({
   placeholder,
   mask = "999.999.999-99",
 }: iInput) => {
-  console.log("rendeer");
   return (
     <StyledInputDiv>
       <label htmlFor={id}>{title}</label>
@@ -20,4 +19,4 @@ const InputMask = ({
   );
 };
 
-export default InputMask;
+export default Input;

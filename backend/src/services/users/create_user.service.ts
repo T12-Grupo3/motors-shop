@@ -33,7 +33,8 @@ if(address.state.length > 2){
         zipCode: address.zipCode,
         number: address.number,
         city: address.city,
-        state: address.state
+        state: address.state,
+        complement: address.complement
     }
  });
  
@@ -42,7 +43,8 @@ if(address.state.length > 2){
         zipCode: address.zipCode,
         number: address.number,
         city: address.city,
-        state: address.state
+        state: address.state,
+        complement: address.complement
  })
 
 
