@@ -1,5 +1,6 @@
 import { Route, Routes, Navigate } from "react-router";
 import Home from "../pages/home";
+import LoginPage from "../pages/Login";
 import Product from "../pages/product";
 import ProfileView from "../pages/ProfileView";
 import Register from "../pages/Register";
@@ -12,6 +13,7 @@ const MainRoutes = () => {
       <Route path="/product/:id" element={<Product />} />
       <Route path="/profileview" element={<ProfileView />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<LoginPage />} />
     </Routes>
   );
 };

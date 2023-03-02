@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 export const UserContext = createContext<iUserContext>({} as iUserContext);
 
 const UserProvider = ({ children }: iUserProvider) => {
+
   const [user, setUser] = useState<iUserResponse>({} as iUserResponse);
   const [isLogged, setIsLogged] = useState<boolean>(false);
   const [firstName, setFirstName] = useState("");

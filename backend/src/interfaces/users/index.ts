@@ -4,6 +4,7 @@ export interface IAddressesRequest {
     number?: string
     city: string
     state: string
+    complement: string
 }
 
 

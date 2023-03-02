@@ -43,6 +43,29 @@ export const StyledLoggout = styled.li`
 `;
 
 export const StyledLogged = styled(StyledLoggout)`
+
+  .imgProfile{
+    height: 32px;
+    width: 32px;
+    left: 1146px;
+    top: 568px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+    background-color: var(--color-brand-1);
+
+    p{
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 0px;
+        color: var(--color-grey-10);
+    }
+    }
   button {
     color: var(--color-grey-2);
     font-size: 16px;

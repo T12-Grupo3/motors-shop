@@ -52,10 +52,11 @@ export interface iAdvert {
   description_adverts: string;
   price_adverts: number;
   isAvailable: boolean;
+  cover_image_adverts: string;
   createdAt_adverts: Date;
   updatedAt_adverts: Date;
   imageAdverts: iImageAdvertRequest[];
-  user: iUserResponse
+  user: iUserResponse;
 }
 
 export interface iIdAdvert {

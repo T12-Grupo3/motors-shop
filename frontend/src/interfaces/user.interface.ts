@@ -67,6 +67,7 @@ export interface iUserRegisterRecieve extends iAdressRequest {
 export interface iUserContext {
   api_create_user: (data: iUserRequest) => Promise<iUserResponse>;
   api_signin_user: (props: iLoginRequest) => Promise<void>;
+  
   api_update_user: (props: iUserUpdate) => Promise<void>;
   user: iUserResponse;
   isLogged: boolean;
