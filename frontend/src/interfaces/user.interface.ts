@@ -33,6 +33,15 @@ export interface iUserRequest {
   address: iAdressRequest;
 }
 
+export interface iUserUpdate {
+  name: string;
+  email: string;
+  cpf: string;
+  phone_number: string;
+  description_user: string;
+  birth_date: string;
+}
+
 export interface iAdressRequest {
   street: string;
   zipCode: string;
@@ -59,10 +68,12 @@ export interface iUserRegisterRecieve extends iAdressRequest {
 }
 
 export interface iUserContext {
-  api_create_user: (data: iUserRequest) => Promise<iUserResponse>;
+  api_create_user: (data: iUserRequest) => Promise<void>;
   api_signin_user: (props: iLoginRequest) => Promise<void>;
+  
+  api_update_user: (props: iUserUpdate) => Promise<void>;
   user: iUserResponse;
-  isLogged: boolean
+  isLogged: boolean;
   setIsLogged: React.Dispatch<SetStateAction<boolean>>;
   logoutProfileView: ()=>void;
   changeName: ()=>void;

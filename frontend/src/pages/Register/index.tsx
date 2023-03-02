@@ -49,7 +49,7 @@ const Register = () => {
     number,
     city,
     state,
-    complement,
+    complement = "",
   }: iUserRegisterRecieve) => {
     const address = { street, zipCode, number, city, state, complement };
 
@@ -68,8 +68,6 @@ const Register = () => {
 
     api_create_user(user);
   };
-
-  console.log(isAdm);
 
   return (
     <>
@@ -95,9 +93,9 @@ const Register = () => {
                   id="email"
                   title="Email"
                   register={register}
-                  type="email"
                   placeholder="Ex: samuel@kenzie.com.br"
                 />
+               
                 <span>{errors.email?.message}</span>
               </StyledFormError>
               <StyledFormError>
