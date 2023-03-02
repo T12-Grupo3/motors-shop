@@ -18,11 +18,7 @@ if(emailAlreadyExists){
     throw new AppError("Email already exists" )
 }
 
-if(address.state.length > 2){
-    throw new AppError("Invalid state" )
-     }
-
- if(address.zipCode.length > 8){
+ if(address.zipCode.length > 9){
    throw new AppError("Invalid zip code" )
      }
 
