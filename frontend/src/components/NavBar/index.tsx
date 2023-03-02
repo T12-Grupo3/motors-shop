@@ -32,7 +32,6 @@ const NavBar = () => {
         </div>
         <nav>
           <li>
-            <EditAddressModal />
             {/* <a href="/home#cars">cars</a> */}
             <Link to={"/"}>Carros</Link>
           </li>
@@ -58,7 +57,8 @@ const NavBar = () => {
                 <div className="dropdown-content">
                   <div>
                     <button>Editar Perfil</button>
-                    <button>Editar endereço</button>
+                    <EditAddressModal />
+                    {/* <button>Editar endereço</button> */}
                     {user.isAdm ? <button>Meus anuncios</button> : <></>}
                     <button onClick={() => logoutProfileView()}>Sair</button>
                   </div>
