@@ -10,6 +10,8 @@ import api from "../service/api";
 import { useNavigate } from 'react-router-dom'
 
 
+
+
 export const UserContext = createContext<iUserContext>({} as iUserContext);
 
 const UserProvider = ({ children }: iUserProvider) => {
@@ -18,13 +20,12 @@ const UserProvider = ({ children }: iUserProvider) => {
   const [isLogged, setIsLogged] = useState<boolean>(false);
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
-
-
+  
   const navigate = useNavigate()
 
   const token = localStorage.getItem('MOTORSSHOP:TOKEN')
   const userId = localStorage.getItem('MOTORSSHOP:USERID')
-
+  
   useEffect(()=>{
     async function autoLogin (){
         if(token){
@@ -70,6 +71,8 @@ const UserProvider = ({ children }: iUserProvider) => {
     }
   };
 
+
+
   const changeName = ()=>{
     const splicedName =  user?.name.split(" ")
   
@@ -97,7 +100,9 @@ const UserProvider = ({ children }: iUserProvider) => {
       logoutProfileView,
       changeName,
       firstName,
-      lastName
+      lastName,
+      
+
     }}>
       {children}
     </UserContext.Provider>
@@ -105,3 +110,5 @@ const UserProvider = ({ children }: iUserProvider) => {
 };
 
 export default UserProvider;
+
+// export const useAuth = () => useContext(UserContext);

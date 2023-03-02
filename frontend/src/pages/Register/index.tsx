@@ -64,6 +64,7 @@ const Register = () => {
       isAdm,
       address,
     };
+    console.log(user)
 
     api_create_user(user);
   };

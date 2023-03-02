@@ -13,7 +13,7 @@ usersRoutes.get("/:id",  authUserMiddleware, isUserMiddleware, retrieveUserContr
 usersRoutes.get("", listUsersController);
 usersRoutes.get("/:id", retrieveUserController);
 usersRoutes.delete("/:id",  deleteUserController);
-// usersRoutes.patch("/:id", updateUserController);
+usersRoutes.patch("/:id", updateUserController);
 
 
 export default usersRoutes
