@@ -85,11 +85,9 @@ export interface iUserContext {
   changeName: ()=>void;
   firstName: string;
   lastName: string;
+  api_update_address: (props: iAdressRequest) => void
   // token: string;
   // setToken: (state: string) => void;
-  
- 
-  
 }
 
 export interface iUserProvider {
