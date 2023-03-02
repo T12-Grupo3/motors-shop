@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Context/UserContext";
+import EditAddressModal from "../../modals/EditAddressModal";
 import {
   StyledNavContainer,
   StyledDiv,
@@ -26,6 +27,7 @@ const NavBar = () => {
         </div>
         <nav>
           <li>
+            <EditAddressModal />
             {/* <a href="/home#cars">cars</a> */}
             <Link to={"/"}>Carros</Link>
           </li>

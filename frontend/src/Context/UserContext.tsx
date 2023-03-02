@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import {
+  iAdressRequest,
   iLoginRequest,
   iPasswordChangeRequest,
   iUserContext,
@@ -74,6 +75,15 @@ const UserProvider = ({ children }: iUserProvider) => {
     }
   };
 
+  const api_update_address = async (data: iAdressRequest) => {
+    try {
+      const res = await api.patch(`/users/${userId}`, data);
+      setUser(res.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const api_change_password = async (data: iPasswordChangeRequest) => {
     try {
       const res = await api.patch(`/pass`, data);
@@ -110,7 +120,8 @@ const UserProvider = ({ children }: iUserProvider) => {
         changeName,
         firstName,
         lastName,
-        api_change_password
+        api_change_password,
+        api_update_address
       }}
     >
       {children}

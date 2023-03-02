@@ -19,7 +19,7 @@ const style = {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 450,
+    // width: 450,
     bgcolor: "background.paper",
     boxShadow: 7,
     p: 4,
@@ -80,7 +80,7 @@ export default function EditPasswordModal () {
         }}
       >
         <Fade in={open}>
-          <Box width="0px" sx={style}>
+          <Box sx={style}>
             <Container>
               <Form onSubmit={handleSubmit(api_change_password)}>
                 <h2 className="h3-modal">Alterar Senha</h2>
