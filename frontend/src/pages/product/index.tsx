@@ -3,65 +3,61 @@ import { useNavigate, useParams } from "react-router-dom";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 import { AdvertContext } from "../../Context/AdvertContext";
-import { iAdvert, IRequestAdverts } from "../../interfaces/adverts.interfaces";
+import { iAdvert } from "../../interfaces/adverts.interfaces";
 import { ContainerProduct } from "./style";
-import schemaInputComments from "../../Validations/schemaInputComments"
+import schemaInputComments from "../../Validations/schemaInputComments";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { iComments, iCommentsRegisterRecieve, iCommentsRequest } from "../../interfaces/comments.interfaces";
+import {
+  iComments,
+  iCommentsRegisterRecieve,
+} from "../../interfaces/comments.interfaces";
 import { useForm } from "react-hook-form";
 import { UserContext } from "../../Context/UserContext";
-import { iUserRequest } from "../../interfaces/user.interface";
-
-
-
-
 
 export default function Product() {
   const { id } = useParams();
   const [product, setproduct] = useState<iAdvert>({} as iAdvert);
+  const [comments, setcomments] = useState<iComments[]>([]);
+
   const navigate = useNavigate();
   // const { changeName, firstName, lastName } = useContext(UserContext);
-  const { api_create_comments, api_read_id_advert} = useContext(AdvertContext);
+  const { api_create_comments, api_read_id_advert, api_read_coments_advert } =
+    useContext(AdvertContext);
   const { user } = useContext(UserContext);
 
-  
- 
-
-  const { register, handleSubmit, formState: { errors }, } = useForm<iCommentsRegisterRecieve>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<iCommentsRegisterRecieve>({
     resolver: yupResolver(schemaInputComments),
   });
 
-  const onSubmit = async ({
-    comments,
-    advert,
-    user,
-    }: iCommentsRegisterRecieve) => {
-    const advertComments = { 
+  const onSubmit = async ({ comments }: iCommentsRegisterRecieve) => {
+    const advertComments = {
       comments,
-      advert, 
-      user,
-       };
+      advertsId: id,
+      userId: user.id,
+    };
 
     api_create_comments(advertComments);
   };
 
-
   useEffect(() => {
     const getProduct = async (id: string) => {
-      const res = await api_read_id_advert(id);
+      const res_product = await api_read_id_advert(id);
+      const res_comments = await api_read_coments_advert(id);
 
-      setproduct(res);
-      
+      setproduct(res_product);
+      setcomments(res_comments);
     };
 
     getProduct(id!);
-  }, [api_read_id_advert, id]);
-
+  }, [api_read_coments_advert, api_read_id_advert, id]);
 
   if (product === undefined) {
     navigate("/home", { replace: true });
   }
- 
 
   const {
     title_adverts,
@@ -70,8 +66,6 @@ export default function Product() {
     kilometers_adverts,
     price_adverts,
     cover_image_adverts,
-    comments,
-    
   } = product;
 
   return (
@@ -81,10 +75,7 @@ export default function Product() {
         <div className="dashMain">
           <div className="dashLeft">
             <div className="imgCar">
-              <img
-                src={cover_image_adverts}
-                alt=""
-              />
+              <img src={cover_image_adverts} alt="" />
             </div>
             <div className="descriptionAdverts">
               <p className="caracteristcCar">{title_adverts}</p>
@@ -104,28 +95,25 @@ export default function Product() {
             <div className="comments">
               <span className="spanDescription">Comentários</span>
               <ul className="ulComments">
-              {comments.map((elem) => (
-                <li key={user.id}>
-                  <div className="liComents">
-                    <span className="nikeClient">NC</span>
-                    <span className="liName">{elem.user.name}</span>
-                    <span className="liOld">3 dias</span>
-                  </div>
-                  <p>{elem.comments} </p>
-                </li>
-              ))
-              }
+                {comments.map((elem) => (
+                  <li key={elem.id}>
+                    <div className="liComents">
+                      <span className="nikeClient">NC</span>
+                      <span className="liName">{elem.user.name}</span>
+                      <span className="liOld">3 dias</span>
+                    </div>
+                    <p>{elem.comments} </p>
+                  </li>
+                ))}
               </ul>
             </div>
-            <form 
-            className="formComments"
-            onSubmit={handleSubmit(onSubmit)}>
+            <form className="formComments" onSubmit={handleSubmit(onSubmit)}>
               <div className="liComents">
                 <span className="nikeClient">NC</span>
                 <span className="liName">{user.name}</span>
               </div>
               <div className="imputForm">
-              <label htmlFor="Comentário">Nome</label>
+                <label htmlFor="Comentário">Nome</label>
                 <input
                   type="text"
                   id="comments"
@@ -134,10 +122,11 @@ export default function Product() {
                   {...register("comments")}
                 />
                 {errors.comments?.message}
-                <button className="button" type="submit">Comentar</button>
+                <button className="button" type="submit">
+                  Comentar
+                </button>
               </div>
             </form>
-            
           </div>
 
           <div className="dashRigth">

@@ -22,7 +22,7 @@ const ProfileView = () => {
   const {user, changeName, firstName, lastName} = useContext(UserContext)
 
   useEffect(()=>{
-    changeName()
+    // changeName()
   
   }, [])
 

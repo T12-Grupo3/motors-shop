@@ -47,9 +47,6 @@ const UserProvider = ({ children }: iUserProvider) => {
   const api_create_user = async (data: iUserRequest) => {
     await api
       .post(`/users`, data)
-      .then(() => {
-        navigate("/login", { replace: true });
-      })
       .catch((err) => console.log(err));
   };
 
