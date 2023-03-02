@@ -50,5 +50,9 @@ export interface IUserUpdate {
     address: IAddressesRequest
 }
 
-
+export interface IPasswordChange {
+    email: string;
+    password: string;
+    password_confirm?: string
+}
 
