@@ -12,6 +12,8 @@ import {
 import api from "../service/api";
 import { useNavigate } from "react-router-dom";
 
+
+
 export const UserContext = createContext<iUserContext>({} as iUserContext);
 
 const UserProvider = ({ children }: iUserProvider) => {
@@ -32,6 +34,7 @@ const UserProvider = ({ children }: iUserProvider) => {
           api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
           const { data } = await api.get(`/users/${userId}`);
           setUser(data);
+          setIsLogged(true)
         } catch (error) {
           console.log(error);
         }
@@ -46,9 +49,6 @@ const UserProvider = ({ children }: iUserProvider) => {
   const api_create_user = async (data: iUserRequest) => {
     await api
       .post(`/users`, data)
-      .then(() => {
-        navigate("/login", { replace: true });
-      })
       .catch((err) => console.log(err));
   };
 
@@ -130,3 +130,5 @@ const UserProvider = ({ children }: iUserProvider) => {
 };
 
 export default UserProvider;
+
+// export const useAuth = () => useContext(UserContext);

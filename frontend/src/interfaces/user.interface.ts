@@ -1,6 +1,7 @@
 import { ReactNode, SetStateAction } from "react";
 import { iAdvert } from "./adverts.interfaces";
 
+
 export interface iUserResponse {
   id: string;
   name: string;
@@ -16,6 +17,8 @@ export interface iUserResponse {
   createdAt: Date;
   updatedAt: Date;
   isActive: boolean;
+  
+
 }
 
 export interface iUserRequest {
@@ -78,13 +81,17 @@ export interface iUserContext {
   user: iUserResponse;
   isLogged: boolean;
   setIsLogged: React.Dispatch<SetStateAction<boolean>>;
-  logoutProfileView: () => void;
-  changeName: () => void;
+  logoutProfileView: ()=>void;
+  changeName: ()=>void;
   firstName: string;
   lastName: string;
   api_update_address: (props: iAdressRequest) => void
+  // token: string;
+  // setToken: (state: string) => void;
 }
 
 export interface iUserProvider {
   children: ReactNode;
 }
+
+

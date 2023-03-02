@@ -2,17 +2,22 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Context/UserContext";
 import EditAddressModal from "../../modals/EditAddressModal";
+import Button from "../Button";
+
 import {
   StyledNavContainer,
   StyledDiv,
   StyledLogged,
   StyledLoggout,
+  StyledDropDown,
+  StyledUser,
 } from "./style";
 
 const NavBar = () => {
   const navigate = useNavigate();
 
-  const {isLogged, setIsLogged, logoutProfileView, user, firstName, lastName} = useContext(UserContext)
+  const { isLogged, logoutProfileView, user, firstName, lastName } =
+    useContext(UserContext);
 
   return (
     <StyledDiv>
@@ -40,21 +45,36 @@ const NavBar = () => {
 
           {isLogged ? (
             <StyledLogged>
-              <div className="imgProfile">
-                <p> {firstName}{lastName} </p>
-              </div>
-              <button onClick={() => logoutProfileView()}>{user.name}</button>
+              <StyledDropDown>
+                <StyledUser>
+                  <div className="imgProfile">
+                    <p>
+                      {firstName}
+                      {lastName}
+                    </p>
+                  </div>
+                  <button type="button">{user.name}</button>
+                </StyledUser>
+                <div className="dropdown-content">
+                  <div>
+                    <button>Editar Perfil</button>
+                    <button>Editar endereço</button>
+                    {user.isAdm ? <button>Meus anuncios</button> : <></>}
+                    <button onClick={() => logoutProfileView()}>Sair</button>
+                  </div>
+                </div>
+              </StyledDropDown>
             </StyledLogged>
           ) : (
             <>
               <StyledLoggout>
                 <Link to={"/login"}>Fazer login</Link>
 
-                <button
+                <Button
                   onClick={() => navigate("/register", { replace: true })}
                 >
                   Cadastrar
-                </button>
+                </Button>
               </StyledLoggout>
             </>
           )}

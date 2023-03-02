@@ -1,18 +1,23 @@
 import {
   createContext,
-  ReactNode,
   useEffect,
   useState,
   Dispatch,
   SetStateAction,
 } from "react";
+import { toast } from "react-toastify";
+import { AxiosError } from "axios";
+
 import {
   iAdvert,
   iAdvertUpdate,
   iImageAdvertRequest,
   IRequestAdverts,
 } from "../interfaces/adverts.interfaces";
+import { iComments, iCommentsRequest } from "../interfaces/comments.interfaces";
 import api from "../service/api";
+import { IError } from "../interfaces/iError";
+import { iCommentsPreview } from "../interfaces/commentsPreiew";
 
 export interface IContext {
   auctions: iAdvert[];
@@ -25,11 +30,14 @@ export interface IContext {
   api_read_adverts: () => Promise<iAdvert[]>;
   api_read_id_advert: (id_adverts: string) => Promise<iAdvert>;
   api_update_advert: (id_adverts: string, data: iAdvertUpdate) => void;
+  api_create_comments: (data: iCommentsRequest) => void;
+  api_read_id_comments: (id_comments: string) => Promise<iComments>;
+  api_read_coments_advert: (id_advert: string) => Promise<iComments[]>;
   setAdverts: Dispatch<SetStateAction<iAdvert[]>>;
 }
 
 export interface IProviderProps {
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 export const AdvertContext = createContext<IContext>({} as IContext);
@@ -38,12 +46,14 @@ const AdvertProvider = ({ children }: IProviderProps) => {
   const [adverts, setAdverts] = useState<iAdvert[]>([]);
   const [refreshKey, setRefreshKey] = useState(0);
 
+  const token = localStorage.getItem("MOTORSSHOP:TOKEN");
+
   useEffect(() => {
     const getAdverts = async () => {
       const res = await api_read_adverts();
 
       setAdverts(res);
-    }
+    };
 
     getAdverts();
   }, [refreshKey]);
@@ -77,6 +87,59 @@ const AdvertProvider = ({ children }: IProviderProps) => {
   const api_create_image_advert = async (data: iImageAdvertRequest) => {
     try {
       const res = await api.post("/imageadverts", data);
+
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const api_create_comments = async (data: iCommentsRequest) => {
+    try {
+      const res = await api.post("/comments", data);
+
+      setRefreshKey((oldKey) => oldKey + 1);
+
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const api_read_coments_advert = async (
+    id_advert: string
+  ): Promise<iComments[]> => {
+    const res = await api.get(`/comments/advert/${id_advert}`);
+
+    return res.data;
+  };
+
+  // const api_create_comments = async(data:iCommentsPreview) => {
+
+  //   api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+  //   await api
+  //   .post<iComments>("/comments", data)
+  //   .then((response) => {
+
+  //   toast.success("Comentário efetuado com sucesso");
+
+  //   const { data: comment } = response;
+  //   setComments([...comments, comment]);
+
+  //   // getContactsByUser()
+  //   // navigate("/dashboard")
+
+  //   })
+  //   .catch((error: AxiosError<IError>) => {
+  //     toast.error("Ops, Algo deu errado")
+  //     console.log(error)
+  //   })
+  //   };
+
+  const api_read_id_comments = async (id_comments: string) => {
+    try {
+      const res = await api.get(`/comments/${id_comments}/`);
 
       return res.data;
     } catch (error) {
@@ -137,6 +200,9 @@ const AdvertProvider = ({ children }: IProviderProps) => {
         api_read_adverts,
         api_read_id_advert,
         api_update_advert,
+        api_create_comments,
+        api_read_id_comments,
+        api_read_coments_advert,
         setAdverts,
       }}
     >

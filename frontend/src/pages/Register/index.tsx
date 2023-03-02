@@ -64,8 +64,9 @@ const Register = () => {
       isAdm,
       address,
     };
+    console.log(user);
 
-    api_create_user(user);
+    await api_create_user(user);
   };
 
   return (
@@ -94,7 +95,7 @@ const Register = () => {
                   register={register}
                   placeholder="Ex: samuel@kenzie.com.br"
                 />
-               
+
                 <span>{errors.email?.message}</span>
               </StyledFormError>
               <StyledFormError>
