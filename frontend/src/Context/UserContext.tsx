@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import {
   iLoginRequest,
+  iPasswordChangeRequest,
   iUserContext,
   iUserProvider,
   iUserRequest,
@@ -65,15 +66,22 @@ const UserProvider = ({ children }: iUserProvider) => {
   };
 
   const api_update_user = async (data: iUserUpdate) => {
-    console.log(data);
     try {
       const res = await api.patch(`/users/${userId}`, data);
-      console.log(res);
       setUser(res.data);
     } catch (error) {
       console.error(error);
     }
   };
+
+  const api_change_password = async (data: iPasswordChangeRequest) => {
+    try {
+      const res = await api.patch(`/pass`, data);
+      setUser(res.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   const changeName = () => {
     const splicedName = user?.name.split(" ");
@@ -102,6 +110,7 @@ const UserProvider = ({ children }: iUserProvider) => {
         changeName,
         firstName,
         lastName,
+        api_change_password
       }}
     >
       {children}

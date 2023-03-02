@@ -7,6 +7,7 @@ import UserProvider, { UserContext } from "../../Context/UserContext";
 import schemaLoginUser from "../../Validations/schemaLoginUser";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from 'react-router-dom'
+import EditPasswordModal from "../../modals/EditPasswordModal";
 
 
 const LoginPage = () =>{
@@ -45,7 +46,7 @@ const LoginPage = () =>{
                         placeholder="Digitar senha"
                     />
                     <div className="DivAnchor">
-                        <a href="*">Esqueci minha senha</a>
+                        <EditPasswordModal />
                     </div>
                     <ButtonSubmitLogin type="submit">Entrar</ButtonSubmitLogin>
                     <div className="DivParagraph">

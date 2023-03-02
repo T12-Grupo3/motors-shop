@@ -53,6 +53,12 @@ export interface iLoginRequest {
   password: string;
 }
 
+export interface iPasswordChangeRequest {
+  email: string;
+  password: string;
+  password_confirm: string
+}
+
 export interface iUserRegisterRecieve extends iAdressRequest {
   name: string;
   email: string;
@@ -67,7 +73,7 @@ export interface iUserRegisterRecieve extends iAdressRequest {
 export interface iUserContext {
   api_create_user: (data: iUserRequest) => Promise<void>;
   api_signin_user: (props: iLoginRequest) => Promise<void>;
-  
+  api_change_password: (props: iPasswordChangeRequest) => Promise<void>
   api_update_user: (props: iUserUpdate) => Promise<void>;
   user: iUserResponse;
   isLogged: boolean;
