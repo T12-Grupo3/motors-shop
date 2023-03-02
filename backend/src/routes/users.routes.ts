@@ -16,5 +16,4 @@ usersRoutes.get("/:id", retrieveUserController);
 usersRoutes.delete("/:id",  deleteUserController);
 usersRoutes.patch("/:id", updateUserController);
 
-
 export default usersRoutes
