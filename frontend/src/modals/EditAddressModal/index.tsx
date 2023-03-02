@@ -85,7 +85,7 @@ export default function EditAddressModal () {
 
     return (
         <div>
-      <Button onClick={handleOpen}>Alterar Endereço</Button>
+      <button onClick={handleOpen}>Editar Endereço</button>
       <Modal
         open={open}
         closeAfterTransition
