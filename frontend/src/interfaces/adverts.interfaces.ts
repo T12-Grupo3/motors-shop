@@ -8,6 +8,7 @@ export interface iAdvertProduct {
   kilometers_adverts: string;
   price_adverts: number;
   id?: string;
+  cover_image_adverts?: string
 }
 
 export interface iAdvertRequest extends iAdvertProduct {

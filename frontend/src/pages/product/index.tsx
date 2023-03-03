@@ -24,6 +24,8 @@ const Product = () => {
   const { api_create_comments, api_read_id_advert, api_read_coments_advert } =
     useContext(AdvertContext);
   const { user } = useContext(UserContext);
+  const { adverts } = useContext(AdvertContext);
+  
 
   const {
     register,
@@ -153,61 +155,24 @@ const Product = () => {
             <div className="cardGalery">
               <span className="spanFoto">Fotos</span>
               <ul className="galeryImg">
-                <li className="imgGalery">
+              {adverts.map((elem) => (
+                <li key={elem.id} className="imgGalery">
                   <img
                     className="imgGlr"
-                    src="https://www.automaistv.com.br/wp-content/uploads/2022/06/mitsubishi_pajero_mini_final_anniversary_edited-750x450.jpg"
+                    src={elem.cover_image_adverts}
                     alt=""
                   />
                 </li>
-                <li className="imgGalery">
-                  <img
-                    className="imgGlr"
-                    src="https://www.automaistv.com.br/wp-content/uploads/2022/06/mitsubishi_pajero_mini_final_anniversary_edited-750x450.jpg"
-                    alt=""
-                  />
-                </li>
-                <li className="imgGalery">
-                  <img
-                    className="imgGlr"
-                    src="https://www.automaistv.com.br/wp-content/uploads/2022/06/mitsubishi_pajero_mini_final_anniversary_edited-750x450.jpg"
-                    alt=""
-                  />
-                </li>
-                <li className="imgGalery">
-                  <img
-                    className="imgGlr"
-                    src="https://www.automaistv.com.br/wp-content/uploads/2022/06/mitsubishi_pajero_mini_final_anniversary_edited-750x450.jpg"
-                    alt=""
-                  />
-                </li>
-                <li className="imgGalery">
-                  <img
-                    className="imgGlr"
-                    src="https://www.automaistv.com.br/wp-content/uploads/2022/06/mitsubishi_pajero_mini_final_anniversary_edited-750x450.jpg"
-                    alt=""
-                  />
-                </li>
-                <li className="imgGalery">
-                  <img
-                    className="imgGlr"
-                    src="https://www.automaistv.com.br/wp-content/uploads/2022/06/mitsubishi_pajero_mini_final_anniversary_edited-750x450.jpg"
-                    alt=""
-                  />
-                </li>
+              ))}
               </ul>
             </div>
             <div className="cardProfile">
               <div className="cardNikeProfile" >
                 <span className="nikePerfilClient">{firstName}{lastName}</span>
               </div>
-              <p className="pProfile">Marcus Roberto</p>
+              <p className="pProfile"> {user.name} </p>
               <p className="textProfile">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Facilis voluptatem animi molestiae quisquam nemo pariatur ipsa
-                consequuntur quaerat? Dolorum deserunt est quaerat officiis.
-                Deserunt doloremque, aliquid temporibus praesentium laboriosam
-                nostrum?
+                {user.description_user}
               </p>
               <button className="buttonProfile">Ver todos anúncios</button>
             </div>

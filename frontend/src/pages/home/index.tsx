@@ -44,6 +44,8 @@ const Home = () => {
               year_adverts,
               kilometers_adverts,
               id,
+              cover_image_adverts,
+
             }) => (
               <ProductCardAuction
                 key={id}
@@ -53,6 +55,7 @@ const Home = () => {
                 title_adverts={title_adverts}
                 year_adverts={year_adverts}
                 id={id}
+                cover_image_adverts={cover_image_adverts}
               />
             )
           )}
