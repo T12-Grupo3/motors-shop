@@ -13,7 +13,7 @@ const listAdvertsIdService = async (idAdvert:string ) :Promise<Adverts> => {
         },
         relations:{
             comments :true,
-            // user :true
+            user :true
         
         }
     });

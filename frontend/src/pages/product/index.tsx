@@ -5,22 +5,55 @@ import NavBar from "../../components/NavBar";
 import { AdvertContext } from "../../Context/AdvertContext";
 import { iAdvert } from "../../interfaces/adverts.interfaces";
 import { ContainerProduct } from "./style";
+import schemaInputComments from "../../Validations/schemaInputComments";
+import { yupResolver } from "@hookform/resolvers/yup";
+import {
+  iComments,
+  iCommentsRegisterRecieve,
+} from "../../interfaces/comments.interfaces";
+import { useForm } from "react-hook-form";
+import { UserContext } from "../../Context/UserContext";
 
 export default function Product() {
   const { id } = useParams();
-  const { api_read_id_advert } = useContext(AdvertContext);
   const [product, setproduct] = useState<iAdvert>({} as iAdvert);
+  const [comments, setcomments] = useState<iComments[]>([]);
+
   const navigate = useNavigate();
+  // const { changeName, firstName, lastName } = useContext(UserContext);
+  const { api_create_comments, api_read_id_advert, api_read_coments_advert } =
+    useContext(AdvertContext);
+  const { user } = useContext(UserContext);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<iCommentsRegisterRecieve>({
+    resolver: yupResolver(schemaInputComments),
+  });
+
+  const onSubmit = async ({ comments }: iCommentsRegisterRecieve) => {
+    const advertComments = {
+      comments,
+      advertsId: id,
+      userId: user.id,
+    };
+
+    api_create_comments(advertComments);
+  };
 
   useEffect(() => {
     const getProduct = async (id: string) => {
-      const res = await api_read_id_advert(id);
+      const res_product = await api_read_id_advert(id);
+      const res_comments = await api_read_coments_advert(id);
 
-      setproduct(res);
+      setproduct(res_product);
+      setcomments(res_comments);
     };
 
     getProduct(id!);
-  }, [api_read_id_advert, id]);
+  }, [api_read_coments_advert, api_read_id_advert, id]);
 
   if (product === undefined) {
     navigate("/home", { replace: true });
@@ -32,6 +65,7 @@ export default function Product() {
     description_adverts,
     kilometers_adverts,
     price_adverts,
+    cover_image_adverts,
   } = product;
 
   return (
@@ -41,10 +75,7 @@ export default function Product() {
         <div className="dashMain">
           <div className="dashLeft">
             <div className="imgCar">
-              <img
-                src="https://www.automaistv.com.br/wp-content/uploads/2022/06/mitsubishi_pajero_mini_final_anniversary_edited-750x450.jpg"
-                alt=""
-              />
+              <img src={cover_image_adverts} alt="" />
             </div>
             <div className="descriptionAdverts">
               <p className="caracteristcCar">{title_adverts}</p>
@@ -53,7 +84,7 @@ export default function Product() {
                   <span className="ano">{year_adverts}</span>
                   <span className="km">{`${kilometers_adverts} KM`}</span>
                 </div>
-                <div className="preco">{`R$ ${price_adverts}}`}</div>
+                <div className="preco">{`R$ ${price_adverts}`}</div>
               </div>
               <button className="button">Comprar</button>
             </div>
@@ -64,63 +95,36 @@ export default function Product() {
             <div className="comments">
               <span className="spanDescription">Comentários</span>
               <ul className="ulComments">
-                <li>
-                  <div className="liComents">
-                    <span className="nikeClient">NC</span>
-                    <span className="liName">Nome do Cliente</span>
-                    <span className="liOld">há 3 dias</span>
-                  </div>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Repellat ipsum voluptatum provident maiores corporis beatae
-                    deleniti ut error mollitia. Ipsa facere porro ipsum nulla
-                    perferendis explicabo blanditiis ut, magni at.
-                  </p>
-                </li>
-                <li>
-                  <div className="liComents">
-                    <span className="nikeClient">NC</span>
-                    <span className="liName">Nome do Cliente</span>
-                    <span className="liOld">há 3 dias</span>
-                  </div>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Repellat ipsum voluptatum provident maiores corporis beatae
-                    deleniti ut error mollitia. Ipsa facere porro ipsum nulla
-                    perferendis explicabo blanditiis ut, magni at.
-                  </p>
-                </li>
-                <li>
-                  <div className="liComents">
-                    <span className="nikeClient">NC</span>
-                    <span className="liName">Nome do Cliente</span>
-                    <span className="liOld">há 3 dias</span>
-                  </div>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Repellat ipsum voluptatum provident maiores corporis beatae
-                    deleniti ut error mollitia. Ipsa facere porro ipsum nulla
-                    perferendis explicabo blanditiis ut, magni at.
-                  </p>
-                </li>
+                {comments.map((elem) => (
+                  <li key={elem.id}>
+                    <div className="liComents">
+                      <span className="nikeClient">NC</span>
+                      <span className="liName">{elem.user.name}</span>
+                      <span className="liOld">3 dias</span>
+                    </div>
+                    <p>{elem.comments} </p>
+                  </li>
+                ))}
               </ul>
             </div>
-            <form className="formComments">
+            <form className="formComments" onSubmit={handleSubmit(onSubmit)}>
               <div className="liComents">
                 <span className="nikeClient">NC</span>
-                <span className="liName">Nome do Cliente</span>
+                <span className="liName">{user.name}</span>
               </div>
-              <label htmlFor="Comentário">Nome</label>
               <div className="imputForm">
+                <label htmlFor="Comentário">Nome</label>
                 <input
                   type="text"
                   id="comments"
                   className="inputRegister"
                   placeholder="Faça seu comentário"
-                  // {...register("name")}
+                  {...register("comments")}
                 />
-                {/* {errors.name?.message} */}
-                <button className="button">Comentar</button>
+                {errors.comments?.message}
+                <button className="button" type="submit">
+                  Comentar
+                </button>
               </div>
             </form>
           </div>

@@ -11,6 +11,7 @@ import usersRoutes from "./routes/users.routes";
 import commentsRoutes from "./routes/comments.routes";
 import loginRoutes from "./routes/login.routes";
 import handleAppErrorMiddleware from "./middleware/handleAppError";
+import passwordRoute from "./routes/passwordChange.routes";
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use("/login", loginRoutes);
 app.use("/users", usersRoutes);
 app.use("/comments", commentsRoutes);
 app.use("/adverts", advertsRoutes);
+app.use("/pass", passwordRoute)
 // app.use("/imageadverts", imageAdvertsRoutes);
 app.use(handleAppErrorMiddleware);
 

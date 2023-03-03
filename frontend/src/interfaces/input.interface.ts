@@ -1,12 +1,12 @@
 import { FieldValues, UseFormRegister } from "react-hook-form";
-import { iUserRequest } from "./user.interface";
+import { iUserRegisterRecieve, iUserRequest } from "./user.interface";
 
 export interface iInput extends iInputRegister {
   type?: "text" | "password" | "email";
   title: string;
-  register: UseFormRegister<iUserRequest>;
+  register: UseFormRegister<iUserRegisterRecieve>;
   placeholder: string;
-  mask?: "999.999.999-99" | "(99) 99999-9999" | "99/99/99" | "99999.99";
+  mask?: "999.999.999-99" | "(99) 99999-9999" | "9999-99-99" | "99999.999";
 }
 
 interface iInputRegister {
@@ -19,10 +19,14 @@ interface iInputRegister {
     | "description_user"
     | "birth_date"
     | "password"
-    | "confirm_password"
+    | "password_confirm"
     | "street"
     | "zipCode"
     | "city"
     | "state"
     | "complement";
+}
+
+export interface iButtonRegister {
+  isAdm?: boolean;
 }

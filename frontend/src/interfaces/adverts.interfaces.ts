@@ -1,4 +1,5 @@
-import { iUserRequest, iUserResponse } from "./user.interface";
+import { iComments } from "./comments.interfaces";
+import { iUserRequest,  iUserResponse } from "./user.interface";
 
 export interface iAdvertProduct {
   title_adverts: string;
@@ -57,10 +58,12 @@ export interface iAdvert {
   description_adverts: string;
   price_adverts: number;
   isAvailable: boolean;
+  cover_image_adverts: string;
   createdAt_adverts: Date;
   updatedAt_adverts: Date;
   imageAdverts: iImageAdvertRequest[];
-  user: iUserResponse;
+  user: iUserResponse;;
+  comments: iComments[]
 }
 
 export interface iIdAdvert {

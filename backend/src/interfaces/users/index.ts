@@ -4,6 +4,7 @@ export interface IAddressesRequest {
     number?: string
     city: string
     state: string
+    complement: string
 }
 
 
@@ -49,5 +50,9 @@ export interface IUserUpdate {
     address: IAddressesRequest
 }
 
-
+export interface IPasswordChange {
+    email: string;
+    password: string;
+    password_confirm?: string
+}
 

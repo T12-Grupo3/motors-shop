@@ -37,11 +37,25 @@ export const ContainerUserProfile = styled(StyledContainer)`
 
     .imgProfile{
         height: 104px;
+        width: 100px;
         left: 1146px;
         top: 568px;
 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
         border-radius: 50%;
         background-color: var(--color-brand-1);
+
+        p{
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 36px;
+            line-height: 53px;
+            color: var(--color-grey-10);
+        }
     }
 
     .profileName{

@@ -7,7 +7,12 @@ import { Comments } from "../../entities/comments.entity";
 
 const listCommentsService = async ( ) => {
     const commentsRepository = AppDataSource.getRepository(Comments);
-    const comments = await commentsRepository.find();
+    const comments = await commentsRepository.find({
+        relations: {
+            adverts: true,
+            user: true,
+          },
+    });
 
     return comments;
 }
