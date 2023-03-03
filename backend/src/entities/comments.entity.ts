@@ -19,7 +19,7 @@ import { Adverts } from "./adverts.entity";
     @UpdateDateColumn()
     updatedAt_adverts: Date
   
-    @ManyToOne(()=> User)
+    @ManyToOne(()=> User, { cascade: true, onDelete: "CASCADE" })
     user: User
 
     @ManyToOne(()=> Adverts)
