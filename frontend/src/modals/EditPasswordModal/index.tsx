@@ -70,7 +70,7 @@ export default function EditPasswordModal () {
 
     return (
         <div>
-      <Button onClick={handleOpen}>Esqueci minha senha</Button>
+      <Button type="button" onClick={handleOpen}>Esqueci minha senha</Button>
       <Modal
         open={open}
         closeAfterTransition

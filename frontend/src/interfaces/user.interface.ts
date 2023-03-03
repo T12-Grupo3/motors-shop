@@ -86,6 +86,7 @@ export interface iUserContext {
   firstName: string;
   lastName: string;
   api_update_address: (props: iAdressRequest) => void
+  api_delete_user: (user_id: string) => void
   // token: string;
   // setToken: (state: string) => void;
 }

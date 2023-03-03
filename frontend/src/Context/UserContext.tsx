@@ -12,8 +12,6 @@ import {
 import api from "../service/api";
 import { useNavigate } from "react-router-dom";
 
-
-
 export const UserContext = createContext<iUserContext>({} as iUserContext);
 
 const UserProvider = ({ children }: iUserProvider) => {
@@ -34,7 +32,7 @@ const UserProvider = ({ children }: iUserProvider) => {
           api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
           const { data } = await api.get(`/users/${userId}`);
           setUser(data);
-          setIsLogged(true)
+          setIsLogged(true);
         } catch (error) {
           console.log(error);
         }
@@ -47,9 +45,7 @@ const UserProvider = ({ children }: iUserProvider) => {
   }, []);
 
   const api_create_user = async (data: iUserRequest) => {
-    await api
-      .post(`/users`, data)
-      .catch((err) => console.log(err));
+    await api.post(`/users`, data).catch((err) => console.log(err));
   };
 
   const api_signin_user = async (data: iLoginRequest) => {
@@ -84,6 +80,12 @@ const UserProvider = ({ children }: iUserProvider) => {
     }
   };
 
+  const api_delete_user = async (user_id: string) => {
+    await api.delete(`/users/${user_id}`);
+
+    logoutProfileView();
+  };
+
   const api_change_password = async (data: iPasswordChangeRequest) => {
     try {
       const res = await api.patch(`/pass`, data);
@@ -91,7 +93,7 @@ const UserProvider = ({ children }: iUserProvider) => {
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   const changeName = () => {
     const splicedName = user?.name.split(" ");
@@ -121,7 +123,8 @@ const UserProvider = ({ children }: iUserProvider) => {
         firstName,
         lastName,
         api_change_password,
-        api_update_address
+        api_update_address,
+        api_delete_user
       }}
     >
       {children}

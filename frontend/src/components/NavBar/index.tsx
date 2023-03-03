@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Context/UserContext";
+import DeleteUserModal from "../../modals/DeleteUserModal";
 import EditAddressModal from "../../modals/EditAddressModal";
 import EditProfileModal from "../../modals/EditProfileModal";
 import Button from "../Button";
@@ -59,7 +60,18 @@ const NavBar = () => {
                   <div>
                     <EditProfileModal />
                     <EditAddressModal />
-                    {user.isAdm ? <button>Meus anuncios</button> : <></>}
+                    <DeleteUserModal user_id={user.id} />
+                    {user.isAdm ? (
+                      <button
+                        onClick={() =>
+                          navigate("/profileview", { replace: true })
+                        }
+                      >
+                        Meus anuncios
+                      </button>
+                    ) : (
+                      <></>
+                    )}
                     <button onClick={() => logoutProfileView()}>Sair</button>
                   </div>
                 </div>
