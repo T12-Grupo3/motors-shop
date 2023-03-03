@@ -13,6 +13,7 @@ import { iAdvertUpdate, iIdAdvert } from "../../interfaces/adverts.interfaces";
 import schemaUpdateAdverts from "../../Validations/schemaUpdateAdverts";
 import { Error } from "../../style/error";
 import { AdvertContext } from "../../Context/AdvertContext";
+import DeleteAdvertsModal from "../DeleteAdvertsModal";
 
 type Inputs = {
   example: string;
@@ -32,19 +33,14 @@ const style = {
 
 export default function EditAdvertModal({id_adverts}: iIdAdvert) {
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleOpenEdit = () => setOpen(true);
+  const handleCloseEdit = () => setOpen(false);
 
   const {api_update_advert, api_delete_advert, api_read_id_advert} = useContext(AdvertContext)
 
   const updateAdverts =  (data: iAdvertUpdate) =>{
     api_update_advert(id_adverts, data)
-    handleClose()
-  }
-
-  const deleteAdverts = () =>{
-    api_delete_advert(id_adverts)
-    handleClose()
+    handleCloseEdit()
   }
 
   // tentativa de caturar os valores dos inputs cadastrados, para o modal de edição.
@@ -182,7 +178,7 @@ export default function EditAdvertModal({id_adverts}: iIdAdvert) {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Editar</Button>
+      <Button onClick={handleOpenEdit}>Editar</Button>
       <Modal
         open={open}
         closeAfterTransition
@@ -197,8 +193,7 @@ export default function EditAdvertModal({id_adverts}: iIdAdvert) {
               <form onSubmit={handleSubmit(updateAdverts)}>
                 <div className="div-header-modal">
                   <h3 className="h3-anuncio">Editar anúncio</h3>
-                  <button onClick={handleClose}>X</button>
-
+                  <button onClick={handleCloseEdit}>X</button>
                 </div>
 
                 <label className="p-tipo-anuncio">Tipo de anuncio</label>
@@ -351,9 +346,7 @@ export default function EditAdvertModal({id_adverts}: iIdAdvert) {
                 </p>
 
                 <div className="div-btn-cancela-submit">
-                  <button className="btn-excluir" onClick={deleteAdverts}>
-                    Excluir anúncio
-                  </button>
+                  <DeleteAdvertsModal  id_adverts={id_adverts} />
                   <button className="btn-submit" type="submit">
                     Salvar alterações
                   </button>

@@ -165,7 +165,7 @@ export default function EditAddressModal () {
                     Cancelar
                   </button>
                   <button className="btn-submit" type="submit" onClick={handleClose}>
-                    Alterar Senha
+                    Salvar alterações
                   </button>
                 </div>
               </Form>
