@@ -6,6 +6,7 @@ import ProductCard from "../../components/ProductCard";
 import ProductCardAuction from "../../components/ProductCardAuction";
 import { AdvertContext } from "../../Context/AdvertContext";
 import { UserContext } from "../../Context/UserContext";
+import DeleteAdvertsModal from "../../modals/DeleteAdvertsModal";
 import EditAdvertModal from "../../modals/EditAdvertModal";
 import RegisterAdvertModal from "../../modals/RegisterAdvertModal";
 import { StyledAuction, StyledProductsContainer } from "../home/style";
@@ -19,7 +20,7 @@ const ProfileView = () => {
   const { auctions, cars, motorcycles } = useContext(AdvertContext);
 
 
-  const {user, changeName, firstName, lastName} = useContext(UserContext)
+  const {user, changeName, firstName, lastName, } = useContext(UserContext)
 
   useEffect(()=>{
     changeName()
@@ -95,6 +96,7 @@ const ProfileView = () => {
                     price_adverts={price_adverts}
                   />
                   <EditAdvertModal id_adverts={id} />
+                  <DeleteAdvertsModal id_adverts={id} />
                   <Link to={`/product/${id}`}>Ver como</Link>
                 </>
               )
@@ -121,6 +123,7 @@ const ProfileView = () => {
                     price_adverts={price_adverts}
                   />
                   <EditAdvertModal id_adverts={id} />
+                  <DeleteAdvertsModal id_adverts={id} />
                 </>
               )
             )}

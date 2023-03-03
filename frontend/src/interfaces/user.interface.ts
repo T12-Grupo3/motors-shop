@@ -17,8 +17,6 @@ export interface iUserResponse {
   createdAt: Date;
   updatedAt: Date;
   isActive: boolean;
-  
-
 }
 
 export interface iUserRequest {
@@ -85,9 +83,7 @@ export interface iUserContext {
   changeName: ()=>void;
   firstName: string;
   lastName: string;
-  api_update_address: (props: iAdressRequest) => void
-  // token: string;
-  // setToken: (state: string) => void;
+  api_update_address: (props: iAdressRequest) => void;
 }
 
 export interface iUserProvider {

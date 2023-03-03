@@ -1,7 +1,7 @@
 import { iButton } from "../../interfaces/button.interface";
 import { StyledButton } from "./style";
 
-const Button = ({
+const ButtonComponent = ({
   children,
   onClick,
   background_color,
@@ -10,6 +10,7 @@ const Button = ({
   hover_background_color,
   hover_border,
   hover_color,
+  type
 }: iButton) => {
   return (
     <StyledButton
@@ -20,9 +21,10 @@ const Button = ({
       hover_background_color={hover_background_color}
       hover_border={hover_border}
       hover_color={hover_color}
+      type={type}
     >
       {children}
     </StyledButton>
   );
 };
-export default Button;
+export default ButtonComponent;
