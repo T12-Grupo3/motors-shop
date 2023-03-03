@@ -64,3 +64,7 @@ export interface iAdvert {
 export interface iIdAdvert {
   id_adverts: string;
 }
+
+export interface iDeleteAdverts extends iIdAdvert {
+  handleCloseEdit: () => void;
+}

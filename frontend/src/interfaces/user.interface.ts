@@ -17,8 +17,6 @@ export interface iUserResponse {
   createdAt: Date;
   updatedAt: Date;
   isActive: boolean;
-  
-
 }
 
 export interface iUserRequest {

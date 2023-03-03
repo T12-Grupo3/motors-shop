@@ -26,7 +26,7 @@ const UserProvider = ({ children }: iUserProvider) => {
   const userId = localStorage.getItem("MOTORSSHOP:USERID");
 
   useEffect(() => {
-    async function autoLogin() {
+     const autoLogin = async ()=> {
       if (token) {
         try {
           api.defaults.headers.common["Authorization"] = `Bearer ${token}`;

@@ -20,7 +20,7 @@ const Product = () => {
 
   
   const navigate = useNavigate();
-  // const { changeName, firstName, lastName } = useContext(UserContext);
+  const { changeName, firstName, lastName } = useContext(UserContext);
   const { api_create_comments, api_read_id_advert, api_read_coments_advert } =
     useContext(AdvertContext);
   const { user } = useContext(UserContext);
@@ -58,6 +58,7 @@ const Product = () => {
 
       setproduct(res_product);
       setcomments(res_comments);
+      changeName()
     };
 
     getProduct(id!);
@@ -117,7 +118,7 @@ const Product = () => {
               {comments.map((elem: iComments) => (
                 <li key={elem.id}>
                   <div className="liComents">
-                    <span className="nikeClient">NC</span>
+                    <span className="nikeClient">{firstName}{lastName}</span>
                     <span className="liName">{elem.user.name}</span>
                     <span className="liOld">{`${daysDiff === 0  ? `< 1` : {daysDiff}} dias`}</span>   
                   </div>
@@ -128,7 +129,7 @@ const Product = () => {
             </div>
             <form className="formComments" onSubmit={handleSubmit(onSubmit)}>
               <div className="liComents">
-                <span className="nikeClient">NC</span>
+                <span className="nikeClient">{firstName}{lastName}</span>
                 <span className="liName">{user.name}</span>
               </div>
               <div className="imputForm">
@@ -197,12 +198,8 @@ const Product = () => {
               </ul>
             </div>
             <div className="cardProfile">
-              <div className="imgProfile">
-                <img
-                  className="imgProfile"
-                  src="https://i.im.ge/2023/02/23/7u52PC.foto-perfil.png"
-                  alt=""
-                />
+              <div className="cardNikeProfile" >
+                <span className="nikePerfilClient">{firstName}{lastName}</span>
               </div>
               <p className="pProfile">Marcus Roberto</p>
               <p className="textProfile">

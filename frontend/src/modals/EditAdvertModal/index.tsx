@@ -1,10 +1,9 @@
 import { useContext, useState } from "react"
-
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Input } from "@mui/material";
 import ReactDOM from "react-dom";
 import { Container, Button } from "./styles";
@@ -13,12 +12,7 @@ import { iAdvertUpdate, iIdAdvert } from "../../interfaces/adverts.interfaces";
 import schemaUpdateAdverts from "../../Validations/schemaUpdateAdverts";
 import { Error } from "../../style/error";
 import { AdvertContext } from "../../Context/AdvertContext";
-import DeleteAdvertsModal from "../DeleteAdvertsModal";
 import ButtonComponent from "../../components/Button";
-
-type Inputs = {
-  example: string;
-};
 
 const style = {
   position: "absolute" as "absolute",
@@ -37,21 +31,12 @@ export default function EditAdvertModal({id_adverts}: iIdAdvert) {
   const handleOpenEdit = () => setOpen(true);
   const handleCloseEdit = () => setOpen(false);
 
-  const {api_update_advert, api_delete_advert, api_read_id_advert, setHandleDelete, handleDelete} = useContext(AdvertContext)
-
-  
+  const {api_update_advert, setHandleDelete} = useContext(AdvertContext)
 
   const updateAdverts =  (data: iAdvertUpdate) =>{
     api_update_advert(id_adverts, data)
     handleCloseEdit()
   }
-
-  // tentativa de caturar os valores dos inputs cadastrados, para o modal de edição.
-  const getAdverts = async ()=>{
-    const advertObj = await api_read_id_advert(id_adverts)
-
-  }
-
 
   // Função para selecionar tipo de anuncio
 
@@ -163,13 +148,6 @@ export default function EditAdvertModal({id_adverts}: iIdAdvert) {
 
   const [tipoAnuncio, setTipoAnuncio] = useState("venda");
 
-  function handleTipoAnuncioChange(event: React.MouseEvent<HTMLButtonElement>) {
-    if (event.currentTarget.classList.contains("btn-leilão")) {
-      setTipoAnuncio("leilão");
-    } else {
-      setTipoAnuncio("venda");
-    }
-  }
 
   const {
     register,
@@ -201,23 +179,22 @@ export default function EditAdvertModal({id_adverts}: iIdAdvert) {
 
                 <label className="p-tipo-anuncio">Tipo de anuncio</label>
                 <select
-                {...register('type_adverts')}
-                className="div-btn-tipo-anuncio">
-
+                  {...register('type_adverts')}
+                  className="div-btn-tipo-anuncio"
+                >
                   <option
                     className="btn-tipo-anuncio btn-venda"
                     value="sell"
                     // defaultValue="sell"
                   >Venda
                   </option>
-
                   <option
                     className="btn-tipo-anuncio btn-leilão"
                     value="auction"
                     >Leilão
                   </option>
                 </select>
-                  <Error>{errors.type_adverts?.message}</Error>
+                <Error>{errors.type_adverts?.message}</Error>
 
                 <div>
                   <p className="p-info-veiculo">Infomações do veículo</p>
@@ -339,7 +316,6 @@ export default function EditAdvertModal({id_adverts}: iIdAdvert) {
                         placeholder="Inserir URL da imagem"
                         type="url"
                       />
-
                     </div>
                   </div>
                 </div>
@@ -349,8 +325,7 @@ export default function EditAdvertModal({id_adverts}: iIdAdvert) {
                 </p>
 
                 <div className="div-btn-cancela-submit">
-                  <ButtonComponent type="button" onClick={()=>{setOpen(false); setHandleDelete(true)}}>Excluir</ButtonComponent>
-                  {/* <DeleteAdvertsModal  id_adverts={id_adverts}/> */}
+                  <ButtonComponent type="button" onClick={()=>{setOpen(false); setHandleDelete(true)}}>Excluir anúncio</ButtonComponent>
                   <button className="btn-submit" type="submit">
                     Salvar alterações
                   </button>
