@@ -361,6 +361,7 @@ li{
 .liComents{
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: flex-start;
   /* padding: 36px 44px; */
   gap: 14px;
@@ -368,7 +369,7 @@ li{
 }
 
 .nikeClient{
-  display: flex;
+display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
@@ -613,16 +614,35 @@ flex-grow: 0;
   border-radius: 4px;
 }
 
-.imgProfile{
+.cardNikeProfile{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 104x;
+  height: 104px;
+  /* left: 1146px;
+  top: 568px; */
+  background: #FDFDFD;
+
+
+}
+
+.nikePerfilClient{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
   width: 104px;
   height: 104px;
-  left: 1146px;
-  top: 568px;
+  /* left: 1146px;
+  top: 568px; */
 
   /* Brand/brand1 */
-  border-radius: 50%;
   background: #4529E6;
-
+  border-radius: 50%;
+  color: #FDFDFD;
+  font-size: 36px;
 }
 
 .pProfile{
