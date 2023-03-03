@@ -1,17 +1,9 @@
-import { useContext, useState } from "react";
-import ReactDOM from "react-dom";
+import { useContext, useEffect, useState } from "react";
 import { Button, Container } from "./styles";
 import Modal from "@mui/material/Modal";
 import Backdrop from "@mui/material/Backdrop";
 import Fade from "@mui/material/Fade";
 import Box from "@mui/material/Box";
-import { Input } from "@mui/material";
-import { Error } from "../../style/error";
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from "react-hook-form";
-import { iPasswordChangeRequest } from "../../interfaces/user.interface";
-import schemaPasswordChange from "../../Validations/schemaPasswordChange";
-import { UserContext } from "../../Context/UserContext";
 import { AdvertContext } from "../../Context/AdvertContext";
 import { iIdAdvert } from "../../interfaces/adverts.interfaces";
 
@@ -27,19 +19,25 @@ const style = {
     p: 4,
     borderRadius: 2,
   };
-  
-
 
 export default function DeleteAdvertsModal ({id_adverts}: iIdAdvert) {
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
 
-    const {api_delete_advert} = useContext(AdvertContext)
+  const {api_delete_advert, handleDelete, setHandleDelete} = useContext(AdvertContext)
+
+    const [open, setOpen] = useState(handleDelete);
+    // const handleOpen = () => setOpen(true);
+    // const handleClose = () => setOpen(false);
+
+    useEffect(() => {
+      const openModal = (isOpen: boolean) => {
+        setOpen(isOpen);
+      };
+      openModal(handleDelete);
+    }, [handleDelete]);
 
     const deleteAdverts = () =>{
       api_delete_advert(id_adverts)
-      handleClose()
+      setHandleDelete(false)
     }
 
     function changeButtonStyleOnClickAdvert(
@@ -68,7 +66,7 @@ export default function DeleteAdvertsModal ({id_adverts}: iIdAdvert) {
 
     return (
         <div>
-      <Button type="button" onClick={handleOpen}>Excluir anúncio</Button>
+      <Button type="button" onClick={()=>setOpen(true)}>Excluir anúncio</Button>
       <Modal
         open={open}
         closeAfterTransition
@@ -83,14 +81,14 @@ export default function DeleteAdvertsModal ({id_adverts}: iIdAdvert) {
               <div>
                 <div className="div-header-modal">
                   <h3 className="h3-modal">Excluir anúncio</h3>
-                  <button onClick={handleClose}>X</button>
+                  <button onClick={()=>setHandleDelete(false)}>X</button>
                 </div>
 
                 <p className="paragraph-question">Tem certeza que deseja remover este anúncio?</p>
                 <p className="paragraph-text">Essa ação não pode ser desfeita. Isso excluirá permanentemente sua conta e removerá seus dados de nossos servidores.</p>
                
                 <div className="div-btn-cancela-submit">
-                  <button type="button" className="btn-cancelar" onClick={handleClose}>
+                  <button type="button" className="btn-cancelar" onClick={()=>setHandleDelete(false)}>
                     Cancelar
                   </button>
                   <button className="btn-submit" type="submit" onClick={deleteAdverts}>

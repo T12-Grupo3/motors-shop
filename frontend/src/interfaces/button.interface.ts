@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 export interface iButton extends iStyledButton {
   children: ReactNode;
   onClick: () => void;
+  type?: "button" | "submit" | "reset" | undefined
 }
 
 export interface iStyledButton {

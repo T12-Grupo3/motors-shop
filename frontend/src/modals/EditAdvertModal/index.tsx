@@ -14,6 +14,7 @@ import schemaUpdateAdverts from "../../Validations/schemaUpdateAdverts";
 import { Error } from "../../style/error";
 import { AdvertContext } from "../../Context/AdvertContext";
 import DeleteAdvertsModal from "../DeleteAdvertsModal";
+import ButtonComponent from "../../components/Button";
 
 type Inputs = {
   example: string;
@@ -36,7 +37,9 @@ export default function EditAdvertModal({id_adverts}: iIdAdvert) {
   const handleOpenEdit = () => setOpen(true);
   const handleCloseEdit = () => setOpen(false);
 
-  const {api_update_advert, api_delete_advert, api_read_id_advert} = useContext(AdvertContext)
+  const {api_update_advert, api_delete_advert, api_read_id_advert, setHandleDelete, handleDelete} = useContext(AdvertContext)
+
+  
 
   const updateAdverts =  (data: iAdvertUpdate) =>{
     api_update_advert(id_adverts, data)
@@ -346,7 +349,8 @@ export default function EditAdvertModal({id_adverts}: iIdAdvert) {
                 </p>
 
                 <div className="div-btn-cancela-submit">
-                  <DeleteAdvertsModal  id_adverts={id_adverts} />
+                  <ButtonComponent type="button" onClick={()=>{setOpen(false); setHandleDelete(true)}}>Excluir</ButtonComponent>
+                  {/* <DeleteAdvertsModal  id_adverts={id_adverts}/> */}
                   <button className="btn-submit" type="submit">
                     Salvar alterações
                   </button>
