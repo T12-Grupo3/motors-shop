@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import InputMask from "../../components/InputMask";
 import Input from "../../components/Input";
@@ -23,6 +23,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import schemaRegisterUsers from "../../Validations/schemaRegisterUsers";
 import { UserContext } from "../../Context/UserContext";
 import Footer from "../../components/Footer";
+import RegisterUserConfirm from "../../modals/RegisterUserConfirm";
+import { useNavigate } from "react-router";
 
 const Register = () => {
   const {
@@ -34,7 +36,15 @@ const Register = () => {
   });
 
   const [isAdm, setisAdm] = useState(false);
-  const { api_create_user } = useContext(UserContext);
+  const [openModal, setopenModal] = useState(false);
+  const { api_create_user, isLogged } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLogged) {
+      navigate("/home", { replace: true });
+    }
+  }, [isLogged, navigate]);
 
   const onSubmit = async ({
     name,
@@ -51,27 +61,33 @@ const Register = () => {
     state,
     complement = "",
   }: iUserRegisterRecieve) => {
-    const address = { street, zipCode, number, city, state, complement };
+    try {
+      const address = { street, zipCode, number, city, state, complement };
 
-    const user: iUserRequest = {
-      name,
-      email,
-      phone_number,
-      password,
-      cpf,
-      description_user,
-      birth_date,
-      isAdm,
-      address,
-    };
-    console.log(user);
+      const user: iUserRequest = {
+        name,
+        email,
+        phone_number,
+        password,
+        cpf,
+        description_user,
+        birth_date,
+        isAdm,
+        address,
+      };
 
-    await api_create_user(user);
+      await api_create_user(user);
+
+      setopenModal(true);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <>
       <NavBar />
+      <RegisterUserConfirm handleConfirm={openModal} />
       <StyledRegisterContainer>
         <StyledRegisterDiv>
           <StyledFormContainer>

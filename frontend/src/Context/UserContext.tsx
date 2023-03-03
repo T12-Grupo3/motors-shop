@@ -39,7 +39,7 @@ const UserProvider = ({ children }: iUserProvider) => {
           console.log(error);
         }
       } else {
-        navigate("/login");
+        // navigate("/login");
       }
       // setIsLogged(true)
     }

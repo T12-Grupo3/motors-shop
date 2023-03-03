@@ -1,16 +1,20 @@
-import { Entity, Column,  PrimaryGeneratedColumn, OneToOne, ManyToOne } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  ManyToOne,
+} from "typeorm";
 import { Adverts } from "./adverts.entity";
 
 @Entity("image_adverts")
-export class ImageAdverts{
-    @PrimaryGeneratedColumn("uuid")
+export class ImageAdverts {
+  @PrimaryGeneratedColumn("uuid")
+  readonly id: string;
 
-    readonly id: string
+  @Column()
+  galery_image: string;
 
-    @Column()
-    galery_image: string
-
-    @ManyToOne(()=> Adverts)
-    advert: Adverts
-
+  @ManyToOne(() => Adverts, { cascade: true, onDelete: "CASCADE" })
+  advert: Adverts;
 }
