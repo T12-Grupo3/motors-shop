@@ -8,17 +8,17 @@ import { ContainerProduct } from "./style";
 import schemaInputComments from "../../Validations/schemaInputComments";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
-  iComments,
-  iCommentsRegisterRecieve,
-} from "../../interfaces/comments.interfaces";
+  iComments, iCommentsRegisterRecieve} from "../../interfaces/comments.interfaces";
 import { useForm } from "react-hook-form";
 import { UserContext } from "../../Context/UserContext";
+import { differenceInDays } from 'date-fns';
 
-export default function Product() {
+const Product = () => {
   const { id } = useParams();
   const [product, setproduct] = useState<iAdvert>({} as iAdvert);
   const [comments, setcomments] = useState<iComments[]>([]);
 
+  
   const navigate = useNavigate();
   // const { changeName, firstName, lastName } = useContext(UserContext);
   const { api_create_comments, api_read_id_advert, api_read_coments_advert } =
@@ -40,8 +40,16 @@ export default function Product() {
       userId: user.id,
     };
 
+    
     api_create_comments(advertComments);
   };
+  
+  
+  
+    
+  
+  
+
 
   useEffect(() => {
     const getProduct = async (id: string) => {
@@ -66,7 +74,18 @@ export default function Product() {
     kilometers_adverts,
     price_adverts,
     cover_image_adverts,
+    createdAt_adverts,
+    updatedAt_adverts, 
   } = product;
+
+  function calculateDaysDifference() {
+    const createdAtDate = new Date(createdAt_adverts);
+    const updatedAtDate = new Date(updatedAt_adverts);
+    return differenceInDays(updatedAtDate, createdAtDate);
+  }
+
+  const daysDiff = calculateDaysDifference();
+
 
   return (
     <>
@@ -95,15 +114,15 @@ export default function Product() {
             <div className="comments">
               <span className="spanDescription">Comentários</span>
               <ul className="ulComments">
-                {comments.map((elem) => (
-                  <li key={elem.id}>
-                    <div className="liComents">
-                      <span className="nikeClient">NC</span>
-                      <span className="liName">{elem.user.name}</span>
-                      <span className="liOld">3 dias</span>
-                    </div>
-                    <p>{elem.comments} </p>
-                  </li>
+              {comments.map((elem: iComments) => (
+                <li key={elem.id}>
+                  <div className="liComents">
+                    <span className="nikeClient">NC</span>
+                    <span className="liName">{elem.user.name}</span>
+                    <span className="liOld">{`${daysDiff === 0  ? `< 1` : {daysDiff}} dias`}</span>   
+                  </div>
+                  <p>{elem.comments} </p>
+                </li>
                 ))}
               </ul>
             </div>
@@ -202,3 +221,8 @@ export default function Product() {
     </>
   );
 }
+
+
+
+
+export default Product;
