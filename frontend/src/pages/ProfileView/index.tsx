@@ -20,7 +20,7 @@ const ProfileView = () => {
   const { auctions, cars, motorcycles } = useContext(AdvertContext);
 
 
-  const {user, changeName, firstName, lastName} = useContext(UserContext)
+  const {user, changeName, firstName, lastName, } = useContext(UserContext)
 
   useEffect(()=>{
     changeName()
@@ -96,6 +96,7 @@ const ProfileView = () => {
                     price_adverts={price_adverts}
                   />
                   <EditAdvertModal id_adverts={id} />
+                  <DeleteAdvertsModal id_adverts={id} />
                   <Link to={`/product/${id}`}>Ver como</Link>
                 </>
               )
