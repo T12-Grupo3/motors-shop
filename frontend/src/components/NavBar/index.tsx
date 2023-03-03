@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Context/UserContext";
 import EditAddressModal from "../../modals/EditAddressModal";
+import EditProfileModal from "../../modals/EditProfileModal";
 import Button from "../Button";
 
 import {
@@ -56,9 +57,8 @@ const NavBar = () => {
                 </StyledUser>
                 <div className="dropdown-content">
                   <div>
-                    <button>Editar Perfil</button>
+                    <EditProfileModal />
                     <EditAddressModal />
-                    {/* <button>Editar endereço</button> */}
                     {user.isAdm ? <button>Meus anuncios</button> : <></>}
                     <button onClick={() => logoutProfileView()}>Sair</button>
                   </div>

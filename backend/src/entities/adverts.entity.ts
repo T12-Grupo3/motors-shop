@@ -50,19 +50,16 @@ export class Adverts {
   updatedAt_adverts: Date;
 
   @Column()
-  cover_image_adverts: string
+  cover_image_adverts: string;
 
   @OneToMany(() => ImageAdverts, (imagesAdverts) => imagesAdverts.advert, {
     eager: true,
-    onDelete: "CASCADE",
   })
   imageAdverts: ImageAdverts[];
 
-
-  @ManyToOne(()=> User)
-  user: User
+  @ManyToOne(() => User)
+  user: User;
 
   @OneToMany(() => Comments, (comments) => comments.adverts)
-    comments: Comments[];
-
+  comments: Comments[];
 }

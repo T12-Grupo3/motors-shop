@@ -5,7 +5,7 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import { AxiosError } from "axios";
 
 import {
@@ -18,12 +18,15 @@ import { iComments, iCommentsRequest } from "../interfaces/comments.interfaces";
 import api from "../service/api";
 import { IError } from "../interfaces/iError";
 import { iCommentsPreview } from "../interfaces/commentsPreiew";
+import { SetOptional } from "type-fest";
 
 export interface IContext {
   auctions: iAdvert[];
   cars: iAdvert[];
   motorcycles: iAdvert[];
   adverts: iAdvert[];
+  handleDelete: boolean;
+  setHandleDelete: Dispatch<SetStateAction<boolean>>;
   api_create_adverts: (data: IRequestAdverts) => Promise<iAdvert>;
   api_create_image_advert: (data: iImageAdvertRequest) => void;
   api_delete_advert: (id_adverts: string) => void;
@@ -45,8 +48,10 @@ export const AdvertContext = createContext<IContext>({} as IContext);
 const AdvertProvider = ({ children }: IProviderProps) => {
   const [adverts, setAdverts] = useState<iAdvert[]>([]);
   const [refreshKey, setRefreshKey] = useState(0);
+  const [handleDelete, setHandleDelete] = useState(true)
 
   const token = localStorage.getItem("MOTORSSHOP:TOKEN");
+  const userId = localStorage.getItem("MOTORSSHOP:USERID");
 
   useEffect(() => {
     const getAdverts = async () => {
@@ -148,9 +153,14 @@ const AdvertProvider = ({ children }: IProviderProps) => {
   };
 
   const api_delete_advert = async (id_adverts: string) => {
+    console.log(id_adverts)
+    // const response = await api.delete('/', {
+    //   headers: { Authorization: `Bearer ${userToken}` },
+    // });
     try {
-      const res = await api.delete(`/adverts/${id_adverts}/`);
-
+      // api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      const res = await api.delete(`/adverts/${id_adverts}`);
+      setHandleDelete(false)
       setRefreshKey((oldKey) => oldKey + 1);
 
       return res.data;
@@ -194,6 +204,8 @@ const AdvertProvider = ({ children }: IProviderProps) => {
         cars,
         motorcycles,
         adverts,
+        handleDelete,
+        setHandleDelete,
         api_create_adverts,
         api_create_image_advert,
         api_delete_advert,

@@ -28,7 +28,7 @@ const UserProvider = ({ children }: iUserProvider) => {
   const userId = localStorage.getItem("MOTORSSHOP:USERID");
 
   useEffect(() => {
-    async function autoLogin() {
+     const autoLogin = async ()=> {
       if (token) {
         try {
           api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -39,7 +39,7 @@ const UserProvider = ({ children }: iUserProvider) => {
           console.log(error);
         }
       } else {
-        navigate("/login");
+        // navigate("/login");
       }
       // setIsLogged(true)
     }
@@ -121,7 +121,7 @@ const UserProvider = ({ children }: iUserProvider) => {
         firstName,
         lastName,
         api_change_password,
-        api_update_address
+        api_update_address,
       }}
     >
       {children}
