@@ -80,11 +80,12 @@ export interface iUserContext {
   isLogged: boolean;
   setIsLogged: React.Dispatch<SetStateAction<boolean>>;
   logoutProfileView: ()=>void;
-  changeName: ()=>void;
+  changeName: (props: string)=>Promise<void>;
   firstName: string;
   lastName: string;
   api_update_address: (props: iAdressRequest) => void
   api_delete_user: (user_id: string) => void
+  api_read_user: (props: string) => Promise<iUserResponse>
   // token: string;
   // setToken: (state: string) => void;
 }

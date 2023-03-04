@@ -33,6 +33,7 @@ const UserProvider = ({ children }: iUserProvider) => {
           const { data } = await api.get(`/users/${userId}`);
           setUser(data);
           setIsLogged(true);
+          navigate('/profileview')
         } catch (error) {
           console.log(error);
         }
@@ -43,6 +44,19 @@ const UserProvider = ({ children }: iUserProvider) => {
     }
     autoLogin();
   }, []);
+
+  const api_read_user = async (userId: string) =>{
+    try {
+      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      const { data } = await api.get(`/users/${userId}`);
+      setUser(data);
+      return data
+      
+    } catch (error) {
+      console.error(error)
+    }
+
+  }
 
   const api_create_user = async (data: iUserRequest) => {
     await api.post(`/users`, data).catch((err) => console.log(err));
@@ -95,8 +109,9 @@ const UserProvider = ({ children }: iUserProvider) => {
     }
   };
 
-  const changeName = () => {
-    const splicedName = user?.name.split(" ");
+  const changeName = async (name: string) => {
+    
+    const splicedName = await name?.split(" ");
 
     setFirstName(splicedName[0].charAt(0));
     setLastName(splicedName[1].charAt(0));
@@ -124,7 +139,8 @@ const UserProvider = ({ children }: iUserProvider) => {
         lastName,
         api_change_password,
         api_update_address,
-        api_delete_user
+        api_delete_user,
+        api_read_user
       }}
     >
       {children}

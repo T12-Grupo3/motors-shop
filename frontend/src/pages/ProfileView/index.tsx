@@ -20,11 +20,16 @@ const ProfileView = () => {
   const { auctions, cars, motorcycles } = useContext(AdvertContext);
 
 
-  const {user, changeName, firstName, lastName, } = useContext(UserContext)
+  const {user, changeName, firstName, lastName, api_read_user } = useContext(UserContext)
+  const userId = localStorage.getItem('MOTORSSHOP:USERID')
 
   useEffect(()=>{
-    changeName()
-  
+    const test = async()=>{
+
+      const nameUser = await api_read_user(userId!)
+      changeName(nameUser.name)
+    }
+  test()
   }, [])
 
   return (
