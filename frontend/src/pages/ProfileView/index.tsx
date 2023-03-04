@@ -62,6 +62,7 @@ const ProfileView = () => {
           <StyledAuction>
             {auctions.map(
               ({
+                cover_image_adverts,
                 description_adverts,
                 price_adverts,
                 title_adverts,
@@ -71,6 +72,7 @@ const ProfileView = () => {
               }) => (
                 <ProductCardAuction
                   key={id}
+                  cover_image_adverts={cover_image_adverts}
                   description_adverts={description_adverts}
                   kilometers_adverts={kilometers_adverts}
                   price_adverts={price_adverts}
@@ -85,6 +87,7 @@ const ProfileView = () => {
           <div id="cars">
             {cars.map(
               ({
+                cover_image_adverts,
                 description_adverts,
                 id,
                 kilometers_adverts,
@@ -95,6 +98,7 @@ const ProfileView = () => {
                 <>
                   <ProductCard
                     key={id}
+                    cover_image_adverts={cover_image_adverts}
                     description_adverts={description_adverts}
                     kilometers_adverts={kilometers_adverts}
                     title_adverts={title_adverts}
@@ -112,6 +116,7 @@ const ProfileView = () => {
           <div id="motos">
             {motorcycles.map(
               ({
+                cover_image_adverts,
                 description_adverts,
                 id,
                 kilometers_adverts,
@@ -122,6 +127,7 @@ const ProfileView = () => {
                 <>
                   <ProductCard
                     key={id}
+                    cover_image_adverts={cover_image_adverts}
                     description_adverts={description_adverts}
                     kilometers_adverts={kilometers_adverts}
                     title_adverts={title_adverts}
