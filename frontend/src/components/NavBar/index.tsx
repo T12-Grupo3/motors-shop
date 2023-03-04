@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Context/UserContext";
 import DeleteUserModal from "../../modals/DeleteUserModal";
@@ -64,7 +64,7 @@ const NavBar = () => {
                     {user.isAdm ? (
                       <button
                         onClick={() =>
-                          navigate("/profileview", { replace: true })
+                          navigate(`/profileview/${user.id}`, { replace: true })
                         }
                       >
                         Meus anuncios
