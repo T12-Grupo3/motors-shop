@@ -29,18 +29,46 @@ export const StyledDescription = styled.div<any>`
     color: var(--color-grey-5);
   }
 `;
-
 export const StyledAuctionPage = styled.div`
   background-color: var(--color-brand-1);
   border-radius: 0 0 5px 5px;
+  a {
+    margin: 0 auto;
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    color: var(--color-grey-whiteFixed);
+  }
+`
+export const StyledAuctionPageAdm = styled.div`
+  background-color: var(--color-brand-1);
+  border-radius: 0 0 5px 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 40px;
+  padding-left: 30px;
+  height: 62px;
+
+  button{
+    background-color: transparent;
+    color: var(--color-grey-whiteFixed);
+    border: 2px solid var(--color-grey-whiteFixed);
+  }
 
   a {
     margin: 0 auto;
     width: 95%;
 
     display: flex;
-    justify-content: space-between;
+    /* justify-content: flex-start; */
     color: var(--color-grey-whiteFixed);
+    border: 2px solid var(--color-grey-whiteFixed);
+    border-radius: 5px;
+    padding: 10px;
+    width: 73px;
+    height: 18px;
   }
 `;
 
