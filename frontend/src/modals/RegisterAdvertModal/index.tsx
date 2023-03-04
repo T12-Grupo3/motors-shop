@@ -29,6 +29,7 @@ const style = {
 
 export default function RegisterAdvertModal() {
   const [tipoAnuncio, setTipoAnuncio] = useState("venda");
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { isLastDayOfMonth } from "date-fns";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AdvertContext } from "../../Context/AdvertContext";
+import { UserContext } from "../../Context/UserContext";
 import { iAdvertProduct } from "../../interfaces/adverts.interfaces";
+import EditAdvertModal from "../../modals/EditAdvertModal";
 import {
   StyledAuctionContainer,
   StyledDescription,
   StyledAuctionPage,
   StyledTags,
+  StyledAuctionPageAdm,
 } from "./style";
 
 const ProductCardAuction = ({
@@ -17,8 +22,13 @@ const ProductCardAuction = ({
   year_adverts,
   id,
 }: iAdvertProduct) => {
-  const [isAuctionOnwer] = useState(false);
 
+  const {auctions, adverts} = useContext(AdvertContext)
+  const {user, api_read_user} = useContext(UserContext)
+
+  const [isAuctionOnwer, set] = useState(false);
+  const userId = localStorage.getItem("MOTORSSHOP:USERID");
+  const isAdmUser = user.isAdm
 
   return (
     <StyledAuctionContainer>
@@ -40,19 +50,27 @@ const ProductCardAuction = ({
         </StyledTags>
       </StyledDescription>
 
-      {isAuctionOnwer ? (
-        <div>
-          <button>Editar</button>
-          <Link to={`/product/${id}`}>Ver como</Link>
-        </div>
-      ) : (
-        <StyledAuctionPage>
-          <Link to={`/product/${id}`}>
-            <p>Acessar página do leilão</p>
-            <p>{`--->`}</p>
-          </Link>
-        </StyledAuctionPage>
-      )}
+      {
+        isAdmUser ? 
+        (
+          <StyledAuctionPageAdm>
+            <div>
+            <EditAdvertModal id_adverts={id!} />
+
+            </div>
+            <div>
+              <Link to={`/product/${id}`}>Ver como</Link>
+            </div>
+          </StyledAuctionPageAdm>
+        ) : (
+          <StyledAuctionPage>
+            <Link to={`/product/${id}`}>
+              <p>Acessar página do leilão</p>
+              <p>{`--->`}</p>
+            </Link>
+          </StyledAuctionPage>
+        )
+      }
     </StyledAuctionContainer>
   );
 };

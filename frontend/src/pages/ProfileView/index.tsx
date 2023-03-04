@@ -105,7 +105,7 @@ const ProfileView = () => {
                     year_adverts={year_adverts}
                     price_adverts={price_adverts}
                   />
-                  <EditAdvertModal id_adverts={id} />
+                  {/* <EditAdvertModal id_adverts={id} /> */}
                   <DeleteAdvertsModal id_adverts={id} />
                   <Link to={`/product/${id}`}>Ver como</Link>
                 </>
