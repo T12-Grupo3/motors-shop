@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 import ProductCard from "../../components/ProductCard";
@@ -17,15 +17,14 @@ import {
 } from "./style";
 
 const ProfileView = () => {
+  const { id } = useParams();
   const { auctions, cars, motorcycles } = useContext(AdvertContext);
 
+  const { user, changeName, firstName, lastName } = useContext(UserContext);
 
-  const {user, changeName, firstName, lastName, } = useContext(UserContext)
-
-  useEffect(()=>{
+  useEffect(() => {
     changeName()
-  
-  }, [])
+  }, []);
 
   return (
     <>
@@ -33,20 +32,21 @@ const ProfileView = () => {
       <ContainerNavProfile />
       <ContainerUserProfile>
         <div className="imgProfile">
-          <p> {firstName}{lastName} </p>
+          <p>
+            {" "}
+            {firstName}
+            {lastName}{" "}
+          </p>
         </div>
         <div className="divName">
           <p className="profileName"> {user?.name} </p>
-          {
-            user.isAdm ? 
-              <p className="paragraphAdvertiser">Anunciante</p>
-            :
-              <p className="paragraphAdvertiser">Comprador</p>
-          }
+          {user.isAdm ? (
+            <p className="paragraphAdvertiser">Anunciante</p>
+          ) : (
+            <p className="paragraphAdvertiser">Comprador</p>
+          )}
         </div>
-        <p className="textProfile">
-          {user?.description_user}
-        </p>
+        <p className="textProfile">{user?.description_user}</p>
         <RegisterAdvertModal />
       </ContainerUserProfile>
 

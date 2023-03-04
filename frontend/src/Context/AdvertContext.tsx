@@ -48,7 +48,7 @@ export const AdvertContext = createContext<IContext>({} as IContext);
 const AdvertProvider = ({ children }: IProviderProps) => {
   const [adverts, setAdverts] = useState<iAdvert[]>([]);
   const [refreshKey, setRefreshKey] = useState(0);
-  const [handleDelete, setHandleDelete] = useState(true)
+  const [handleDelete, setHandleDelete] = useState(false)
 
   const token = localStorage.getItem("MOTORSSHOP:TOKEN");
   const userId = localStorage.getItem("MOTORSSHOP:USERID");

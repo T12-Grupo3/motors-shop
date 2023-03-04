@@ -11,7 +11,7 @@ const MainRoutes = () => {
       <Route path="/home" element={<Home />} />
       <Route path="*" element={<Navigate replace to={"home"} />} />
       <Route path="/product/:id" element={<Product />} />
-      <Route path="/profileview" element={<ProfileView />} />
+      <Route path="/profileview/:id" element={<ProfileView />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<LoginPage />} />
     </Routes>
