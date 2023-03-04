@@ -2,16 +2,29 @@ import styled from "styled-components";
 
 export const StyledAuctionContainer = styled.div`
   width: 47%;
+  height: 100%;
 `;
 
 export const StyledDescription = styled.div`
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.29) 0%, #000000 100%);
-
+   
   color: var(--color-grey-10);
 
   padding: 10px;
-
+  /* height: 100%; */
   border-radius: 5px 5px 0 0;
+  span {
+    background-color: var(--color-brand-4);
+    color: var(--color-brand-1);
+    font-size: 14px;
+    
+    border-radius: 5px;
+    
+    padding: 5px;
+    margin-right: 10px;
+    
+    
+  } 
 
   h2 {
     font-size: 20px;

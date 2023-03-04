@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import Carousel from "../../components/carousel/carousel";
+import Carousel from "../../components/Carousel/carousel";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 import ProductCard from "../../components/ProductCard";
@@ -34,7 +34,10 @@ const Home = () => {
 
       <StyledProductsContainer>
         <h5>Leilão</h5>
-        
+      
+      <Carousel/>
+      
+      
         <StyledAuction>
           {auctions.map(
             ({
@@ -44,7 +47,7 @@ const Home = () => {
               year_adverts,
               kilometers_adverts,
               id,
-              cover_image_adverts,
+              
 
             }) => (
               <ProductCardAuction
@@ -55,7 +58,7 @@ const Home = () => {
                 title_adverts={title_adverts}
                 year_adverts={year_adverts}
                 id={id}
-                cover_image_adverts={cover_image_adverts}
+                
               />
             )
           )}

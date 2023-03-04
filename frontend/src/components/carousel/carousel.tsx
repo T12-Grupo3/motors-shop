@@ -1,38 +1,46 @@
+import { width } from "@mui/system";
+import { AdvertContext } from "../../Context/AdvertContext";
+import { useContext } from "react";
 import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
+import ProductCardAuction from "../ProductCardAuction";
+import { StyledAuctionContainer, StyledAuctionPage, StyledDescription, StyledTags } from "../ProductCardAuction/style";
 import { ContainerCarousel } from "./style";
 
 const Carousel = () => {
+    const { auctions, cars, motorcycles } = useContext(AdvertContext);
+
+
   const responsiveSettings = [
     {
       breakpoint: 1200,
       settings: {
-      slidesToShow: 3,
-      slidesToScroll: 3,
+        slidesToShow: 3,
+        slidesToScroll: 3,
       },
     },
     {
       breakpoint: 800,
       settings: {
-      slidesToShow: 2,
-      slidesToScroll: 2,
+        slidesToShow: 2,
+        slidesToScroll: 2,
       },
     },
     {
       breakpoint: 420,
       settings: {
-      slidesToShow: 1,
-      slidesToScroll: 1,
+        slidesToShow: 1,
+        slidesToScroll: 1,
       },
     },
   ];
   const carouselPictures: string[] = [
-    "https://static.vecteezy.com/ti/fotos-gratis/t2/8585294-3d-rendering-sport-blue-car-on-white-bakcground-jpg-gratis-foto.jpg",
-    "https://media.istockphoto.com/id/1006541592/pt/foto/3d-illustration-of-generic-red-sports-coupe-car-on-white-background.jpg?s=612x612&w=0&k=20&c=YkNKpR-ySNFGJJPaP3xjX5C76HNJEptS9f1jc011cyE=",
-    "https://conteudo.imguol.com.br/c/entretenimento/30/2019/11/14/aspark-owl-1573758305936_v2_450x337.jpg",
-    "https://revistacarro.com.br/wp-content/uploads/2022/05/Ferrari-SP48-Unica_3.jpg",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4nmEjXUuB6qC3-_nUDuJAc76jtLeN-kTK9A&usqp=CAU",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgeF4oqNO7mWvWw3sASgpzHJ6Q253O8f9v3w&usqp=CAU",
+    "https://revistacarro.com.br/wp-content/uploads/2021/06/Fiat-Pulse_1.jpg",
+    "https://blog.nakata.com.br/wp-content/uploads/2020/08/post_thumbnail-1f77e8996174df4fb19587977331de22-780x450.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/5/5e/Hayabusa.jpg",
+    "https://blog.catarinacarros.com.br/wp-content/uploads/2019/04/quiz.jpg",
+    "https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2021/06/37184_23C076613047B271.jpg?w=876&h=484&crop=1",
+    "https://garagem360.com.br/wp-content/uploads/2022/04/554574.jpg",
   ];
 
   return (
@@ -43,10 +51,26 @@ const Carousel = () => {
         cssClass="app__carousel--wrapper"
         indicators={true}
       >
-        <div className="app__carousel--img-box" key="img_1">
-          <div key="Imagem_Carousel_1" style={{ backgroundImage: `url(${carouselPictures[0]})` }}></div>
-        </div>
-        <div className="app__carousel--img-box" key="img_2">
+        {auctions.map(
+            (index, elem) => (
+                <div className="app__carousel--img-box" key="img_1">
+              <ProductCardAuction
+                key={elem.id}
+                description_adverts={elem.description_adverts}
+                kilometers_adverts={elem.kilometers_adverts}
+                price_adverts={elem.price_adverts}
+                title_adverts={elem.title_adverts}
+                year_adverts={elem.year_adverts}
+                id={elem.id}
+                
+              />
+              </div>
+            )
+          )}
+        
+        
+        
+        {/* <div className="app__carousel--img-box" key="img_2">
           <div key="Imagem_Carousel_2" style={{ backgroundImage: `url(${carouselPictures[1]})` }}></div>
         </div>
         <div className="app__carousel--img-box" key="img_3">
@@ -60,10 +84,10 @@ const Carousel = () => {
         </div>
         <div className="app__carousel--img-box" key="img_6">
           <div  key="Imagem_Carousel_6" style={{ backgroundImage: `url(${carouselPictures[5]})` }}></div>
-        </div>
+        </div> */}
       </Slide>
     </div>
-  </ContainerCarousel>
+    </ContainerCarousel>
   );
 };
 
