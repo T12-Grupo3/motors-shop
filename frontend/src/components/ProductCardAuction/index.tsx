@@ -9,6 +9,7 @@ import {
 } from "./style";
 
 const ProductCardAuction = ({
+  cover_image_adverts,
   description_adverts,
   kilometers_adverts,
   price_adverts,
@@ -17,9 +18,13 @@ const ProductCardAuction = ({
   id,
 }: iAdvertProduct) => {
   const [isAuctionOnwer] = useState(false);
+
+
   return (
     <StyledAuctionContainer>
-      <StyledDescription>
+      <StyledDescription
+        backgroundImage={cover_image_adverts}
+      >
         <div>
           <h2>{title_adverts}</h2>
           <p>{description_adverts}</p>
@@ -31,7 +36,7 @@ const ProductCardAuction = ({
             <span>{year_adverts}</span>
             <span>{`${kilometers_adverts} KM`}</span>
           </div>
-          <p>R$ {price_adverts}</p>
+          <p>R$ {price_adverts.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</p>
         </StyledTags>
       </StyledDescription>
 

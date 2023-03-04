@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { iAdvertProduct } from "../../interfaces/adverts.interfaces";
-import EditAdvertModal from "../../modals/EditAdvertModal";
+// import EditAdvertModal from "../../modals/EditAdvertModal";
 import {
   StyledProductCaracteristcs,
   StyledProductCard,
@@ -10,6 +10,7 @@ import {
 } from "./style";
 
 const ProductCard = ({
+  cover_image_adverts,
   description_adverts,
   kilometers_adverts,
   price_adverts,
@@ -22,8 +23,8 @@ const ProductCard = ({
     <StyledProductCard>
       <StyledProductImg>
         <img
-          src="https://www.automaistv.com.br/wp-content/uploads/2022/06/mitsubishi_pajero_mini_final_anniversary_edited-750x450.jpg"
-          alt=""
+          src={cover_image_adverts}
+          alt={description_adverts}
         />
       </StyledProductImg>
       <StyledProductDescription>
@@ -45,7 +46,7 @@ const ProductCard = ({
           <span>{year_adverts}</span>
           <span> {`${kilometers_adverts} KM`} </span>
         </div>
-        <p>{`R$ ${price_adverts}`}</p>
+        <p>{price_adverts.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</p>
       </StyledProductCaracteristcs>
 
     </StyledProductCard>

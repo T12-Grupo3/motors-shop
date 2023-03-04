@@ -121,7 +121,7 @@ const UserProvider = ({ children }: iUserProvider) => {
     localStorage.clear();
     localStorage.clear();
     setIsLogged(false);
-    navigate("/login");
+    navigate("/home");
   };
 
   return (
