@@ -36,7 +36,7 @@ const ProductCardAuction = ({
             <span>{year_adverts}</span>
             <span>{`${kilometers_adverts} KM`}</span>
           </div>
-          <p>R$ {price_adverts.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</p>
+          <p>{price_adverts.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</p>
         </StyledTags>
       </StyledDescription>
 
