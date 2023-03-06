@@ -33,3 +33,11 @@ export interface iCommentsProps {
 
 }
 
+export interface iCommentsUpdate {
+  comments?: string;
+  
+  
+}
+export interface iIdComments {
+  id_comments: string;
+}

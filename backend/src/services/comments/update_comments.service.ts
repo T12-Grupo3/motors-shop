@@ -56,7 +56,7 @@ const updateCommentsService = async({ comments }: ICommentsUpdate, id: string): 
     })
 
     if(!findComments){
-        throw new AppError('Image not found', 404)    
+        throw new AppError('Comments not found', 404)    
     }
 
     

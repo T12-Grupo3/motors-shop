@@ -26,6 +26,7 @@ export interface IContext {
   motorcycles: iAdvert[];
   adverts: iAdvert[];
   handleDelete: boolean;
+  refreshKey: number;
   setHandleDelete: Dispatch<SetStateAction<boolean>>;
   api_create_adverts: (data: IRequestAdverts) => Promise<iAdvert>;
   api_create_image_advert: (data: iImageAdvertRequest) => void;
@@ -36,7 +37,11 @@ export interface IContext {
   api_create_comments: (data: iCommentsRequest) => void;
   api_read_id_comments: (id_comments: string) => Promise<iComments>;
   api_read_coments_advert: (id_advert: string) => Promise<iComments[]>;
+  api_delete_comments: (id_adverts: string) => void;
+  api_update_comments: (id_comments: string, data: iCommentsRequest) => void;
   setAdverts: Dispatch<SetStateAction<iAdvert[]>>;
+  comments: iComments[];
+  setcomments: Dispatch<SetStateAction<iComments[]>>;
 }
 
 export interface IProviderProps {
@@ -49,6 +54,7 @@ const AdvertProvider = ({ children }: IProviderProps) => {
   const [adverts, setAdverts] = useState<iAdvert[]>([]);
   const [refreshKey, setRefreshKey] = useState(0);
   const [handleDelete, setHandleDelete] = useState(false)
+  const [comments, setcomments] = useState<iComments[]>([]);
 
   const token = localStorage.getItem("MOTORSSHOP:TOKEN");
   const userId = localStorage.getItem("MOTORSSHOP:USERID");
@@ -119,29 +125,7 @@ const AdvertProvider = ({ children }: IProviderProps) => {
     return res.data;
   };
 
-  // const api_create_comments = async(data:iCommentsPreview) => {
-
-  //   api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-
-  //   await api
-  //   .post<iComments>("/comments", data)
-  //   .then((response) => {
-
-  //   toast.success("Comentário efetuado com sucesso");
-
-  //   const { data: comment } = response;
-  //   setComments([...comments, comment]);
-
-  //   // getContactsByUser()
-  //   // navigate("/dashboard")
-
-  //   })
-  //   .catch((error: AxiosError<IError>) => {
-  //     toast.error("Ops, Algo deu errado")
-  //     console.log(error)
-  //   })
-  //   };
-
+  
   const api_read_id_comments = async (id_comments: string) => {
     try {
       const res = await api.get(`/comments/${id_comments}/`);
@@ -151,6 +135,35 @@ const AdvertProvider = ({ children }: IProviderProps) => {
       console.log(error);
     }
   };
+
+  const api_delete_comments = async (id_comments: string) => {
+    
+   
+    try {
+      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      const res = await api.delete(`/comments/${id_comments}`);
+      setHandleDelete(false)
+      
+      setRefreshKey(oldKey=>oldKey + 1)
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const api_update_comments = async (id_comments: string, data: iCommentsRequest) => {
+    try {
+      const res = await api.patch(`/comments/${id_comments}/`, data);
+
+      setRefreshKey(oldKey=>oldKey + 1)
+
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+ 
 
   const api_delete_advert = async (id_adverts: string) => {
     console.log(id_adverts)
@@ -205,6 +218,7 @@ const AdvertProvider = ({ children }: IProviderProps) => {
         motorcycles,
         adverts,
         handleDelete,
+        refreshKey,
         setHandleDelete,
         api_create_adverts,
         api_create_image_advert,
@@ -214,7 +228,11 @@ const AdvertProvider = ({ children }: IProviderProps) => {
         api_update_advert,
         api_create_comments,
         api_read_id_comments,
+        api_delete_comments,
+        api_update_comments,
         api_read_coments_advert,
+        comments, 
+        setcomments,
         setAdverts,
       }}
     >

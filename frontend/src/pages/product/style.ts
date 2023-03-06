@@ -367,6 +367,17 @@ li{
   gap: 14px;
   color: #000000;
 }
+.divComents{
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between ;
+
+  align-items: center;
+  /* padding: 36px 44px; */
+  gap: 14px;
+  color: #000000;
+}
 
 .nikeClient{
 display: flex;
