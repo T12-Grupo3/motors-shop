@@ -166,7 +166,6 @@ const AdvertProvider = ({ children }: IProviderProps) => {
  
 
   const api_delete_advert = async (id_adverts: string) => {
-    console.log(id_adverts)
     // const response = await api.delete('/', {
     //   headers: { Authorization: `Bearer ${userToken}` },
     // });

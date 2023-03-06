@@ -67,3 +67,10 @@ export const StyledProductCaracteristcs = styled.div`
     font-weight: var(--heading-7-500);
   }
 `;
+
+export const StyledProductCardButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 70%;
+`;

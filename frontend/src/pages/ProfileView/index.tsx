@@ -75,9 +75,6 @@ const ProfileView = () => {
             {filteredCars.map((advert) => (
               <div key={advert.id}>
                 <ProductCard advert={advert} />
-                <EditAdvertModal advert={advert} />
-                <DeleteAdvertsModal id_adverts={advert.id} />
-                <Link to={`/product/${advert.id}`}>Ver como</Link>
               </div>
             ))}
           </div>
@@ -88,13 +85,9 @@ const ProfileView = () => {
             {filteredMotorcycles.map((advert) => (
               <div key={advert.id}>
                 <ProductCard advert={advert} />
-                <EditAdvertModal advert={advert} />
-                <DeleteAdvertsModal id_adverts={advert.id} />
-                <Link to={`/product/${advert.id}`}>Ver como</Link>
               </div>
             ))}
           </div>
-          
         </StyledProductsContainer>
       </StyledContainerProfile>
       <Footer />
