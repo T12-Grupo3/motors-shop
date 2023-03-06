@@ -6,7 +6,7 @@ import listCommentsAdvertController from "../controllers/comments/list_comments_
 import listCommentsController from "../controllers/comments/lis_comments.controller";
 import updateCommentsController from "../controllers/comments/update_comments.controller";
 import authUserMiddleware from "../middleware/authUser.middleware";
-import isUserMiddleware from "../middleware/isUserMiddleware";
+import isUserCommentsMiddleware from "../middleware/isUserComments.midlleware";
 
 const commentsRoutes = Router();
 
@@ -14,6 +14,6 @@ commentsRoutes.post("", authUserMiddleware, createCommentsController);
 commentsRoutes.get("/", listCommentsController);
 commentsRoutes.get("/:id", listCommentsAdvertController);
 commentsRoutes.get("/advert/:id", listCommentsByAdvertController);
-commentsRoutes.delete("/:id", authUserMiddleware, isUserMiddleware, deleteCommentsController);
+commentsRoutes.delete("/:id", authUserMiddleware,   deleteCommentsController);
 commentsRoutes.patch("/:id", authUserMiddleware,  updateCommentsController);
 export default commentsRoutes;

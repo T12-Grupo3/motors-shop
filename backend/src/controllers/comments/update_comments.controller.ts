@@ -26,6 +26,7 @@ import updateCommentsService from "../../services/comments/update_comments.servi
 const updateCommentsController = async (req: Request, res: Response) => {
   const { comments} = req.body;
   const { id } = req.params;
+  const userId  = req.user.id;
 
   if (req.body.id != undefined || req.body.createdAt != undefined) {
     return res.status(401).json({
@@ -34,7 +35,7 @@ const updateCommentsController = async (req: Request, res: Response) => {
     });
   }
 
-  const comment = await updateCommentsService({comments}, id);
+  const comment = await updateCommentsService({comments}, id, userId);
 
   return res.status(200).json({ message: "Service updated!", comment: comment });
 };

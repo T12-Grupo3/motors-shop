@@ -47,18 +47,25 @@ import { User } from "../../entities/user.entity";
 
 
 
-const updateCommentsService = async({ comments }: ICommentsUpdate, id: string): Promise<ICommentsUpdate>  => {
+const updateCommentsService = async({ comments }: ICommentsUpdate, id: string, userId:string): Promise<ICommentsUpdate>  => {
 
     const commentsRepository = AppDataSource.getRepository(Comments)
 
-    const findComments = await commentsRepository.findOneBy({
-        id
+    const findComments = await commentsRepository.findOne({
+      where: {id:id
+      } ,
+      relations:{
+        user: true
+      }
     })
 
     if(!findComments){
         throw new AppError('Comments not found', 404)    
     }
 
+    if( findComments.user.id !== userId){
+      throw new AppError("User  Unauthorized");
+    }
     
 
     const commentsUpdated = {

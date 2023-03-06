@@ -4,7 +4,7 @@ import 'dotenv/config';
 
 const authUserMiddleware = (req: Request, res: Response, next: NextFunction) =>{
     let token = req.headers.authorization
-
+   
     if(!token){
         return res.status(401).json({
             message: 'Invalid token'
@@ -25,9 +25,13 @@ const authUserMiddleware = (req: Request, res: Response, next: NextFunction) =>{
         req.user = {
             email:decoded.emao,
             isAdm: decoded.isAdm,
-            id: decoded.sub
+            id: decoded.sub as string
         }
-
+        // req.comments = {
+        //     userId:decoded.emao,
+        //     isAdm: decoded.isAdm,
+        //     id: decoded.sub
+        // }
         return next()
 
     })

@@ -18,7 +18,12 @@ declare global {
             user: {
                 id: string
                 isAdm: boolean
-                email:string
+                email: string
+            },
+            comments: {
+                id: string
+                userId: bstring
+                AdvertsId: string
             }
         }
     }

@@ -26,7 +26,7 @@ const AppDataSource = new DataSource(
             }
           : false,
         synchronize: false,
-        logging: isProduction ? false : true,
+        logging: isProduction ? false : false,
         entities: [Adverts, ImageAdverts, User, Comments, Addresses],
         migrations: [initial1677873511894],
       }
