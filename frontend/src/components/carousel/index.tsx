@@ -36,37 +36,18 @@ const CarouselComponent = ({ adverts }: iCarouselComponent) => {
       ssr={true} // means to render carousel on server-side.
       infinite={true}
       autoPlaySpeed={1000}
-      autoPlay={true}
+      autoPlay={false}
       keyBoardControl={true}
       customTransition="all .5"
       transitionDuration={500}
       containerClass="carousel-container"
-      removeArrowOnDeviceType={["tablet", "mobile", 'desktop']}
+      removeArrowOnDeviceType={["tablet", "mobile"]}
       dotListClass="custom-dot-list-style"
       itemClass="carousel-item-padding-40-px"
     >
-      {adverts.map(
-        ({
-          description_adverts,
-          id,
-          kilometers_adverts,
-          title_adverts,
-          price_adverts,
-          year_adverts,
-          cover_image_adverts,
-        }) => (
-          <ProductCardAuction
-            key={id}
-            description_adverts={description_adverts}
-            kilometers_adverts={kilometers_adverts}
-            price_adverts={price_adverts}
-            title_adverts={title_adverts}
-            year_adverts={year_adverts}
-            cover_image_adverts={cover_image_adverts}
-            id={id}
-          />
-        )
-      )}
+      {adverts.map((adverts) => (
+        <ProductCardAuction key={adverts.id} advert={adverts}/>
+      ))}
     </Carousel>
   );
 };

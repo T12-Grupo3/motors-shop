@@ -12,7 +12,7 @@ export const StyledDescription = styled.div<any>`
   background-position: center;
   background-color: var(--color-grey-4);
   
-  height: 100%;
+  height: 60%;
   padding: 25px;
   border-radius: 5px 5px 0 0;
   color: var(--color-grey-10);

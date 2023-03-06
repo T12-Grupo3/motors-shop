@@ -1,9 +1,9 @@
 import { isLastDayOfMonth } from "date-fns";
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { iAdvert } from "../../interfaces/adverts.interfaces";
 import { AdvertContext } from "../../Context/AdvertContext";
 import { UserContext } from "../../Context/UserContext";
-import { iAdvertProduct } from "../../interfaces/adverts.interfaces";
 import EditAdvertModal from "../../modals/EditAdvertModal";
 import {
   StyledAuctionContainer,
@@ -13,34 +13,38 @@ import {
   StyledAuctionPageAdm,
 } from "./style";
 
-const ProductCardAuction = ({
-  cover_image_adverts,
-  description_adverts,
-  kilometers_adverts,
-  price_adverts,
-  title_adverts,
-  year_adverts,
-  id,
-}: iAdvertProduct) => {
+interface iProductCard {
+  advert: iAdvert;
+}
 
-  const {auctions, adverts} = useContext(AdvertContext)
-  const {user, api_read_user} = useContext(UserContext)
+const ProductCardAuction = ({advert}: iProductCard) => {
+  
+  const {
+    cover_image_adverts,
+    description_adverts,
+    title_adverts,
+    kilometers_adverts,
+    year_adverts,
+    price_adverts,
+    user,
+    id,
+  } = advert;
 
-  const [isAuctionOnwer, set] = useState(false);
-  const userId = localStorage.getItem("MOTORSSHOP:USERID");
-  const isAdmUser = user.isAdm
+  // const {auctions, adverts} = useContext(AdvertContext)
+  // const { api_read_user} = useContext(UserContext)
+
+  // const [isAuctionOnwer, set] = useState(false);
+  // const userId = localStorage.getItem("MOTORSSHOP:USERID");
+  // const isAdmUser = user.isAdm
+  const currentUser = localStorage.getItem("MOTORSSHOP:USERID");
 
   return (
     <StyledAuctionContainer>
       <StyledDescription
-        backgroundImage={cover_image_adverts}
-      >
+        backgroundImage={cover_image_adverts}>
         <div>
-          
           <h2>{title_adverts}</h2>
           <p>{description_adverts}</p>
-          <div></div>
-          {/* <p>{user.name}</p> */}
         </div>
         <StyledTags>
           <div>
@@ -51,13 +55,11 @@ const ProductCardAuction = ({
         </StyledTags>
       </StyledDescription>
 
-      {
-        isAdmUser ? 
+      {user.id === currentUser ?
         (
           <StyledAuctionPageAdm>
             <div>
-            {/* <EditAdvertModal id_adverts={id!} /> */}
-
+              <EditAdvertModal advert={advert} />
             </div>
             <div>
               <Link to={`/product/${id}`}>Ver como</Link>
