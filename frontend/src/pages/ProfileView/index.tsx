@@ -23,8 +23,6 @@ const ProfileView = () => {
   const { user, changeName, firstName, lastName, api_read_user } =
     useContext(UserContext);
 
-  console.log(auctions, cars, motorcycles);
-
   const userId = localStorage.getItem("MOTORSSHOP:USERID");
 
   useEffect(() => {
@@ -34,6 +32,14 @@ const ProfileView = () => {
     };
     getNameUser();
   }, []);
+
+  const filteredAuctions = auctions.filter((auction) => auction.user.id === id);
+
+  const filteredCars = cars.filter((car) => car.user.id === id);
+
+  const filteredMotorcycles = motorcycles.filter(
+    (motorcycle) => motorcycle.user.id === id
+  );
 
   return (
     <>
@@ -62,11 +68,11 @@ const ProfileView = () => {
         <StyledProductsContainer>
           <h5>Leilão</h5>
 
-          <CarouselComponent adverts={auctions} />
+          <CarouselComponent adverts={filteredAuctions} />
 
           <h5>Carros</h5>
           <div id="cars">
-            {cars.map((advert) => (
+            {filteredCars.map((advert) => (
               <div key={advert.id}>
                 <ProductCard advert={advert} />
                 <EditAdvertModal advert={advert} />
@@ -75,9 +81,11 @@ const ProfileView = () => {
               </div>
             ))}
           </div>
+
           <h5>Motos</h5>
+
           <div id="motos">
-            {motorcycles.map((advert) => (
+            {filteredMotorcycles.map((advert) => (
               <div key={advert.id}>
                 <ProductCard advert={advert} />
                 <EditAdvertModal advert={advert} />
@@ -86,6 +94,7 @@ const ProfileView = () => {
               </div>
             ))}
           </div>
+          
         </StyledProductsContainer>
       </StyledContainerProfile>
       <Footer />

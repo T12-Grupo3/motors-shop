@@ -33,7 +33,6 @@ const UserProvider = ({ children }: iUserProvider) => {
           const { data } = await api.get(`/users/${userId}`);
           setUser(data);
           setIsLogged(true);
-          navigate('/profileview')
         } catch (error) {
           console.log(error);
         }
@@ -70,7 +69,6 @@ const UserProvider = ({ children }: iUserProvider) => {
       setIsLogged(true);
       localStorage.setItem("MOTORSSHOP:TOKEN", token);
       localStorage.setItem("MOTORSSHOP:USERID", userResponse.id);
-      navigate("/profileview");
     } catch (error) {
       console.error(error);
     }
