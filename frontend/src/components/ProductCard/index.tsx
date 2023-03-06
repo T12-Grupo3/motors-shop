@@ -1,9 +1,14 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { iAdvert, iAdvertProduct } from "../../interfaces/adverts.interfaces";
+import DeleteAdvertsModal from "../../modals/DeleteAdvertsModal";
+import EditAdvertModal from "../../modals/EditAdvertModal";
+import { Button } from "../../modals/EditAdvertModal/styles";
 // import EditAdvertModal from "../../modals/EditAdvertModal";
 import {
   StyledProductCaracteristcs,
   StyledProductCard,
+  StyledProductCardButton,
   StyledProductDescription,
   StyledProductImg,
   StyledProductUser,
@@ -14,8 +19,6 @@ interface iProductCard {
 }
 
 const ProductCard = ({ advert }: iProductCard) => {
-  const [isOwned] = useState(false);
-
   const {
     cover_image_adverts,
     description_adverts,
@@ -24,9 +27,12 @@ const ProductCard = ({ advert }: iProductCard) => {
     year_adverts,
     price_adverts,
     user,
+    id,
   } = advert;
 
-  console.log(advert)
+  const currentUser = localStorage.getItem("MOTORSSHOP:USERID");
+
+  const navigate = useNavigate();
 
   return (
     <StyledProductCard>
@@ -38,12 +44,12 @@ const ProductCard = ({ advert }: iProductCard) => {
         <p>{description_adverts}</p>
       </StyledProductDescription>
 
-      {isOwned ? (
+      {user.id === currentUser ? (
         <></>
       ) : (
         <StyledProductUser>
           <span>NC</span>
-          {/* <span>{user.name}</span> */}
+          <span>{user.name}</span>
         </StyledProductUser>
       )}
 
@@ -59,6 +65,15 @@ const ProductCard = ({ advert }: iProductCard) => {
           })}
         </p>
       </StyledProductCaracteristcs>
+      {user.id === currentUser && (
+        <StyledProductCardButton>
+          <EditAdvertModal advert={advert} />
+          <DeleteAdvertsModal id_adverts={id} />
+          <Button onClick={() => navigate(`/product/${id}`, { replace: true })}>
+            Ver como
+          </Button>
+        </StyledProductCardButton>
+      )}
     </StyledProductCard>
   );
 };

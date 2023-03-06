@@ -26,7 +26,7 @@ const UserProvider = ({ children }: iUserProvider) => {
   const userId = localStorage.getItem("MOTORSSHOP:USERID");
 
   useEffect(() => {
-     const autoLogin = async ()=> {
+    const autoLogin = async () => {
       if (token) {
         try {
           api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -40,22 +40,20 @@ const UserProvider = ({ children }: iUserProvider) => {
         // navigate("/login");
       }
       // setIsLogged(true)
-    }
+    };
     autoLogin();
   }, []);
 
-  const api_read_user = async (userId: string) =>{
+  const api_read_user = async (userId: string) => {
     try {
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       const { data } = await api.get(`/users/${userId}`);
       setUser(data);
-      return data
-      
+      return data;
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-
-  }
+  };
 
   const api_create_user = async (data: iUserRequest) => {
     await api.post(`/users`, data).catch((err) => console.log(err));
@@ -69,6 +67,7 @@ const UserProvider = ({ children }: iUserProvider) => {
       setIsLogged(true);
       localStorage.setItem("MOTORSSHOP:TOKEN", token);
       localStorage.setItem("MOTORSSHOP:USERID", userResponse.id);
+      navigate("home", { replace: true });
     } catch (error) {
       console.error(error);
     }
@@ -108,7 +107,6 @@ const UserProvider = ({ children }: iUserProvider) => {
   };
 
   const changeName = async (name: string) => {
-    
     const splicedName = await name?.split(" ");
 
     setFirstName(splicedName[0].charAt(0));
@@ -139,7 +137,7 @@ const UserProvider = ({ children }: iUserProvider) => {
         api_change_password,
         api_update_address,
         api_delete_user,
-        api_read_user
+        api_read_user,
       }}
     >
       {children}
