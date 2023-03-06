@@ -60,22 +60,53 @@ const ProfileView = () => {
       </ContainerUserProfile>
 
         <StyledProductsContainer>
-          <h5>Leilão</h5>
-          <CarouselComponent adverts={filteredAuctions} />
-          <h5>Carros</h5>
-          <div className="containers-vehicules">
-            {filteredCars.map((advert) => (
-                <ProductCard key={advert.id} advert={advert} />
-            ))}
-          </div>
+          {
+            filteredCars.length === 0 ? (
+              <h5>Você ainda não tem anúncios, cadastre agora.</h5>
+            ) : (
+              <>
+              {
+                filteredAuctions.length === 0 ? (
+                  <h5>Você ainda não tem anúncios para leilão</h5>
+                ):(
+                  <>
+                    <h5>Leilão</h5>
+                    <CarouselComponent adverts={filteredAuctions} />
+                  </>
+                )
+              }
+              {
+                filteredCars.length === 0 ? (
+                  <h5>Você ainda não tem anúncios de carros</h5>
+                ):(
+                  <>
+                    <h5>Carros</h5>
+                    <div className="containers-vehicules">
+                      {filteredCars.map((advert) => (
+                          <ProductCard key={advert.id} advert={advert} />
+                      ))}
+                    </div>
+                  </>
+                )
+              }
+              {
+                filteredMotorcycles.length === 0 ? (
+                  <h5>Você ainda não tem anúncios de motos</h5>
+                ):(
+                  <>
+                    <h5>Motos</h5>
+                    <div className="containers-vehicules">
+                      {filteredMotorcycles.map((advert) => (
+                        <ProductCard key={advert.id} advert={advert} />
+                      ))}
+                    </div>
+                  </>
+                )
+              }
+              </>
+            )
+          }
 
-          <h5>Motos</h5>
-
-          <div className="containers-vehicules">
-            {filteredMotorcycles.map((advert) => (
-              <ProductCard key={advert.id} advert={advert} />
-            ))}
-          </div>
         </StyledProductsContainer>
       <Footer />
     </>
