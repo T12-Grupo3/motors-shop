@@ -9,6 +9,7 @@ export interface iAdvertProduct {
   price_adverts: number;
   cover_image_adverts: string;
   id?: string;
+  
 }
 
 export interface iAdvertRequest extends iAdvertProduct {
