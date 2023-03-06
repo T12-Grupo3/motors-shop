@@ -37,8 +37,7 @@ const Home = () => {
 
       <StyledProductsContainer>
         <h5>Leilão</h5>
-
-        <CarouselComponent adverts={auctions} />
+          <CarouselComponent adverts={auctions} />
 
         <h5>Carros</h5>
 
