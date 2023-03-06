@@ -22,7 +22,7 @@ const Product = () => {
   
   const navigate = useNavigate();
   const { changeName, firstName, lastName } = useContext(UserContext);
-  const { api_create_comments, api_read_id_advert, api_read_coments_advert, api_delete_advert  } =
+  const { api_create_comments, api_read_id_advert, api_read_coments_advert, adverts, api_delete_advert } =
     useContext(AdvertContext);
   const { user, api_read_user } = useContext(UserContext);
   const { comments, setcomments, refreshKey } = useContext(AdvertContext);
@@ -157,7 +157,8 @@ const Product = () => {
             <div className="cardGalery">
               <span className="spanFoto">Fotos</span>
               <ul className="galeryImg">
-              {/* {adverts.map((elem) => (
+              
+              {adverts.map((elem) => (
                 <li key={elem.id} className="imgGalery">
                   <img
                     className="imgGlr"
@@ -165,7 +166,7 @@ const Product = () => {
                     alt=""
                   />
                 </li>
-              ))} */}
+              ))}
               </ul>
             </div>
             <div className="cardProfile">

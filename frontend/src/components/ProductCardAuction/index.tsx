@@ -36,6 +36,7 @@ const ProductCardAuction = ({
         backgroundImage={cover_image_adverts}
       >
         <div>
+          
           <h2>{title_adverts}</h2>
           <p>{description_adverts}</p>
           <div></div>
@@ -55,7 +56,7 @@ const ProductCardAuction = ({
         (
           <StyledAuctionPageAdm>
             <div>
-            <EditAdvertModal id_adverts={id!} />
+            {/* <EditAdvertModal id_adverts={id!} /> */}
 
             </div>
             <div>

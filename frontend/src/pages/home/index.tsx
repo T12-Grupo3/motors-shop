@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import CarouselComponent from "../../components/carousel";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 import ProductCard from "../../components/ProductCard";
@@ -15,7 +16,7 @@ import {
 
 const Home = () => {
   const { auctions, cars, motorcycles } = useContext(AdvertContext);
-  const {user} = useContext(UserContext)
+  const { user } = useContext(UserContext);
 
   return (
     <>
@@ -36,81 +37,23 @@ const Home = () => {
 
       <StyledProductsContainer>
         <h5>Leilão</h5>
-      
-        <StyledAuction>
-          {auctions.map(
-            ({
-              cover_image_adverts,
-              description_adverts,
-              price_adverts,
-              title_adverts,
-              year_adverts,
-              kilometers_adverts,
-              id,
-            }) => (
-              <ProductCardAuction
-                key={id}
-                cover_image_adverts={cover_image_adverts}
-                description_adverts={description_adverts}
-                kilometers_adverts={kilometers_adverts}
-                price_adverts={price_adverts}
-                title_adverts={title_adverts}
-                year_adverts={year_adverts}
-                id={id}
-                
-              />
-            )
-          )}
-        </StyledAuction>
+
+        <CarouselComponent adverts={auctions} />
 
         <h5>Carros</h5>
+
         <div id="cars">
-          {cars.map(
-            ({
-              cover_image_adverts,
-              description_adverts,
-              id,
-              kilometers_adverts,
-              title_adverts,
-              price_adverts,
-              year_adverts,
-            }) => (
-              <ProductCard
-                key={id}
-                cover_image_adverts={cover_image_adverts}
-                description_adverts={description_adverts}
-                kilometers_adverts={kilometers_adverts}
-                title_adverts={title_adverts}
-                year_adverts={year_adverts}
-                price_adverts={price_adverts}
-              />
-            )
-          )}
+          {cars.map((advert) => (
+            <ProductCard key={advert.id} advert={advert} />
+          ))}
         </div>
 
         <h5>Motos</h5>
+
         <div>
-          {motorcycles.map(
-            ({
-              cover_image_adverts,
-              description_adverts,
-              id,
-              kilometers_adverts,
-              title_adverts,
-              price_adverts,
-              year_adverts,
-            }) => (
-              <ProductCard
-                key={id}
-                cover_image_adverts={cover_image_adverts}
-                description_adverts={description_adverts}
-                kilometers_adverts={kilometers_adverts}
-                title_adverts={title_adverts}
-                year_adverts={year_adverts}
-                price_adverts={price_adverts}
-              />
-            )
-          )}
+          {motorcycles.map((advert) => (
+            <ProductCard key={advert.id} advert={advert} />
+          ))}
         </div>
       </StyledProductsContainer>
 
