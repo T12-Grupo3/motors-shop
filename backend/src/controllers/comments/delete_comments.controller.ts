@@ -4,8 +4,8 @@ import deleteCommentsService from "../../services/comments/delete_comments.servi
 
 const deleteCommentsController = async (req: Request, res: Response) => {
   const { id } = req.params;
-
-  const deletedComments = await deleteCommentsService(id);
+  const userId  = req.user.id;
+  const deletedComments = await deleteCommentsService(id, userId);
 
   return res.status(204).json({ message: deletedComments });
 };
