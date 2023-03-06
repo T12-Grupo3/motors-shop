@@ -7,13 +7,23 @@ import updateUserController from "../controllers/users/update_user.controller";
 import authUserMiddleware from "../middleware/authUser.middleware";
 import isUserMiddleware from "../middleware/isUserMiddleware";
 
-const usersRoutes = Router()
+const usersRoutes = Router();
 
 usersRoutes.post("", createUserController);
-usersRoutes.get("/:id",  authUserMiddleware, isUserMiddleware, retrieveUserController);
+usersRoutes.get("/:id", retrieveUserController);
 usersRoutes.get("", listUsersController);
 usersRoutes.get("/:id", retrieveUserController);
-usersRoutes.delete("/:id",  deleteUserController);
-usersRoutes.patch("/:id", updateUserController);
+usersRoutes.delete(
+  "/:id",
+  authUserMiddleware,
+  isUserMiddleware,
+  deleteUserController
+);
+usersRoutes.patch(
+  "/:id",
+  authUserMiddleware,
+  isUserMiddleware,
+  updateUserController
+);
 
-export default usersRoutes
+export default usersRoutes;

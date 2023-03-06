@@ -1,12 +1,7 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-<<<<<<<< HEAD:backend/src/migrations/1677873511894-initial.ts
-export class initial1677873511894 implements MigrationInterface {
-    name = 'initial1677873511894'
-========
 export class createTable1677871676306 implements MigrationInterface {
     name = 'createTable1677871676306'
->>>>>>>> 680e08322fe39b39fb0641ca8fc397b8ff8ace4f:backend/src/migrations/1677871676306-createTable.ts
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE "image_adverts" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "galery_image" character varying NOT NULL, "advertId" uuid, CONSTRAINT "PK_659bf469f2505bae5d23c71280d" PRIMARY KEY ("id"))`);
