@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import CarouselComponent from "../../components/Carousel";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 import ProductCard from "../../components/ProductCard";
@@ -36,46 +37,11 @@ const Home = () => {
 
       <StyledProductsContainer>
         <h5>Leilão</h5>
-        <StyledAuction>
-          {auctions.map(
-            ({
-              cover_image_adverts,
-              description_adverts,
-              price_adverts,
-              title_adverts,
-              year_adverts,
-              kilometers_adverts,
-              id,
-            }) => user.isAdm ? (
-              <>
-                <ProductCardAuction
-                  key={id}
-                  cover_image_adverts={cover_image_adverts}
-                  description_adverts={description_adverts}
-                  kilometers_adverts={kilometers_adverts}
-                  price_adverts={price_adverts}
-                  title_adverts={title_adverts}
-                  year_adverts={year_adverts}
-                  id={id}
-                  />
-                  {/* <EditAdvertModal id_adverts={id}/> */}
-              </>
-            ) : (
-              <ProductCardAuction
-                key={id}
-                cover_image_adverts={cover_image_adverts}
-                description_adverts={description_adverts}
-                kilometers_adverts={kilometers_adverts}
-                price_adverts={price_adverts}
-                title_adverts={title_adverts}
-                year_adverts={year_adverts}
-                id={id}
-              />
-            )
-          )}
-        </StyledAuction>
+
+        <CarouselComponent adverts={auctions} />
 
         <h5>Carros</h5>
+
         <div id="cars">
           {cars.map(
             ({
@@ -101,6 +67,7 @@ const Home = () => {
         </div>
 
         <h5>Motos</h5>
+
         <div>
           {motorcycles.map(
             ({

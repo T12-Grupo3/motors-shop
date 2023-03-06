@@ -36,6 +36,7 @@ const ProductCardAuction = ({
         backgroundImage={cover_image_adverts}
       >
         <div>
+          
           <h2>{title_adverts}</h2>
           <p>{description_adverts}</p>
           <div></div>

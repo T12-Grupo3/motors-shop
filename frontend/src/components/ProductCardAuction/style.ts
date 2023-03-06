@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const StyledAuctionContainer = styled.div`
-  width: 47%;
+  width: 95%;
+  height: 100%;
 `;
 
 export const StyledDescription = styled.div<any>`
@@ -17,6 +18,16 @@ export const StyledDescription = styled.div<any>`
   color: var(--color-grey-10);
 
   border-radius: 5px 5px 0 0;
+  span {
+    background-color: var(--color-brand-4);
+    color: var(--color-brand-1);
+    font-size: 14px;
+
+    border-radius: 5px;
+
+    padding: 5px;
+    margin-right: 10px;
+  }
 
   h2 {
     font-size: 20px;
@@ -27,6 +38,9 @@ export const StyledDescription = styled.div<any>`
     font-weight: var(--body-1-400);
     font-size: 16px;
     color: var(--color-grey-5);
+
+    height: 40px;
+    max-height: 40px;
   }
 `;
 export const StyledAuctionPage = styled.div`
