@@ -16,7 +16,6 @@ export const Button = styled.button`
 export const Container = styled.div`
   height: 530px;
   overflow-y: scroll;
-
   .h3-anuncio {
     font-family: "inter";
     font-weight: var(--font-heading-3);
@@ -188,4 +187,48 @@ export const Container = styled.div`
     color: var(--color-grey-whiteFixed);
     cursor: pointer;
   }
+
+  .div-h3-x {
+    display: flex;
+    flex-direction: row;
+    gap: 68px;
+  }
+
+  .button-x-fechar {
+    border: none;
+    margin-left: 228px;
+    margin-bottom: 36px;
+    font-weight: 400;
+    font-size: x-large;
+    color: var(--color-grey-4);
+  }
+`;
+
+export const Input = styled.input`
+border: 1.5px solid #E9ECEF;
+border-radius: 4px;
+height: 48px;
+width: 96px;
+padding: 0px 16px 0px 16px;
+
+Input::placeholder {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-grey-3)
+  font-family: 'Inter';
+}
+`;
+
+export const Input2 = styled.input`
+border: 1.5px solid #E9ECEF;
+border-radius: 4px;
+height: 48px;
+width: 196px;
+
+Input::placeholder {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-grey-3)
+  font-family: 'Inter';
+}
 `;

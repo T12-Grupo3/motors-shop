@@ -1,5 +1,5 @@
 import { iComments } from "./comments.interfaces";
-import { iUserRequest,  iUserResponse } from "./user.interface";
+import { iUserRequest, iUserResponse } from "./user.interface";
 
 export interface iAdvertProduct {
   title_adverts: string;
@@ -9,7 +9,6 @@ export interface iAdvertProduct {
   price_adverts: number;
   cover_image_adverts: string;
   id?: string;
-  
 }
 
 export interface iAdvertRequest extends iAdvertProduct {
@@ -27,6 +26,11 @@ export interface IRequestAdverts {
   cover_image_adverts: string;
   galery_image: string[];
   price_adverts: number;
+}
+
+export interface IRequestAdvertsExtended extends IRequestAdverts {
+  tipoAnuncio: string;
+  tipoVeiculo: string;
 }
 
 export interface iAdvertUpdate {
@@ -61,7 +65,7 @@ export interface iAdvert {
   updatedAt_adverts: Date;
   imageAdverts: iImageAdvertRequest[];
   user: iUserResponse;
-  comments: iComments[]
+  comments: iComments[];
 }
 
 export interface iIdAdvert {
