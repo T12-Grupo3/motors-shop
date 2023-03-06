@@ -17,16 +17,21 @@ import EditCommentsModal from "../../modals/EditCommentsModal";
 const Product = () => {
   const { id } = useParams();
   const [product, setproduct] = useState<iAdvert>({} as iAdvert);
-  // const [comments, setcomments] = useState<iComments[]>([]);
-
   
   const navigate = useNavigate();
-  const { changeName, firstName, lastName } = useContext(UserContext);
-  const { api_create_comments, api_read_id_advert, api_read_coments_advert, adverts, api_delete_advert } =
-    useContext(AdvertContext);
-  const { user, api_read_user } = useContext(UserContext);
-  const { comments, setcomments, refreshKey } = useContext(AdvertContext);
+  const { changeName, firstName, lastName, api_read_user, user } = useContext(UserContext);
+  const {
+    api_create_comments,
+    api_read_id_advert,
+    api_read_coments_advert,
+    adverts,
+    refreshKey,
+    setcomments,
+    comments 
+  } = useContext(AdvertContext);
+
   const userId = localStorage.getItem('MOTORSSHOP:USERID')
+
   const {
     register,
     handleSubmit,
@@ -42,11 +47,8 @@ const Product = () => {
       userId: user.id,
     };
 
-    
     api_create_comments(advertComments);
   };
-
-  
 
   useEffect(() => {
     const getProduct = async (id: string) => {
@@ -57,7 +59,6 @@ const Product = () => {
       setproduct(res_product);
       setcomments(res_comments);
       changeName(nameUser.name)
-
     };
 
     getProduct(id!);
@@ -167,6 +168,7 @@ const Product = () => {
                   />
                 </li>
               ))}
+              
               </ul>
             </div>
             <div className="cardProfile">

@@ -99,4 +99,10 @@ export const StyledContainerProfile = styled(StyledContainer)`
     flex-direction: row;
     background-color: var(--color-grey-9);
 
+    .containers-vehicules{
+    display: flex;
+    flex-direction: row;
+
+  }
+
 `

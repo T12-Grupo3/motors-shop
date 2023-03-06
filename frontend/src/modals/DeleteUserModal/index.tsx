@@ -3,10 +3,8 @@ import Modal from "@mui/material/Modal";
 import Backdrop from "@mui/material/Backdrop";
 import Fade from "@mui/material/Fade";
 import Box from "@mui/material/Box";
-import { useNavigate } from "react-router";
 import { StyledRegisterConfirmTop } from "../RegisterUserConfirm/style";
 import ButtonComponent from "../../components/Button";
-import api from "../../service/api";
 import { UserContext } from "../../Context/UserContext";
 import { StyledDeleteButtons } from "./style";
 
@@ -15,7 +13,6 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  // width: 450,
   bgcolor: "background.paper",
   boxShadow: 7,
   p: 4,
@@ -29,9 +26,8 @@ interface iDeleteUserModal {
 export default function DeleteUserModal({ user_id }: iDeleteUserModal) {
   const [handleDelete, sethandleDelete] = useState(false);
   const [open, setOpen] = useState(handleDelete);
-  const navigate = useNavigate();
 
-  const { logoutProfileView, api_delete_user } = useContext(UserContext);
+  const { api_delete_user } = useContext(UserContext);
 
 
 

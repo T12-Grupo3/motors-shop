@@ -36,10 +36,7 @@ const UserProvider = ({ children }: iUserProvider) => {
         } catch (error) {
           console.log(error);
         }
-      } else {
-        // navigate("/login");
       }
-      // setIsLogged(true)
     };
     autoLogin();
   }, []);
@@ -146,5 +143,3 @@ const UserProvider = ({ children }: iUserProvider) => {
 };
 
 export default UserProvider;
-
-// export const useAuth = () => useContext(UserContext);

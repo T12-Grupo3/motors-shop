@@ -1,7 +1,6 @@
 import { IRequestAdverts } from "./adverts.interfaces";
 import { iUserRequest } from "./user.interface";
 
-
 export interface iComments {
   user: iUserRequest;
   adverts: IRequestAdverts;
@@ -9,18 +8,14 @@ export interface iComments {
   comments: string;
   createdAt_adverts: string;
   updatedAt_adverts: string;
-    
 }
 
 export interface iCommentsRegisterRecieve {
   comments: string;
 }
 
-
 export interface iCommentsRequest {
   comments: string;
-  
-  
 }
 
 export interface iCommentsCalculateDate {
@@ -30,14 +25,12 @@ export interface iCommentsCalculateDate {
 export interface iCommentsProps {
   createdAt_adverts: string;
   updatedAt_adverts: string;
-
 }
 
 export interface iCommentsUpdate {
   comments?: string;
-  
-  
 }
+
 export interface iIdComments {
   id_comments: string;
 }

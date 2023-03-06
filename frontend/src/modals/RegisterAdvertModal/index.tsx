@@ -8,10 +8,7 @@ import ReactDOM from "react-dom";
 import { Container, Button, Input } from "./styles";
 import schemaRegisterAdverts from "../../Validations/schemaRegisterAdverts";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {
-  IRequestAdverts,
-  IRequestAdvertsExtended,
-} from "../../interfaces/adverts.interfaces";
+import { IRequestAdvertsExtended } from "../../interfaces/adverts.interfaces";
 import { AdvertContext } from "../../Context/AdvertContext";
 import { Error } from "../../style/error";
 import RegisterAdvertsConfirm from "../RegisterAdvertsConfirm";

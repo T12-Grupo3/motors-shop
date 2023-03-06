@@ -1,7 +1,6 @@
 import { ReactNode, SetStateAction } from "react";
 import { iAdvert } from "./adverts.interfaces";
 
-
 export interface iUserResponse {
   id: string;
   name: string;
@@ -86,8 +85,6 @@ export interface iUserContext {
   api_update_address: (props: iAdressRequest) => void
   api_delete_user: (user_id: string) => void
   api_read_user: (props: string) => Promise<iUserResponse>
-  // token: string;
-  // setToken: (state: string) => void;
 }
 
 export interface iUserProvider {

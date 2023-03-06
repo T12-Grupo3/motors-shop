@@ -28,10 +28,12 @@ export const StyledDescription = styled.div<any>`
     padding: 5px;
     margin-right: 10px;
   }
+
   h2 {
     font-size: 20px;
     font-weight: var(--heading-6-600);
   }
+  
   p {
     font-weight: var(--body-1-400);
     font-size: 16px;
@@ -44,6 +46,10 @@ export const StyledDescription = styled.div<any>`
 export const StyledAuctionPage = styled.div`
   background-color: var(--color-brand-1);
   border-radius: 0 0 5px 5px;
+  display: flex;
+  align-items: center;
+  height: 62px;
+  
   a {
     margin: 0 auto;
     width: 95%;
@@ -62,16 +68,17 @@ export const StyledAuctionPageAdm = styled.div`
   gap: 40px;
   padding-left: 30px;
   height: 62px;
+
   button{
     background-color: transparent;
     color: var(--color-grey-whiteFixed);
     border: 2px solid var(--color-grey-whiteFixed);
   }
+
   a {
     margin: 0 auto;
     width: 95%;
     display: flex;
-    /* justify-content: flex-start; */
     color: var(--color-grey-whiteFixed);
     border: 2px solid var(--color-grey-whiteFixed);
     border-radius: 5px;
@@ -86,6 +93,7 @@ export const StyledTags = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   span {
     background-color: var(--color-brand-4);
     color: var(--color-brand-1);
@@ -94,6 +102,7 @@ export const StyledTags = styled.div`
     padding: 5px;
     margin-right: 10px;
   }
+
   p {
     color: var(--color-grey-whiteFixed);
     font-weight: var(--heading-7-500);

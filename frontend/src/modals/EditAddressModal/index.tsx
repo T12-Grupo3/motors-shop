@@ -1,20 +1,14 @@
 import { useContext, useState } from "react";
-import ReactDOM from "react-dom";
-import { Button, Container, Form } from "./styles";
+import { Container, Form } from "./styles";
 import Modal from "@mui/material/Modal";
 import Backdrop from "@mui/material/Backdrop";
 import Fade from "@mui/material/Fade";
 import Box from "@mui/material/Box";
-import { Input } from "@mui/material";
-import { Error } from "../../style/error";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from "react-hook-form";
-import { iAdressRequest, iPasswordChangeRequest } from "../../interfaces/user.interface";
-import schemaPasswordChange from "../../Validations/schemaPasswordChange";
+import { iAdressRequest } from "../../interfaces/user.interface";
 import { UserContext } from "../../Context/UserContext";
 import schemaUpdateAddress from "../../Validations/schemaUpdateAddress";
-import { stat } from "fs";
-
 
 const style = {
     position: "absolute" as "absolute",
@@ -28,8 +22,6 @@ const style = {
     borderRadius: 2,
   };
   
-
-
 export default function EditAddressModal () {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
@@ -78,7 +70,6 @@ export default function EditAddressModal () {
     const {
         register,
         handleSubmit,
-        formState: { errors }
       } = useForm<iAdressRequest>({
         resolver: yupResolver(schemaUpdateAddress)
       });

@@ -1,5 +1,5 @@
-import { FieldValues, UseFormRegister } from "react-hook-form";
-import { iUserRegisterRecieve, iUserRequest } from "./user.interface";
+import { UseFormRegister } from "react-hook-form";
+import { iUserRegisterRecieve } from "./user.interface";
 
 export interface iInput extends iInputRegister {
   type?: "text" | "password" | "email";

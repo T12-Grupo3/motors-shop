@@ -3,12 +3,8 @@ import CarouselComponent from "../../components/carousel";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 import ProductCard from "../../components/ProductCard";
-import ProductCardAuction from "../../components/ProductCardAuction";
 import { AdvertContext } from "../../Context/AdvertContext";
-import { UserContext } from "../../Context/UserContext";
-import EditAdvertModal from "../../modals/EditAdvertModal";
 import {
-  StyledAuction,
   StyledContent,
   StyledContentContainer,
   StyledProductsContainer,
@@ -16,7 +12,6 @@ import {
 
 const Home = () => {
   const { auctions, cars, motorcycles } = useContext(AdvertContext);
-  const { user } = useContext(UserContext);
 
   return (
     <>
@@ -37,11 +32,9 @@ const Home = () => {
 
       <StyledProductsContainer>
         <h5>Leilão</h5>
-          <CarouselComponent adverts={auctions} />
-
+        <CarouselComponent adverts={auctions} />
         <h5>Carros</h5>
-
-        <div id="cars">
+        <div className="containers-vehicules">
           {cars.map((advert) => (
             <ProductCard key={advert.id} advert={advert} />
           ))}
@@ -49,7 +42,7 @@ const Home = () => {
 
         <h5>Motos</h5>
 
-        <div>
+        <div className="containers-vehicules">
           {motorcycles.map((advert) => (
             <ProductCard key={advert.id} advert={advert} />
           ))}

@@ -48,7 +48,6 @@ export const FormLogin = styled.form`
     width: 80%;
     height: 542px;
     padding: 40px;
-    /* margin-left: 12px; */
 
     display: flex;
     flex-direction: column;
