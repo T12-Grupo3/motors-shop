@@ -25,3 +25,10 @@ export interface ICommentsRequest {
     advertsId: string;
     userId: string;
   }
+
+  export interface ICommentsUpdate {
+   
+    comments: string;
+   
+    
+  }

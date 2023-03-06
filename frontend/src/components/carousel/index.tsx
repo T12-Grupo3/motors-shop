@@ -26,6 +26,7 @@ const CarouselComponent = ({ adverts }: iCarouselComponent) => {
     },
   };
 
+
   return (
     <Carousel
       swipeable={false}
@@ -35,12 +36,12 @@ const CarouselComponent = ({ adverts }: iCarouselComponent) => {
       ssr={true} // means to render carousel on server-side.
       infinite={true}
       autoPlaySpeed={1000}
-      autoPlay={false}
+      autoPlay={true}
       keyBoardControl={true}
       customTransition="all .5"
       transitionDuration={500}
       containerClass="carousel-container"
-      removeArrowOnDeviceType={["tablet", "mobile"]}
+      removeArrowOnDeviceType={["tablet", "mobile", 'desktop']}
       dotListClass="custom-dot-list-style"
       itemClass="carousel-item-padding-40-px"
     >

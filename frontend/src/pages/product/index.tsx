@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
-import { AdvertContext } from "../../Context/AdvertContext";
 import { iAdvert } from "../../interfaces/adverts.interfaces";
 import { ContainerProduct } from "./style";
 import schemaInputComments from "../../Validations/schemaInputComments";
@@ -11,21 +10,23 @@ import {
   iComments, iCommentsRegisterRecieve} from "../../interfaces/comments.interfaces";
 import { useForm } from "react-hook-form";
 import { UserContext } from "../../Context/UserContext";
+import { AdvertContext } from "../../Context/AdvertContext";
 import { differenceInDays } from 'date-fns';
+import EditCommentsModal from "../../modals/EditCommentsModal";
 
 const Product = () => {
   const { id } = useParams();
   const [product, setproduct] = useState<iAdvert>({} as iAdvert);
-  const [comments, setcomments] = useState<iComments[]>([]);
+  // const [comments, setcomments] = useState<iComments[]>([]);
 
   
   const navigate = useNavigate();
   const { changeName, firstName, lastName } = useContext(UserContext);
-  const { api_create_comments, api_read_id_advert, api_read_coments_advert, adverts } =
+  const { api_create_comments, api_read_id_advert, api_read_coments_advert, adverts, api_delete_advert } =
     useContext(AdvertContext);
   const { user, api_read_user } = useContext(UserContext);
+  const { comments, setcomments, refreshKey } = useContext(AdvertContext);
   const userId = localStorage.getItem('MOTORSSHOP:USERID')
-
   const {
     register,
     handleSubmit,
@@ -45,6 +46,8 @@ const Product = () => {
     api_create_comments(advertComments);
   };
 
+  
+
   useEffect(() => {
     const getProduct = async (id: string) => {
       const res_product = await api_read_id_advert(id);
@@ -54,10 +57,11 @@ const Product = () => {
       setproduct(res_product);
       setcomments(res_comments);
       changeName(nameUser.name)
+
     };
 
     getProduct(id!);
-  }, [api_read_coments_advert, api_read_id_advert, id]);
+  }, [refreshKey]);
 
   if (product === undefined) {
     navigate("/home", { replace: true });
@@ -71,7 +75,8 @@ const Product = () => {
     price_adverts,
     cover_image_adverts,
     createdAt_adverts,
-    updatedAt_adverts, 
+    updatedAt_adverts,
+
   } = product;
 
   function calculateDaysDifference() {
@@ -116,7 +121,12 @@ const Product = () => {
                       <span className="liName">{elem.user.name}</span>
                       <span className="liOld">{`${daysDiff === 0  ? `< 1` : {daysDiff}} dia`}</span>   
                     </div>
+                    <div className="divComents">
                     <p>{elem.comments} </p>
+                    <div>
+                    <EditCommentsModal id_comments={elem.id} />
+                    </div>
+                    </div>
                   </li>
                   ))}
               </ul>
@@ -147,6 +157,7 @@ const Product = () => {
             <div className="cardGalery">
               <span className="spanFoto">Fotos</span>
               <ul className="galeryImg">
+              
               {adverts.map((elem) => (
                 <li key={elem.id} className="imgGalery">
                   <img

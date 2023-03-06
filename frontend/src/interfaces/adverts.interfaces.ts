@@ -43,6 +43,7 @@ export interface iAdvertUpdate {
   description_adverts?: string;
   isAvailable?: boolean;
   image_adverts?: Array<string>;
+  cover_image_advert?: string
 }
 
 export interface iImageAdvertRequest {
@@ -73,4 +74,8 @@ export interface iIdAdvert {
 
 export interface iDeleteAdverts extends iIdAdvert {
   handleCloseEdit: () => void;
+}
+
+export interface iEditAdvertModal{
+  advert: iAdvert
 }

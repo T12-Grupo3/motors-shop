@@ -14,4 +14,3 @@ const isUserMiddleware = (req: Request, res: Response, next: NextFunction) => {
   };
   
   export default isUserMiddleware;
-  

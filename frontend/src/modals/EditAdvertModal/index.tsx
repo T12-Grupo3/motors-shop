@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useState } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -7,8 +7,11 @@ import { useForm } from "react-hook-form";
 import { Input } from "@mui/material";
 import ReactDOM from "react-dom";
 import { Container, Button } from "./styles";
-import { yupResolver } from '@hookform/resolvers/yup';
-import { iAdvertUpdate, iIdAdvert } from "../../interfaces/adverts.interfaces";
+import { yupResolver } from "@hookform/resolvers/yup";
+import {
+  iAdvertUpdate,
+  iEditAdvertModal,
+} from "../../interfaces/adverts.interfaces";
 import schemaUpdateAdverts from "../../Validations/schemaUpdateAdverts";
 import { Error } from "../../style/error";
 import { AdvertContext } from "../../Context/AdvertContext";
@@ -26,17 +29,32 @@ const style = {
   borderRadius: 2,
 };
 
-export default function EditAdvertModal({id_adverts}: iIdAdvert) {
+export default function EditAdvertModal({ advert }: iEditAdvertModal) {
   const [open, setOpen] = useState(false);
   const handleOpenEdit = () => setOpen(true);
   const handleCloseEdit = () => setOpen(false);
 
-  const {api_update_advert, setHandleDelete} = useContext(AdvertContext)
+  const [titleAdverts, settitleAdverts] = useState(advert.title_adverts);
+  const [yearAdvert, setyearAdvert] = useState(advert.year_adverts);
+  const [typeAdvert, settypeAdvert] = useState(advert.type_adverts);
+  const [typeVeicule, settypeVeicule] = useState(advert.type_veicule);
+  const [priceAdvert, setpriceAdvert] = useState(advert.price_adverts);
+  const [kilometersAdvert, setkilometersAdvert] = useState(
+    advert.kilometers_adverts
+  );
+  const [descriptionAdvert, setdescriptionAdvert] = useState(
+    advert.description_adverts
+  );
+  const [coverImageAdvert, setcoverImageAdvert] = useState(
+    advert.cover_image_adverts
+  );
 
-  const updateAdverts =  (data: iAdvertUpdate) =>{
-    api_update_advert(id_adverts, data)
-    handleCloseEdit()
-  }
+  const { api_update_advert, setHandleDelete } = useContext(AdvertContext);
+
+  const updateAdverts = (data: iAdvertUpdate) => {
+    api_update_advert(advert.id, data);
+    handleCloseEdit();
+  };
 
   // Função para selecionar tipo de anuncio
 
@@ -148,13 +166,12 @@ export default function EditAdvertModal({id_adverts}: iIdAdvert) {
 
   const [tipoAnuncio, setTipoAnuncio] = useState("venda");
 
-
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm<iAdvertUpdate>({
-    resolver: yupResolver(schemaUpdateAdverts)
+    resolver: yupResolver(schemaUpdateAdverts),
   });
 
   return (
@@ -179,19 +196,22 @@ export default function EditAdvertModal({id_adverts}: iIdAdvert) {
 
                 <label className="p-tipo-anuncio">Tipo de anuncio</label>
                 <select
-                  {...register('type_adverts')}
+                  {...register("type_adverts")}
                   className="div-btn-tipo-anuncio"
+                  defaultValue={advert.type_adverts}
                 >
                   <option
                     className="btn-tipo-anuncio btn-venda"
                     value="sell"
                     // defaultValue="sell"
-                  >Venda
+                  >
+                    Venda
                   </option>
                   <option
                     className="btn-tipo-anuncio btn-leilão"
                     value="auction"
-                    >Leilão
+                  >
+                    Leilão
                   </option>
                 </select>
                 <Error>{errors.type_adverts?.message}</Error>
@@ -201,10 +221,11 @@ export default function EditAdvertModal({id_adverts}: iIdAdvert) {
 
                   <p className="p-titulo-anuncio">Título</p>
                   <Input
-                    {...register('title_adverts')}
+                    {...register("title_adverts")}
                     className="input-titulo"
                     placeholder="Digitar título"
-                    // value={advertObj.title_adverts}
+                    value={titleAdverts}
+                    onChange={(e) => settitleAdverts(e.target.value)}
                   />
                   <Error>{errors.title_adverts?.message}</Error>
                 </div>
@@ -222,81 +243,76 @@ export default function EditAdvertModal({id_adverts}: iIdAdvert) {
 
                 <div className="div-info-input-aqp">
                   <Input
-                    {...register('year_adverts')}
+                    {...register("year_adverts")}
                     placeholder="Digitar ano"
                     type="number"
-                    />
-                    <Error>{errors.year_adverts?.message}</Error>
+                    value={yearAdvert}
+                    onChange={(e) => setyearAdvert(e.target.value)}
+                  />
+                  <Error>{errors.year_adverts?.message}</Error>
 
-                    <Input
-                      {...register('kilometers_adverts')}
-                      placeholder="0"
-                      type="number"
-                      />
-                    <Error>{errors.kilometers_adverts?.message}</Error>
+                  <Input
+                    {...register("kilometers_adverts")}
+                    placeholder="0"
+                    type="number"
+                    value={kilometersAdvert}
+                    onChange={(e) => setkilometersAdvert(e.target.value)}
+                  />
+                  <Error>{errors.kilometers_adverts?.message}</Error>
 
-                    <Input
-                      {...register('price_adverts')}
-                      placeholder="Digitar preço"
-                      type="number"
-                      />
-                    <Error>{errors.price_adverts?.message}</Error>
+                  <Input
+                    {...register("price_adverts")}
+                    placeholder="Digitar preço"
+                    type="number"
+                    value={priceAdvert}
+                    onChange={(e) => setpriceAdvert(Number(e.target.value))}
+                  />
+                  <Error>{errors.price_adverts?.message}</Error>
                 </div>
 
                 <div>
                   <p className="p-descricao-anuncio">Descrição</p>
                   <Input
-                    {...register('description_adverts')}
+                    {...register("description_adverts")}
                     className="input-descricao"
                     placeholder="Digitar descrição"
+                    value={descriptionAdvert}
+                    onChange={(e) => setdescriptionAdvert(e.target.value)}
                   />
                   <Error>{errors.description_adverts?.message}</Error>
                 </div>
                 <div>
-                
-                <label className="p-tipo-veiculo">Tipo de veículo</label>
+                  <label className="p-tipo-veiculo">Tipo de veículo</label>
                   <select
                     className="div-btn-tipo-veiculo"
-                    {...register('type_veicule')}
+                    {...register("type_veicule")}
+                    defaultValue={typeVeicule}
                   >
-
-                    <option
-                      value="car"
-                      className="btn-tipo-veiculo"
-                    >Carro
+                    <option value="car" className="btn-tipo-veiculo">
+                      Carro
                     </option>
 
-                    <option
-                    value="motorcycle"
-                    className="btn-tipo-veiculo"
-                    >Moto
+                    <option value="motorcycle" className="btn-tipo-veiculo">
+                      Moto
                     </option>
-
                   </select>
-                    <Error>{errors.type_veicule?.message}</Error>
-
+                  <Error>{errors.type_veicule?.message}</Error>
                 </div>
                 <div>
                   <label className="p-publicado">Publicado</label>
-                  <select 
-                    {...register('isAvailable')}
+                  <select
+                    {...register("isAvailable")}
                     className="div-btn-publicado"
                   >
-                    
-                    <option
-                    value='true'
-                    className="btn-tipo-publicado"
-                    >Sim
+                    <option value="true" className="btn-tipo-publicado">
+                      Sim
                     </option>
 
-                    <option
-                    value='false'
-                    className="btn-tipo-publicado"
-                    >Não
+                    <option value="false" className="btn-tipo-publicado">
+                      Não
                     </option>
-
                   </select>
-                    <Error>{errors.isAvailable?.message}</Error>
+                  <Error>{errors.isAvailable?.message}</Error>
                 </div>
 
                 <div id="minha-galeria">
@@ -304,15 +320,17 @@ export default function EditAdvertModal({id_adverts}: iIdAdvert) {
                     <div>
                       <p className="p-img-capa">Imagem da capa</p>
                       <Input
-                        {...register('image_adverts')}
+                        {...register("cover_image_advert")}
                         placeholder="Inserir URL da imagem"
                         type="url"
+                        value={coverImageAdvert}
+                        onChange={(e) => setcoverImageAdvert(e.target.value)}
                       />
                       <Error>{errors.image_adverts?.message}</Error>
 
                       <p className="p-img-galeria">1° Imagem da galeria</p>
                       <Input
-                        {...register('image_adverts')}
+                        {...register("image_adverts")}
                         placeholder="Inserir URL da imagem"
                         type="url"
                       />
@@ -325,7 +343,15 @@ export default function EditAdvertModal({id_adverts}: iIdAdvert) {
                 </p>
 
                 <div className="div-btn-cancela-submit">
-                  <ButtonComponent type="button" onClick={()=>{setOpen(false); setHandleDelete(true)}}>Excluir anúncio</ButtonComponent>
+                  <ButtonComponent
+                    type="button"
+                    onClick={() => {
+                      setOpen(false);
+                      setHandleDelete(true);
+                    }}
+                  >
+                    Excluir anúncio
+                  </ButtonComponent>
                   <button className="btn-submit" type="submit">
                     Salvar alterações
                   </button>

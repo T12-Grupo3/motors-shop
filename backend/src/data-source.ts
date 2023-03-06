@@ -6,7 +6,7 @@ import { ImageAdverts } from "./entities/image_adverts.entity";
 import { User } from "./entities/user.entity";
 import { Comments } from "./entities/comments.entity";
 import { Addresses } from "./entities/addresses.entity";
-import { createTable1677871676306 } from "./migrations/1677871676306-createTable";
+import { initial1677873511894 } from "./migrations/1677873511894-initial";
 
 const isProduction = process.env.NODE_ENV === "production";
 const AppDataSource = new DataSource(
@@ -28,7 +28,7 @@ const AppDataSource = new DataSource(
         synchronize: false,
         logging: isProduction ? false : true,
         entities: [Adverts, ImageAdverts, User, Comments, Addresses],
-        migrations: [createTable1677871676306],
+        migrations: [initial1677873511894],
       }
 );
 export default AppDataSource;
