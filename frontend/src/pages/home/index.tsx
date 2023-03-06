@@ -5,6 +5,8 @@ import NavBar from "../../components/NavBar";
 import ProductCard from "../../components/ProductCard";
 import ProductCardAuction from "../../components/ProductCardAuction";
 import { AdvertContext } from "../../Context/AdvertContext";
+import { UserContext } from "../../Context/UserContext";
+import EditAdvertModal from "../../modals/EditAdvertModal";
 import {
   StyledAuction,
   StyledContent,
@@ -14,6 +16,7 @@ import {
 
 const Home = () => {
   const { auctions, cars, motorcycles } = useContext(AdvertContext);
+  const {user} = useContext(UserContext)
 
   return (
     <>
@@ -42,6 +45,7 @@ const Home = () => {
         <div id="cars">
           {cars.map(
             ({
+              cover_image_adverts,
               description_adverts,
               id,
               kilometers_adverts,
@@ -51,6 +55,7 @@ const Home = () => {
             }) => (
               <ProductCard
                 key={id}
+                cover_image_adverts={cover_image_adverts}
                 description_adverts={description_adverts}
                 kilometers_adverts={kilometers_adverts}
                 title_adverts={title_adverts}
@@ -66,6 +71,7 @@ const Home = () => {
         <div>
           {motorcycles.map(
             ({
+              cover_image_adverts,
               description_adverts,
               id,
               kilometers_adverts,
@@ -75,6 +81,7 @@ const Home = () => {
             }) => (
               <ProductCard
                 key={id}
+                cover_image_adverts={cover_image_adverts}
                 description_adverts={description_adverts}
                 kilometers_adverts={kilometers_adverts}
                 title_adverts={title_adverts}

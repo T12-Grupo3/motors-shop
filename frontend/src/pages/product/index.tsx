@@ -21,11 +21,10 @@ const Product = () => {
   
   const navigate = useNavigate();
   const { changeName, firstName, lastName } = useContext(UserContext);
-  const { api_create_comments, api_read_id_advert, api_read_coments_advert } =
+  const { api_create_comments, api_read_id_advert, api_read_coments_advert, adverts } =
     useContext(AdvertContext);
-  const { user } = useContext(UserContext);
-  const { adverts } = useContext(AdvertContext);
-  
+  const { user, api_read_user } = useContext(UserContext);
+  const userId = localStorage.getItem('MOTORSSHOP:USERID')
 
   const {
     register,
@@ -45,22 +44,16 @@ const Product = () => {
     
     api_create_comments(advertComments);
   };
-  
-  
-  
-    
-  
-  
-
 
   useEffect(() => {
     const getProduct = async (id: string) => {
       const res_product = await api_read_id_advert(id);
       const res_comments = await api_read_coments_advert(id);
+      const nameUser = await api_read_user(userId!)
 
       setproduct(res_product);
       setcomments(res_comments);
-      changeName()
+      changeName(nameUser.name)
     };
 
     getProduct(id!);
@@ -89,7 +82,6 @@ const Product = () => {
 
   const daysDiff = calculateDaysDifference();
 
-
   return (
     <>
       <NavBar />
@@ -117,16 +109,16 @@ const Product = () => {
             <div className="comments">
               <span className="spanDescription">Comentários</span>
               <ul className="ulComments">
-              {comments.map((elem: iComments) => (
-                <li key={elem.id}>
-                  <div className="liComents">
-                    <span className="nikeClient">{firstName}{lastName}</span>
-                    <span className="liName">{elem.user.name}</span>
-                    <span className="liOld">{`${daysDiff === 0  ? `< 1` : {daysDiff}} dias`}</span>   
-                  </div>
-                  <p>{elem.comments} </p>
-                </li>
-                ))}
+                {comments.map((elem: iComments) => (
+                  <li key={elem.id}>
+                    <div className="liComents">
+                      <span className="nikeClient">{firstName}{lastName}</span>
+                      <span className="liName">{elem.user.name}</span>
+                      <span className="liOld">{`${daysDiff === 0  ? `< 1` : {daysDiff}} dia`}</span>   
+                    </div>
+                    <p>{elem.comments} </p>
+                  </li>
+                  ))}
               </ul>
             </div>
             <form className="formComments" onSubmit={handleSubmit(onSubmit)}>

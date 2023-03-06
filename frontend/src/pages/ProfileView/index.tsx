@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 import ProductCard from "../../components/ProductCard";
@@ -17,14 +17,19 @@ import {
 } from "./style";
 
 const ProfileView = () => {
+  const { id } = useParams();
   const { auctions, cars, motorcycles } = useContext(AdvertContext);
-
-
-  const {user, changeName, firstName, lastName, } = useContext(UserContext)
+  const {user, changeName, firstName, lastName, api_read_user } = useContext(UserContext)
+  
+  const userId = localStorage.getItem('MOTORSSHOP:USERID')
 
   useEffect(()=>{
-    changeName()
-  
+    const getNameUser = async()=>{
+
+      const nameUser = await api_read_user(userId!)
+      changeName(nameUser.name)
+    }
+  getNameUser()
   }, [])
 
   return (
@@ -33,20 +38,21 @@ const ProfileView = () => {
       <ContainerNavProfile />
       <ContainerUserProfile>
         <div className="imgProfile">
-          <p> {firstName}{lastName} </p>
+          <p>
+            {" "}
+            {firstName}
+            {lastName}{" "}
+          </p>
         </div>
         <div className="divName">
           <p className="profileName"> {user?.name} </p>
-          {
-            user.isAdm ? 
-              <p className="paragraphAdvertiser">Anunciante</p>
-            :
-              <p className="paragraphAdvertiser">Comprador</p>
-          }
+          {user.isAdm ? (
+            <p className="paragraphAdvertiser">Anunciante</p>
+          ) : (
+            <p className="paragraphAdvertiser">Comprador</p>
+          )}
         </div>
-        <p className="textProfile">
-          {user?.description_user}
-        </p>
+        <p className="textProfile">{user?.description_user}</p>
         <RegisterAdvertModal />
       </ContainerUserProfile>
 
@@ -56,6 +62,7 @@ const ProfileView = () => {
           <StyledAuction>
             {auctions.map(
               ({
+                cover_image_adverts,
                 description_adverts,
                 price_adverts,
                 title_adverts,
@@ -65,6 +72,7 @@ const ProfileView = () => {
               }) => (
                 <ProductCardAuction
                   key={id}
+                  cover_image_adverts={cover_image_adverts}
                   description_adverts={description_adverts}
                   kilometers_adverts={kilometers_adverts}
                   price_adverts={price_adverts}
@@ -79,6 +87,7 @@ const ProfileView = () => {
           <div id="cars">
             {cars.map(
               ({
+                cover_image_adverts,
                 description_adverts,
                 id,
                 kilometers_adverts,
@@ -89,13 +98,14 @@ const ProfileView = () => {
                 <>
                   <ProductCard
                     key={id}
+                    cover_image_adverts={cover_image_adverts}
                     description_adverts={description_adverts}
                     kilometers_adverts={kilometers_adverts}
                     title_adverts={title_adverts}
                     year_adverts={year_adverts}
                     price_adverts={price_adverts}
                   />
-                  <EditAdvertModal id_adverts={id} />
+                  {/* <EditAdvertModal id_adverts={id} /> */}
                   <DeleteAdvertsModal id_adverts={id} />
                   <Link to={`/product/${id}`}>Ver como</Link>
                 </>
@@ -106,6 +116,7 @@ const ProfileView = () => {
           <div id="motos">
             {motorcycles.map(
               ({
+                cover_image_adverts,
                 description_adverts,
                 id,
                 kilometers_adverts,
@@ -116,6 +127,7 @@ const ProfileView = () => {
                 <>
                   <ProductCard
                     key={id}
+                    cover_image_adverts={cover_image_adverts}
                     description_adverts={description_adverts}
                     kilometers_adverts={kilometers_adverts}
                     title_adverts={title_adverts}

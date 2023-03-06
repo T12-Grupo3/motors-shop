@@ -7,6 +7,7 @@ export interface iAdvertProduct {
   year_adverts: string;
   kilometers_adverts: string;
   price_adverts: number;
+  cover_image_adverts: string;
   id?: string;
   cover_image_adverts?: string
 }

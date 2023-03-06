@@ -12,6 +12,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { IRequestAdverts } from "../../interfaces/adverts.interfaces";
 import { AdvertContext } from "../../Context/AdvertContext";
 import { Error } from "../../style/error";
+import RegisterAdvertsConfirm from "../RegisterAdvertsConfirm";
 
 
 const style = {
@@ -27,9 +28,13 @@ const style = {
 };
 
 export default function RegisterAdvertModal() {
+  const [tipoAnuncio, setTipoAnuncio] = useState("venda");
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [openModalConfirm, setopenModalConfirm] = useState(false);
+
 
   const {api_create_adverts} = useContext(AdvertContext)
 
@@ -122,7 +127,6 @@ export default function RegisterAdvertModal() {
 
   // função para mudar o preço para lance inciial
 
-  const [tipoAnuncio, setTipoAnuncio] = useState("venda");
 
   function handleTipoAnuncioChange(event: React.MouseEvent<HTMLButtonElement>) {
     if (event.currentTarget.classList.contains("btn-leilão")) {
@@ -142,6 +146,7 @@ export default function RegisterAdvertModal() {
 
   return (
     <div>
+      <RegisterAdvertsConfirm handleConfirm={openModalConfirm} />
       <Button onClick={handleOpen}>Criar anuncio</Button>
       <Modal
         open={open}
@@ -284,7 +289,7 @@ export default function RegisterAdvertModal() {
                 </p>
 
                 <div className="div-btn-cancela-submit">
-                  <button className="btn-submit" type="submit" onClick={handleClose}>
+                  <button className="btn-submit" type="submit" onClick={()=>{setOpen(false); setopenModalConfirm(true)}}>
                     Criar anúncio
                   </button>
                 </div>
