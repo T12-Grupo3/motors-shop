@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import CarouselComponent from "../../components/Carousel";
+import CarouselComponent from "../../components/carousel";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 import ProductCard from "../../components/ProductCard";
@@ -16,7 +16,7 @@ import {
 
 const Home = () => {
   const { auctions, cars, motorcycles } = useContext(AdvertContext);
-  const {user} = useContext(UserContext)
+  const { user } = useContext(UserContext);
 
   return (
     <>
