@@ -49,6 +49,8 @@ export default function RegisterAdvertModal() {
       galery_image: images,
     };
 
+    console.log(formData)
+
     await api_create_adverts(formData);
   };
 
