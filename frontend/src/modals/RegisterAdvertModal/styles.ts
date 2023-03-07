@@ -45,7 +45,7 @@ export const Container = styled.div`
 
   .btn-tipo-anuncio,
   .btn-tipo-veiculo {
-    border: 1.5px solid #4529e6;
+    border: 1.5px solid #adb5bd;
     border-radius: 4px;
     width: 228px;
     height: 48px;
@@ -151,6 +151,7 @@ export const Container = styled.div`
     cursor: pointer;
     padding-top: 25px;
     padding-bottom: 25px;
+    background-color: var(--color-brand-4);
   }
 
   .div-btn-cancela-submit {
@@ -201,6 +202,7 @@ export const Container = styled.div`
     font-weight: 400;
     font-size: x-large;
     color: var(--color-grey-4);
+    background-color: transparent;
   }
 `;
 
