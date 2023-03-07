@@ -12,6 +12,7 @@ import commentsRoutes from "./routes/comments.routes";
 import loginRoutes from "./routes/login.routes";
 import handleAppErrorMiddleware from "./middleware/handleAppError";
 import passwordRoute from "./routes/passwordChange.routes";
+import imageAdvertsRoutes from "./routes/image_adverts.routes";
 
 const app = express();
 
@@ -29,7 +30,7 @@ app.use("/users", usersRoutes);
 app.use("/comments", commentsRoutes);
 app.use("/adverts", advertsRoutes);
 app.use("/pass", passwordRoute)
-// app.use("/imageadverts", imageAdvertsRoutes);
+app.use("/imageadverts", imageAdvertsRoutes);
 app.use(handleAppErrorMiddleware);
 
 export default app;

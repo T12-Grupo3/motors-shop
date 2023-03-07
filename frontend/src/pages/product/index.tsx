@@ -88,6 +88,8 @@ const Product = () => {
 
   const daysDiff = calculateDaysDifference();
 
+  console.log(adverts)
+  
   return (
     <>
       <NavBar />
@@ -179,7 +181,18 @@ const Product = () => {
               <p className="textProfile">
                 {user.description_user}
               </p>
-              <button className="buttonProfile">Ver todos anúncios</button>
+               {user.isAdm ? (
+                      <button
+                      className="buttonProfile"
+                        onClick={() =>
+                          navigate(`/profileview/${user.id}`, { replace: true })
+                        }
+                      >
+                        Ver todos anuncios
+                      </button>
+                    ) : (
+                      <></>
+                    )}
             </div>
           </div>
         </div>

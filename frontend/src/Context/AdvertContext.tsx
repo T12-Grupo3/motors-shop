@@ -14,6 +14,10 @@ import {
 } from "../interfaces/adverts.interfaces";
 import { iComments, iCommentsRequest } from "../interfaces/comments.interfaces";
 import api from "../service/api";
+import { IError } from "../interfaces/iError";
+import { iCommentsPreview } from "../interfaces/commentsPreiew";
+import { SetOptional } from "type-fest";
+import { iImageAdverts } from "../interfaces/image_adverts.interface";
 
 export interface IContext {
   auctions: iAdvert[];
@@ -98,7 +102,7 @@ const AdvertProvider = ({ children }: IProviderProps) => {
       console.log(error);
     }
   };
-
+  
   const api_create_comments = async (data: iCommentsRequest) => {
     try {
       const res = await api.post("/comments", data);
