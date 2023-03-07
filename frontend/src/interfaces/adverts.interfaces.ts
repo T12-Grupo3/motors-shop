@@ -43,7 +43,13 @@ export interface iAdvertUpdate {
   description_adverts?: string;
   isAvailable?: boolean;
   image_adverts?: Array<string>;
-  cover_image_advert?: string
+  cover_image_advert?: string;
+}
+
+export interface iAdvertUpdateExtended extends iAdvertUpdate {
+  tipoAnuncio: string;
+  tipoVeiculo: string;
+  tipoPublicado: boolean;
 }
 
 export interface iImageAdvertRequest {
@@ -76,6 +82,6 @@ export interface iDeleteAdverts extends iIdAdvert {
   handleCloseEdit: () => void;
 }
 
-export interface iEditAdvertModal{
-  advert: iAdvert
+export interface iEditAdvertModal {
+  advert: iAdvert;
 }
