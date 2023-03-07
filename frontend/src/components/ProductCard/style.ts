@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const StyledProductCard = styled.div`
   width: 20%;
+
 `;
 
 export const StyledProductImg = styled.div`
@@ -17,6 +18,7 @@ export const StyledProductImg = styled.div`
 
   img {
     width: 80%;
+    height:150px ;
   }
 `;
 

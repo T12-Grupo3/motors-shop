@@ -17,7 +17,7 @@ const listImageAdvertsIdService = async (advert_id:string ) :Promise<ImageAdvert
     if(!imageAdvert){
         throw new AppError("Image_Adverts is not exists",404 )
     }    
-    console.log(imageAdvert)
+    
     return imageAdvert
 
 }
