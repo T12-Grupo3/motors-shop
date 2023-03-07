@@ -7,19 +7,22 @@ import { ContainerProduct } from "./style";
 import schemaInputComments from "../../Validations/schemaInputComments";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
-  iComments, iCommentsRegisterRecieve} from "../../interfaces/comments.interfaces";
+  iComments,
+  iCommentsRegisterRecieve,
+} from "../../interfaces/comments.interfaces";
 import { useForm } from "react-hook-form";
 import { UserContext } from "../../Context/UserContext";
 import { AdvertContext } from "../../Context/AdvertContext";
-import { differenceInDays } from 'date-fns';
+import { differenceInDays } from "date-fns";
 import EditCommentsModal from "../../modals/EditCommentsModal";
 
 const Product = () => {
   const { id } = useParams();
   const [product, setproduct] = useState<iAdvert>({} as iAdvert);
-  
+
   const navigate = useNavigate();
-  const { changeName, firstName, lastName, api_read_user, user } = useContext(UserContext);
+  const { changeName, firstName, lastName, api_read_user, user } =
+    useContext(UserContext);
   const {
     api_create_comments,
     api_read_id_advert,
@@ -27,10 +30,10 @@ const Product = () => {
     adverts,
     refreshKey,
     setcomments,
-    comments 
+    comments,
   } = useContext(AdvertContext);
 
-  const userId = localStorage.getItem('MOTORSSHOP:USERID')
+  const userId = localStorage.getItem("MOTORSSHOP:USERID");
 
   const {
     register,
@@ -54,11 +57,11 @@ const Product = () => {
     const getProduct = async (id: string) => {
       const res_product = await api_read_id_advert(id);
       const res_comments = await api_read_coments_advert(id);
-      const nameUser = await api_read_user(userId!)
+      const nameUser = await api_read_user(res_product.user.id!);
 
       setproduct(res_product);
       setcomments(res_comments);
-      changeName(nameUser.name)
+      changeName(nameUser.name);
     };
 
     getProduct(id!);
@@ -77,7 +80,6 @@ const Product = () => {
     cover_image_adverts,
     createdAt_adverts,
     updatedAt_adverts,
-
   } = product;
 
   function calculateDaysDifference() {
@@ -88,8 +90,6 @@ const Product = () => {
 
   const daysDiff = calculateDaysDifference();
 
-  console.log(adverts)
-  
   return (
     <>
       <NavBar />
@@ -120,23 +120,31 @@ const Product = () => {
                 {comments.map((elem: iComments) => (
                   <li key={elem.id}>
                     <div className="liComents">
-                      <span className="nikeClient">{firstName}{lastName}</span>
+                      <span className="nikeClient">
+                        {firstName}
+                        {lastName}
+                      </span>
                       <span className="liName">{elem.user.name}</span>
-                      <span className="liOld">{`${daysDiff === 0  ? `< 1` : {daysDiff}} dia`}</span>   
+                      <span className="liOld">{`${
+                        daysDiff === 0 ? `< 1` : { daysDiff }
+                      } dia`}</span>
                     </div>
                     <div className="divComents">
-                    <p>{elem.comments} </p>
-                    <div>
-                    <EditCommentsModal id_comments={elem.id} />
-                    </div>
+                      <p>{elem.comments} </p>
+                      <div>
+                        <EditCommentsModal id_comments={elem.id} />
+                      </div>
                     </div>
                   </li>
-                  ))}
+                ))}
               </ul>
             </div>
             <form className="formComments" onSubmit={handleSubmit(onSubmit)}>
               <div className="liComents">
-                <span className="nikeClient">{firstName}{lastName}</span>
+                <span className="nikeClient">
+                  {firstName}
+                  {lastName}
+                </span>
                 <span className="liName">{user.name}</span>
               </div>
               <div className="imputForm">
@@ -160,39 +168,38 @@ const Product = () => {
             <div className="cardGalery">
               <span className="spanFoto">Fotos</span>
               <ul className="galeryImg">
-              
-              {adverts.map((elem) => (
-                <li key={elem.id} className="imgGalery">
-                  <img
-                    className="imgGlr"
-                    src={elem.cover_image_adverts}
-                    alt=""
-                  />
-                </li>
-              ))}
-              
+                {adverts.map((elem) => (
+                  <li key={elem.id} className="imgGalery">
+                    <img
+                      className="imgGlr"
+                      src={elem.cover_image_adverts}
+                      alt=""
+                    />
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="cardProfile">
-              <div className="cardNikeProfile" >
-                <span className="nikePerfilClient">{firstName}{lastName}</span>
+              <div className="cardNikeProfile">
+                <span className="nikePerfilClient">
+                  {firstName}
+                  {lastName}
+                </span>
               </div>
               <p className="pProfile"> {user.name} </p>
-              <p className="textProfile">
-                {user.description_user}
-              </p>
-               {user.isAdm ? (
-                      <button
-                      className="buttonProfile"
-                        onClick={() =>
-                          navigate(`/profileview/${user.id}`, { replace: true })
-                        }
-                      >
-                        Ver todos anuncios
-                      </button>
-                    ) : (
-                      <></>
-                    )}
+              <p className="textProfile">{user.description_user}</p>
+              {user.isAdm ? (
+                <button
+                  className="buttonProfile"
+                  onClick={() =>
+                    navigate(`/profileview/${user.id}`, { replace: true })
+                  }
+                >
+                  Ver todos anuncios
+                </button>
+              ) : (
+                <></>
+              )}
             </div>
           </div>
         </div>
@@ -200,9 +207,6 @@ const Product = () => {
       <Footer />
     </>
   );
-}
-
-
-
+};
 
 export default Product;
