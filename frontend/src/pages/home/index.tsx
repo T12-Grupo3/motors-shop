@@ -1,4 +1,5 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import ButtonComponent from "../../components/Button";
 import CarouselComponent from "../../components/carousel";
 import Footer from "../../components/Footer";
@@ -14,6 +15,18 @@ import {
 
 const Home = () => {
   const { auctions, cars, motorcycles } = useContext(AdvertContext);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash === "#cars") {
+      window.location.href = "#cars";
+    } else if (location.hash === "#motorcycle") {
+      window.location.href = "#motorcycles";
+    } else if (location.hash === "#auctions") {
+      window.location.href = "#auctions";
+    }
+  }, [location]);
 
   return (
     <>
@@ -56,8 +69,9 @@ const Home = () => {
       </StyledContent>
 
       <StyledProductsContainer>
-        <h5>Leilão</h5>
+        <h5 id="auctions">Leilão</h5>
         <CarouselComponent adverts={auctions} />
+
         <h5>Carros</h5>
         <div className="containers-vehicules" id="cars">
           {cars.map((advert) => (
