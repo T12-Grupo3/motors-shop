@@ -40,7 +40,7 @@ export const StyledProductsContainer = styled(StyledContainer)`
     font-size: 24px;
   }
 
-  .containers-vehicules{
+  .containers-vehicules {
     display: flex;
     flex-direction: row;
     max-width: 2020px;
@@ -52,4 +52,12 @@ export const StyledProductsContainer = styled(StyledContainer)`
 export const StyledAuction = styled.div`
   /* overflow-y: auto; */
   /* display: flex; */
+`;
+
+export const StyledHomeButtons = styled.div`
+  width: 40%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
