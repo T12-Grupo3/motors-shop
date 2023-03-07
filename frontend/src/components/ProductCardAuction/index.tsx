@@ -1,9 +1,5 @@
-import { isLastDayOfMonth } from "date-fns";
-import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { iAdvert } from "../../interfaces/adverts.interfaces";
-import { AdvertContext } from "../../Context/AdvertContext";
-import { UserContext } from "../../Context/UserContext";
 import EditAdvertModal from "../../modals/EditAdvertModal";
 import {
   StyledAuctionContainer,
@@ -30,12 +26,6 @@ const ProductCardAuction = ({advert}: iProductCard) => {
     id,
   } = advert;
 
-  // const {auctions, adverts} = useContext(AdvertContext)
-  // const { api_read_user} = useContext(UserContext)
-
-  // const [isAuctionOnwer, set] = useState(false);
-  // const userId = localStorage.getItem("MOTORSSHOP:USERID");
-  // const isAdmUser = user.isAdm
   const currentUser = localStorage.getItem("MOTORSSHOP:USERID");
 
   return (

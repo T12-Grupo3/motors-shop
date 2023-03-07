@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import NavBar from "../../components/NavBar";
 import { ButtonGoRegister, ButtonSubmitLogin, ContainerLogin, FormLogin, InputLogin, ParagraphLogin } from "./styles";
 import { useContext } from "react";
-import UserProvider, { UserContext } from "../../Context/UserContext";
+import { UserContext } from "../../Context/UserContext";
 import schemaLoginUser from "../../Validations/schemaLoginUser";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigate } from 'react-router-dom'
@@ -11,18 +11,15 @@ import EditPasswordModal from "../../modals/EditPasswordModal";
 
 
 const LoginPage = () =>{
+    const {api_signin_user} = useContext(UserContext)
+    const navigate = useNavigate()
 
     const {
         register,
         handleSubmit,
-        formState: { errors },
       } = useForm<iLoginRequest>({
         resolver: yupResolver(schemaLoginUser),
       });
-
-    const {api_signin_user} = useContext(UserContext)
-    const navigate = useNavigate()
-
 
     return(
         <>

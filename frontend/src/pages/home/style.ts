@@ -39,6 +39,14 @@ export const StyledProductsContainer = styled(StyledContainer)`
     font-weight: var(--heading-5-600);
     font-size: 24px;
   }
+
+  .containers-vehicules{
+    display: flex;
+    flex-direction: row;
+    max-width: 2020px;
+    overflow-x: auto;
+    gap: 40px;
+  }
 `;
 
 export const StyledAuction = styled.div`

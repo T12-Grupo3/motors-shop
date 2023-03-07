@@ -3,8 +3,6 @@ import Modal from "@mui/material/Modal";
 import Backdrop from "@mui/material/Backdrop";
 import Fade from "@mui/material/Fade";
 import Box from "@mui/material/Box";
-import Button from "../../components/Button";
-import { useNavigate } from "react-router";
 import { StyledRegisterConfirmTop } from "./style";
 
 const style = {
@@ -12,7 +10,6 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  // width: 450,
   bgcolor: "background.paper",
   boxShadow: 7,
   p: 4,
@@ -27,7 +24,6 @@ export default function RegisterAdvertsConfirm({
   handleConfirm = true,
 }: iRegisterAdvertsConfirm) {
   const [open, setOpen] = useState(handleConfirm);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const openModal = (isOpen: boolean) => {

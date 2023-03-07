@@ -1,20 +1,16 @@
-import { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import CarouselComponent from "../../components/carousel";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 import ProductCard from "../../components/ProductCard";
-import ProductCardAuction from "../../components/ProductCardAuction";
 import { AdvertContext } from "../../Context/AdvertContext";
 import { UserContext } from "../../Context/UserContext";
-import DeleteAdvertsModal from "../../modals/DeleteAdvertsModal";
-import EditAdvertModal from "../../modals/EditAdvertModal";
 import RegisterAdvertModal from "../../modals/RegisterAdvertModal";
-import { StyledAuction, StyledProductsContainer } from "../home/style";
+import { StyledProductsContainer } from "../home/style";
 import {
   ContainerNavProfile,
   ContainerUserProfile,
-  StyledContainerProfile,
 } from "./style";
 
 const ProfileView = () => {
@@ -63,32 +59,55 @@ const ProfileView = () => {
         <RegisterAdvertModal />
       </ContainerUserProfile>
 
-      <StyledContainerProfile>
         <StyledProductsContainer>
-          <h5>Leilão</h5>
+          {
+            filteredCars.length === 0 ? (
+              <h5>Você ainda não tem anúncios, cadastre agora.</h5>
+            ) : (
+              <>
+              {
+                filteredAuctions.length === 0 ? (
+                  <h5>Você ainda não tem anúncios para leilão</h5>
+                ):(
+                  <>
+                    <h5>Leilão</h5>
+                    <CarouselComponent adverts={filteredAuctions} />
+                  </>
+                )
+              }
+              {
+                filteredCars.length === 0 ? (
+                  <h5>Você ainda não tem anúncios de carros</h5>
+                ):(
+                  <>
+                    <h5>Carros</h5>
+                    <div className="containers-vehicules">
+                      {filteredCars.map((advert) => (
+                          <ProductCard key={advert.id} advert={advert} />
+                      ))}
+                    </div>
+                  </>
+                )
+              }
+              {
+                filteredMotorcycles.length === 0 ? (
+                  <h5>Você ainda não tem anúncios de motos</h5>
+                ):(
+                  <>
+                    <h5>Motos</h5>
+                    <div className="containers-vehicules">
+                      {filteredMotorcycles.map((advert) => (
+                        <ProductCard key={advert.id} advert={advert} />
+                      ))}
+                    </div>
+                  </>
+                )
+              }
+              </>
+            )
+          }
 
-          <CarouselComponent adverts={filteredAuctions} />
-
-          <h5>Carros</h5>
-          <div id="cars">
-            {filteredCars.map((advert) => (
-              <div key={advert.id}>
-                <ProductCard advert={advert} />
-              </div>
-            ))}
-          </div>
-
-          <h5>Motos</h5>
-
-          <div id="motos">
-            {filteredMotorcycles.map((advert) => (
-              <div key={advert.id}>
-                <ProductCard advert={advert} />
-              </div>
-            ))}
-          </div>
         </StyledProductsContainer>
-      </StyledContainerProfile>
       <Footer />
     </>
   );

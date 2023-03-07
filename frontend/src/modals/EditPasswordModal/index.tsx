@@ -1,33 +1,26 @@
 import { useContext, useState } from "react";
-import ReactDOM from "react-dom";
 import { Button, Container, Form } from "./styles";
 import Modal from "@mui/material/Modal";
 import Backdrop from "@mui/material/Backdrop";
 import Fade from "@mui/material/Fade";
 import Box from "@mui/material/Box";
-import { Input } from "@mui/material";
-import { Error } from "../../style/error";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from "react-hook-form";
 import { iPasswordChangeRequest } from "../../interfaces/user.interface";
 import schemaPasswordChange from "../../Validations/schemaPasswordChange";
 import { UserContext } from "../../Context/UserContext";
 
-
 const style = {
     position: "absolute" as "absolute",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    // width: 450,
     bgcolor: "background.paper",
     boxShadow: 7,
     p: 4,
     borderRadius: 2,
   };
   
-
-
 export default function EditPasswordModal () {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
@@ -63,7 +56,6 @@ export default function EditPasswordModal () {
     const {
         register,
         handleSubmit,
-        formState: { errors }
       } = useForm<iPasswordChangeRequest>({
         resolver: yupResolver(schemaPasswordChange)
       });

@@ -1,13 +1,15 @@
 import styled from "styled-components";
 
 export const StyledProductCard = styled.div`
-  width: 25%;
+  width: 20%;
 `;
 
 export const StyledProductImg = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
+  width: 290px;
 
   background-color: var(--color-grey-7);
 
@@ -49,6 +51,7 @@ export const StyledProductCaracteristcs = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  max-width: 500px;
 
   span {
     background-color: var(--color-brand-4);

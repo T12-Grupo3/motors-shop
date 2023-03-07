@@ -34,7 +34,6 @@ const NavBar = () => {
         </div>
         <nav>
           <li>
-            {/* <a href="/home#cars">cars</a> */}
             <Link to={"/"}>Carros</Link>
           </li>
           <li>

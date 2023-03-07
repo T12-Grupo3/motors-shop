@@ -5,8 +5,6 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
-// import { toast } from "react-toastify";
-import { AxiosError } from "axios";
 
 import {
   iAdvert,
@@ -58,7 +56,6 @@ const AdvertProvider = ({ children }: IProviderProps) => {
   const [comments, setcomments] = useState<iComments[]>([]);
 
   const token = localStorage.getItem("MOTORSSHOP:TOKEN");
-  const userId = localStorage.getItem("MOTORSSHOP:USERID");
 
   useEffect(() => {
     const getAdverts = async () => {
@@ -167,11 +164,7 @@ const AdvertProvider = ({ children }: IProviderProps) => {
  
 
   const api_delete_advert = async (id_adverts: string) => {
-    // const response = await api.delete('/', {
-    //   headers: { Authorization: `Bearer ${userToken}` },
-    // });
     try {
-      // api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       const res = await api.delete(`/adverts/${id_adverts}`);
       setHandleDelete(false)
       setRefreshKey((oldKey) => oldKey + 1);

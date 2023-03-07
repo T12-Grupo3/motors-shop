@@ -6,8 +6,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { Container, Button } from "./styles";
 import schemaUpdateProfile from "../../Validations/schemaUpdateProfile";
-import { UserContext } from "../../Context/UserContext";
-import { useContext, useState } from "react";
 import api from "../../service/api";
 
 const style = {
@@ -27,15 +25,11 @@ export default function EditProfileModal() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  //   const { api_update_user } = useContext(UserContext);
   const userId = localStorage.getItem("MOTORSSHOP:USERID");
 
   const api_update_user = async (data: iUserUpdate) => {
-    console.log(data);
     try {
-      const res = await api.patch(`/users/${userId}`, data);
-      console.log(res);
-      //   setUser(res.data);
+      await api.patch(`/users/${userId}`, data);
     } catch (error) {
       console.error(error);
     }
@@ -44,7 +38,6 @@ export default function EditProfileModal() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = useForm<iUserUpdate>({
     resolver: yupResolver(schemaUpdateProfile),
   });

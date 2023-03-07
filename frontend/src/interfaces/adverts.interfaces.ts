@@ -1,5 +1,5 @@
 import { iComments } from "./comments.interfaces";
-import { iUserRequest, iUserResponse } from "./user.interface";
+import { iUserResponse } from "./user.interface";
 
 export interface iAdvertProduct {
   title_adverts: string;

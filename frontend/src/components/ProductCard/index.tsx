@@ -1,10 +1,8 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { iAdvert, iAdvertProduct } from "../../interfaces/adverts.interfaces";
+import { useNavigate } from "react-router-dom";
+import { iAdvert } from "../../interfaces/adverts.interfaces";
 import DeleteAdvertsModal from "../../modals/DeleteAdvertsModal";
 import EditAdvertModal from "../../modals/EditAdvertModal";
 import { Button } from "../../modals/EditAdvertModal/styles";
-// import EditAdvertModal from "../../modals/EditAdvertModal";
 import {
   StyledProductCaracteristcs,
   StyledProductCard,

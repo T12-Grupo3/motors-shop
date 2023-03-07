@@ -1,4 +1,3 @@
-import ReactInputMask from "react-input-mask";
 import { iInput } from "../../interfaces/input.interface";
 import { StyledInputDiv } from "./style";
 
