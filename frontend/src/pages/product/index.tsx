@@ -13,11 +13,15 @@ import { UserContext } from "../../Context/UserContext";
 import { AdvertContext } from "../../Context/AdvertContext";
 import { differenceInDays } from 'date-fns';
 import EditCommentsModal from "../../modals/EditCommentsModal";
+import { iImageAdverts } from "../../interfaces/image_adverts.interface";
 
 const Product = () => {
   const { id } = useParams();
   const [product, setproduct] = useState<iAdvert>({} as iAdvert);
+  const [image, setImage] = useState<iImageAdverts[]>([]);
   
+  console.log(product)
+
   const navigate = useNavigate();
   const { changeName, firstName, lastName, api_read_user, user } = useContext(UserContext);
   const {
@@ -53,10 +57,12 @@ const Product = () => {
   useEffect(() => {
     const getProduct = async (id: string) => {
       const res_product = await api_read_id_advert(id);
+
       const res_comments = await api_read_coments_advert(id);
       const nameUser = await api_read_user(userId!)
 
       setproduct(res_product);
+      setImage(res_product.imageAdverts)
       setcomments(res_comments);
       changeName(nameUser.name)
     };
@@ -88,7 +94,8 @@ const Product = () => {
 
   const daysDiff = calculateDaysDifference();
 
-  console.log(adverts)
+  
+
   
   return (
     <>
@@ -161,11 +168,11 @@ const Product = () => {
               <span className="spanFoto">Fotos</span>
               <ul className="galeryImg">
               
-              {adverts.map((elem) => (
+              {image.map((elem) => (
                 <li key={elem.id} className="imgGalery">
                   <img
                     className="imgGlr"
-                    src={elem.cover_image_adverts}
+                    src={elem.galery_image}
                     alt=""
                   />
                 </li>

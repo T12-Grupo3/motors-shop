@@ -1,4 +1,5 @@
 import { iComments } from "./comments.interfaces";
+import { iImageAdverts } from "./image_adverts.interface";
 import { iUserResponse } from "./user.interface";
 
 export interface iAdvertProduct {
@@ -63,7 +64,7 @@ export interface iAdvert {
   cover_image_adverts: string;
   createdAt_adverts: Date;
   updatedAt_adverts: Date;
-  imageAdverts: iImageAdvertRequest[];
+  imageAdverts: iImageAdverts[];
   user: iUserResponse;
   comments: iComments[];
 }
