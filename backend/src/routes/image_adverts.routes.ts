@@ -12,8 +12,8 @@ import isUserMiddleware from "../middleware/isUserMiddleware";
 const imageAdvertsRoutes = Router();
 
 // imageAdvertsRoutes.post("", authUserMiddleware , isUserMiddleware, isAdmMiddlewar, createImageAdvertsController);
-// imageAdvertsRoutes.get("", listImageAdvertsController);
-// imageAdvertsRoutes.get("/:id", listImageAdvertsIdController);
+imageAdvertsRoutes.get("", listImageAdvertsController);
+imageAdvertsRoutes.get("/advert/:id", listImageAdvertsIdController);
 // imageAdvertsRoutes.delete("/:id", authUserMiddleware , isUserMiddleware, isAdmMiddlewar, deleteImageAdvertsController);
 // imageAdvertsRoutes.patch("/:id", authUserMiddleware , isUserMiddleware, isAdmMiddlewar, updateImageAdvertsController);
 
