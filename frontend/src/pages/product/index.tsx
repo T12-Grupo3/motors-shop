@@ -13,10 +13,14 @@ import { UserContext } from "../../Context/UserContext";
 import { AdvertContext } from "../../Context/AdvertContext";
 import { differenceInDays } from 'date-fns';
 import EditCommentsModal from "../../modals/EditCommentsModal";
+import { ContainerNavProfile } from "../ProfileView/style";
 
 const Product = () => {
   const { id } = useParams();
   const [product, setproduct] = useState<iAdvert>({} as iAdvert);
+
+  const image = product.imageAdverts
+  console.log(typeof(image))
   
   const navigate = useNavigate();
   const { changeName, firstName, lastName, api_read_user, user } = useContext(UserContext);
@@ -29,8 +33,6 @@ const Product = () => {
     setcomments,
     comments 
   } = useContext(AdvertContext);
-
-  const userId = localStorage.getItem('MOTORSSHOP:USERID')
 
   const {
     register,
@@ -54,7 +56,7 @@ const Product = () => {
     const getProduct = async (id: string) => {
       const res_product = await api_read_id_advert(id);
       const res_comments = await api_read_coments_advert(id);
-      const nameUser = await api_read_user(userId!)
+      const nameUser = await api_read_user(res_product.user.id)
 
       setproduct(res_product);
       setcomments(res_comments);
@@ -67,7 +69,7 @@ const Product = () => {
   if (product === undefined) {
     navigate("/home", { replace: true });
   }
-
+  console.log(Object.entries(product).map(elem =>console.log(elem)))
   const {
     title_adverts,
     year_adverts,
@@ -87,12 +89,11 @@ const Product = () => {
   }
 
   const daysDiff = calculateDaysDifference();
-
-  console.log(adverts)
   
   return (
     <>
       <NavBar />
+      <ContainerNavProfile />
       <ContainerProduct>
         <div className="dashMain">
           <div className="dashLeft">
@@ -107,8 +108,11 @@ const Product = () => {
                   <span className="km">{`${kilometers_adverts} KM`}</span>
                 </div>
                 <div className="preco">{`R$ ${price_adverts}`}</div>
+                {/* {price_adverts.toLocaleString("pt-BR", {style: "currency", currency: "BRL" })}  */}
               </div>
-              <button className="button">Comprar</button>
+              <a 
+              href={`https://api.whatsapp.com/send?phone=+55+48998363692&text=Ol%C3%A1%2C%20venho%20por%20meio%20do%20seu%20anúncio%20pelo%20site%20motor-shop,%20o%20veiculo%20ainda%20está%20disponível?`}
+              className="button">Comprar</a>
             </div>
             <div className="descriptionCar">
               <span className="spanDescription">Descrição</span>
@@ -165,12 +169,22 @@ const Product = () => {
                 <li key={elem.id} className="imgGalery">
                   <img
                     className="imgGlr"
-                    src={elem.cover_image_adverts}
+                    src={elem.imageAdverts}
                     alt=""
                   />
                 </li>
               ))}
-              
+
+              {/* {Object.values(product).map((elem, index) => (
+                <li key={index} className="imgGalery">
+                <img
+                  className="imgGlr"
+                  src={elem}
+                  alt=""
+                />
+              </li>
+              ))} */}
+
               </ul>
             </div>
             <div className="cardProfile">

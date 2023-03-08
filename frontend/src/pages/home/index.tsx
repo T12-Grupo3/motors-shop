@@ -5,6 +5,7 @@ import NavBar from "../../components/NavBar";
 import ProductCard from "../../components/ProductCard";
 import { AdvertContext } from "../../Context/AdvertContext";
 import {
+  ButtonContent,
   StyledContent,
   StyledContentContainer,
   StyledProductsContainer,
@@ -23,9 +24,9 @@ const Home = () => {
             <h2>Velocidade e experiência em um lugar feito para você</h2>
             <p>Um ambiente feito para você explorar o seu melhor</p>
           </div>
-          <div>
-            <button>Carros</button>
-            <button>Motos</button>
+          <div className="div-buutons">
+            <ButtonContent>Carros</ButtonContent>
+            <ButtonContent>Motos</ButtonContent>
           </div>
         </StyledContentContainer>
       </StyledContent>

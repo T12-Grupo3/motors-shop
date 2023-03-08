@@ -32,7 +32,33 @@ export const StyledContentContainer = styled(StyledContainer)`
   text-align: center;
 
   width: 60%;
+
+  .div-buutons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 350px;
+  } 
+  
 `;
+
+
+export const ButtonContent = styled.button`
+  background-color: transparent;
+  color: var(--color-grey-10);
+  width: 150px;
+  height: 50px;
+  border: 2px solid var(--color-grey-10);
+  border-radius: 5px;
+  padding: 5px;
+  justify-content: space-around;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 0px;
+`
 
 export const StyledProductsContainer = styled(StyledContainer)`
   h5 {

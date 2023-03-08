@@ -16,8 +16,8 @@ advertsRoutes.post("", createAdvertsController);
 advertsRoutes.get("", ListAdvertsController);
 advertsRoutes.get("/:id", listAdvertsIdController);
 
-advertsRoutes.patch("/:id", authUserMiddleware , isUserMiddleware, isAdmMiddlewar, updateAdvertController);
+advertsRoutes.patch("/:id", authUserMiddleware, isAdmMiddlewar, updateAdvertController);
 
-advertsRoutes.delete("/:id", authUserMiddleware , isUserMiddleware, isAdmMiddlewar, deleteAdvertsController);
+advertsRoutes.delete("/:id", authUserMiddleware, isAdmMiddlewar, deleteAdvertsController);
 
 export default advertsRoutes;

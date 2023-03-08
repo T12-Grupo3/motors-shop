@@ -47,7 +47,7 @@ export interface iAdvertUpdate {
 }
 
 export interface iImageAdvertRequest {
-  galery_image: string[];
+  galery_image: string;
 }
 
 export interface iAdvert {
@@ -63,7 +63,7 @@ export interface iAdvert {
   cover_image_adverts: string;
   createdAt_adverts: Date;
   updatedAt_adverts: Date;
-  imageAdverts: iImageAdvertRequest[];
+  imageAdverts: string;
   user: iUserResponse;
   comments: iComments[];
 }
