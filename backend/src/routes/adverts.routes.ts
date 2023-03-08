@@ -11,12 +11,12 @@ import isUserMiddleware from "../middleware/isUserMiddleware";
 const advertsRoutes = Router();
 
 // advertsRoutes.post("", authUserMiddleware , isUserMiddleware, isAdmMiddlewar, createAdvertsController);
-advertsRoutes.post("", createAdvertsController);
+advertsRoutes.post("", authUserMiddleware , isAdmMiddlewar, createAdvertsController);
 
 advertsRoutes.get("", ListAdvertsController);
 advertsRoutes.get("/:id", listAdvertsIdController);
 
-advertsRoutes.patch("/:id", authUserMiddleware , isUserMiddleware, isAdmMiddlewar, updateAdvertController);
+advertsRoutes.patch("/:id", authUserMiddleware , isAdmMiddlewar, updateAdvertController);
 
 advertsRoutes.delete("/:id", authUserMiddleware , isUserMiddleware, isAdmMiddlewar, deleteAdvertsController);
 

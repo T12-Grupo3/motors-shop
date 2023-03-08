@@ -1,4 +1,5 @@
 import { Router } from "express";
+import createImageAdvertsController from "../controllers/image_adverts/create_image_adverts.controller";
 
 // import createImageAdvertsController from "../controllers/image_adverts/create_image_adverts.controller";
 import deleteImageAdvertsController from "../controllers/image_adverts/delete_image_adverts.controller";
@@ -11,7 +12,7 @@ import isUserMiddleware from "../middleware/isUserMiddleware";
 
 const imageAdvertsRoutes = Router();
 
-// imageAdvertsRoutes.post("", authUserMiddleware , isUserMiddleware, isAdmMiddlewar, createImageAdvertsController);
+imageAdvertsRoutes.post("", authUserMiddleware , isAdmMiddlewar, createImageAdvertsController);
 imageAdvertsRoutes.get("", listImageAdvertsController);
 imageAdvertsRoutes.get("/advert/:id", listImageAdvertsIdController);
 // imageAdvertsRoutes.delete("/:id", authUserMiddleware , isUserMiddleware, isAdmMiddlewar, deleteImageAdvertsController);

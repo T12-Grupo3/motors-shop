@@ -5,9 +5,9 @@ import createImageAdvertsService from "../../services/image_adverts/create_image
 
 const createImageAdvertsController = async(req: Request, res: Response) => {
 
-    const {galery_image, advert }:IImageAdvertsCreate = req.body;
+    const {galery_image, advertsId }:IImageAdvertsCreate = req.body;
 
-    const newImageAdvert = await createImageAdvertsService({galery_image, advert});
+    const newImageAdvert = await createImageAdvertsService({galery_image, advertsId});
 
     return res.status(201).json(instanceToPlain(newImageAdvert));
 

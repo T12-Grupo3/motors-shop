@@ -4,7 +4,7 @@ import  {IImageAdvertsCreate}  from "../../interfaces/image_adverts";
 import { ImageAdverts } from "../../entities/image_adverts.entity";
 import { Adverts } from "../../entities/adverts.entity";
 
-const createImageAdvertsService = async({image_adverts, advertsId }:IImageAdvertsCreate, ): Promise<ImageAdverts> => {
+const createImageAdvertsService = async({galery_image, advertsId }:IImageAdvertsCreate, ): Promise<ImageAdverts> => {
 
 const imageAdvertsRepository = AppDataSource.getRepository(ImageAdverts);
 
@@ -20,7 +20,7 @@ if (!findAdvert) {
 }
 
 const newImageAdvert = imageAdvertsRepository.create({
-  image_adverts : image_adverts, 
+  galery_image : galery_image, 
   advert: findAdvert
 })
 
