@@ -16,7 +16,8 @@ import {
 } from "./style";
 
 const NavBar = () => {
-  const [userName, setuserName] = useState('')
+  const [userName, setuserName] = useState("");
+  const [userAdmin, setuserAdmin] = useState(false);
 
   const navigate = useNavigate();
 
@@ -28,6 +29,7 @@ const NavBar = () => {
     currentUserLastName,
     api_read_user,
     currentUserName,
+    refreshKeyUser,
   } = useContext(UserContext);
 
   const userId = localStorage.getItem("MOTORSSHOP:USERID");
@@ -36,11 +38,12 @@ const NavBar = () => {
     const getNameUser = async () => {
       const nameUser = await api_read_user(userId!);
 
-      setuserName(nameUser.name)
+      setuserAdmin(nameUser.isAdm);
+      setuserName(nameUser.name);
       currentUserName(nameUser.name);
     };
     getNameUser();
-  }, [userId, currentUserName, api_read_user]);
+  }, [userId, currentUserName, api_read_user, refreshKeyUser]);
 
   return (
     <StyledDiv>
@@ -80,11 +83,11 @@ const NavBar = () => {
                   <div>
                     <EditProfileModal />
                     <EditAddressModal />
-                    <DeleteUserModal user_id={user.id} />
-                    {user.isAdm ? (
+                    <DeleteUserModal user_id={userId!} />
+                    {userAdmin ? (
                       <button
                         onClick={() =>
-                          navigate(`/profileview/${user.id}`, { replace: true })
+                          navigate(`/profileview/${userId}`, { replace: true })
                         }
                       >
                         Meus anuncios

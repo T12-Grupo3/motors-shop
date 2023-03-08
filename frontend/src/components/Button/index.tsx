@@ -10,7 +10,7 @@ const ButtonComponent = ({
   hover_background_color,
   hover_border,
   hover_color,
-  type
+  type = 'button'
 }: iButton) => {
   return (
     <StyledButton
