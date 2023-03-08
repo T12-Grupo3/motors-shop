@@ -12,7 +12,7 @@ import isUserMiddleware from "../middleware/isUserMiddleware";
 
 const imageAdvertsRoutes = Router();
 
-imageAdvertsRoutes.post("", authUserMiddleware , isAdmMiddlewar, createImageAdvertsController);
+imageAdvertsRoutes.post("", authUserMiddleware ,  createImageAdvertsController);
 imageAdvertsRoutes.get("", listImageAdvertsController);
 imageAdvertsRoutes.get("/advert/:id", listImageAdvertsIdController);
 // imageAdvertsRoutes.delete("/:id", authUserMiddleware , isUserMiddleware, isAdmMiddlewar, deleteImageAdvertsController);

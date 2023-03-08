@@ -9,15 +9,18 @@ export interface IImageAdvertsRequest {
     id: string;
     galery_image: string;
     advertsId: string;
+    
   }
 
   export interface IImageAdvertsCreate {
     galery_image: string;
     advertsId: string;
+   
   }
 
   export interface IImageAdvertsDelete extends BaseEntity {
     id: string;
     galery_image: string;
     advertsId: string;
+    
   }
