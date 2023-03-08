@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Button = styled.button`
   width: 160px;
   height: 48px;
-  border: 1.5px solid #4529e6;
+  border: 1.5px solid var(--color-brand-1);
   border-radius: 4px;
   font-family: "Inter";
   font-size: 16px;
@@ -11,6 +11,12 @@ export const Button = styled.button`
   background-color: transparent;
   color: var(--color-brand-1);
   cursor: pointer;
+
+  &:hover{
+    background-color: var(--color-brand-2);
+    color: var(--color-grey-10);
+    border: 1.5px solid var(--color-brand-3)
+  }
 `;
 
 export const Container = styled.div`

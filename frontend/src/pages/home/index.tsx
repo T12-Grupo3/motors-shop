@@ -40,11 +40,6 @@ const Home = () => {
             <p>Um ambiente feito para você explorar o seu melhor</p>
           </div>
 
-          <div className="div-buutons">
-            <ButtonContent>Carros</ButtonContent>
-            <ButtonContent>Motos</ButtonContent>
-          </div>
-
           <StyledHomeButtons>
             <ButtonComponent
               type="button"

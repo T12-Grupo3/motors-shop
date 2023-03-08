@@ -30,7 +30,7 @@ const ProfileView = () => {
       setProfileUser(getUser)
     };
     getNameUser();
-  }, [refreshKeyUser, refreshKey]);
+  }, [refreshKey]);
 
   const filteredAuctions = auctions.filter((auction) => auction.user.id === id);
 
@@ -60,7 +60,13 @@ const ProfileView = () => {
           )}
         </div>
         <p className="textProfile">{profileUser?.description_user}</p>
-        <RegisterAdvertModal />
+        {
+          userId === profileUser.id ? (
+            <RegisterAdvertModal />
+          ):(
+            <></>
+          )
+        }
       </ContainerUserProfile>
 
         <StyledProductsContainer>
@@ -72,7 +78,6 @@ const ProfileView = () => {
               {
                 filteredAuctions.length === 0 ? (
                   <></>
-                  // <h5>Você ainda não tem anúncios para leilão</h5>
                 ):(
                   <>
                     <h5>Leilão</h5>
@@ -83,7 +88,6 @@ const ProfileView = () => {
               {
                 filteredCars.length === 0 ? (
                   <></>
-                  // <h5>Você ainda não tem anúncios de carros</h5>
                 ):(
                   <>
                     <h5>Carros</h5>
@@ -98,7 +102,6 @@ const ProfileView = () => {
               {
                 filteredMotorcycles.length === 0 ? (
                   <></>
-                  // <h5>Você ainda não tem anúncios de motos</h5>
                 ):(
                   <>
                     <h5>Motos</h5>
