@@ -44,16 +44,6 @@ const findAdvertsComments = await advertsRepository.createQueryBuilder('adverts'
 .andWhere('comments.comments = :comments', {comments: comments})
 .getOne()
 
-// if(findAdvertsComments){
-//     console.log("CONSOLE.LOG FINDCOMMENTS:", findAdvertsComments)
-//     throw new AppError("Comments already exists",400 )
-// }
-
-// const newComments = commentsRepository.create({
-//   comments: comments,
-//   adverts: findAdvert,
-//   user: findUser
-// })
 
 await commentsRepository.save({
   comments: comments,
