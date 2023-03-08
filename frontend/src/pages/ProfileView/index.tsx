@@ -25,7 +25,7 @@ const ProfileView = () => {
   useEffect(() => {
     const getNameUser = async () => {
       const getUser = await api_read_user(id!);
-      changeName(profileUser.name);
+      changeName(getUser.name);
       
       setProfileUser(getUser)
     };
