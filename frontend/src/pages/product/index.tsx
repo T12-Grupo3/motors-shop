@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 import { iAdvert } from "../../interfaces/adverts.interfaces";
-import { ContainerProduct } from "./style";
+import { ContainerBlue, ContainerProduct } from "./style";
 import schemaInputComments from "../../Validations/schemaInputComments";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
@@ -15,7 +15,6 @@ import { UserContext } from "../../Context/UserContext";
 import { AdvertContext } from "../../Context/AdvertContext";
 import { differenceInDays } from "date-fns";
 import EditCommentsModal from "../../modals/EditCommentsModal";
-import { ContainerNavProfile } from "../ProfileView/style";
 import { iImageAdverts } from "../../interfaces/image_adverts.interface";
 import ImageVeiculeModal from "../../modals/imageVeiculoModal";
 import { iUserResponse } from "../../interfaces/user.interface";
@@ -26,8 +25,6 @@ const Product = () => {
   const [profileUser, setProfileUser] = useState<iUserResponse>(
     {} as iUserResponse
   );
-
-  //console.log(typeof(image))
 
   const [image, setImage] = useState<iImageAdverts[]>([]);
   const [showModal, setShowModal] = useState(false);
@@ -110,7 +107,7 @@ const Product = () => {
   return (
     <>
       <NavBar />
-      <ContainerNavProfile />
+      <ContainerBlue />
       <ContainerProduct>
         <div className="dashMain">
           <div className="dashLeft">
@@ -134,7 +131,7 @@ const Product = () => {
               </div>
               <a
                 href={`https://api.whatsapp.com/send?phone=+55+48998363692&text=Ol%C3%A1%2C%20venho%20por%20meio%20do%20seu%20anúncio%20pelo%20site%20motor-shop,%20o%20veiculo%20ainda%20está%20disponível?`}
-                className="button"
+                className="button-buy"
               >
                 Comprar
               </a>
@@ -176,7 +173,7 @@ const Product = () => {
                 </span>
                 <span className="liName">{user.name}</span>
               </div>
-              <div className="imputForm">
+              <div className="inputForm">
                 <label htmlFor="Comentário">Nome</label>
                 <input
                   type="text"
@@ -186,7 +183,7 @@ const Product = () => {
                   {...register("comments")}
                 />
                 {errors.comments?.message}
-                <button className="button" type="submit">
+                <button className="button-buy button-buy-post" type="submit">
                   Comentar
                 </button>
               </div>
@@ -195,7 +192,7 @@ const Product = () => {
 
           <div className="dashRigth">
             <div className="cardGalery">
-              <span className="spanFoto">Fotos</span>
+              <p className="paragraphFoto">Fotos</p>
               <ul className="galeryImg">
                 {image.map((elem) => (
                   <li key={elem.id} className="imgGalery">
@@ -211,15 +208,6 @@ const Product = () => {
                   </li>
                 ))}
 
-                {/* {Object.values(product).map((elem, index) => (
-                <li key={index} className="imgGalery">
-                <img
-                  className="imgGlr"
-                  src={elem}
-                  alt=""
-                />
-              </li>
-              ))} */}
               </ul>
             </div>
             <ImageVeiculeModal
