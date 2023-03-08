@@ -1,10 +1,10 @@
-import { useContext, useState } from "react";
+import ReactDOM from "react-dom";
+import { useContext, useRef, useState } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import { useForm } from "react-hook-form";
-import ReactDOM from "react-dom";
 import { Container, Button, Input } from "./styles";
 import schemaRegisterAdverts from "../../Validations/schemaRegisterAdverts";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -35,29 +35,61 @@ export default function RegisterAdvertModal() {
 
   const onSubmit = async (data: IRequestAdvertsExtended) => {
     console.log(data);
+
+    const images: string[] = [];
+    const inputs = inputRefs.current;
+    inputs.forEach((input) => {
+      images.push(input.value);
+    });
+
     const formData = {
       ...data,
       type_adverts: tipoAnuncioInputValue,
       type_veicule: tipoVeiculoInputValue,
+      galery_image: images,
     };
-    formData.galery_image = [];
+
+    console.log(formData)
 
     await api_create_adverts(formData);
   };
 
   // Função para selecionar tipo de anuncio e veiculo
 
+  const [tipoAnuncio, setTipoAnuncio] = useState<string>("sell");
+  const [tipoAnuncioInputValue, setTipoAnuncioInputValue] = useState("venda");
   const [tipoAnuncioStyle, setTipoAnuncioStyle] = useState({
-    venda: { backgroundColor: "", color: "" },
-    leilão: { backgroundColor: "", color: "" },
+    venda: {
+      backgroundColor: tipoAnuncio === "sell" ? "var(--color-brand-1)" : "",
+      color: tipoAnuncio === "sell" ? "var(--color-grey-whiteFixed)" : "",
+      border: tipoAnuncio === "sell" ? "var(--color-brand-1)" : "",
+    },
+    leilão: {
+      backgroundColor: tipoAnuncio === "auction" ? "var(--color-brand-1)" : "",
+      color: tipoAnuncio === "auction" ? "var(--color-grey-whiteFixed)" : "",
+      border: tipoAnuncio === "auction" ? "var(--color-brand-1)" : "",
+    },
   });
 
+  const [tipoVeiculoInputValue, setTipoVeiculoInputValue] = useState("veiculo");
+  const [tipoVeiculo, setTipoVeiculo] = useState("car");
   const [tipoVeiculoStyle, setTipoVeiculoStyle] = useState({
-    carro: { backgroundColor: "", color: "" },
-    moto: { backgroundColor: "", color: "" },
+    carro: {
+      backgroundColor: tipoVeiculo === "car" ? "var(--color-brand-1)" : "",
+      color: tipoVeiculo === "car" ? "var(--color-grey-whiteFixed)" : "",
+      border: tipoVeiculo === "car" ? "var(--color-brand-1)" : "",
+    },
+    moto: {
+      backgroundColor:
+        tipoVeiculo === "motorcycle" ? "var(--color-brand-1)" : "",
+      color: tipoVeiculo === "motorcycle" ? "var(--color-grey-whiteFixed)" : "",
+      border: tipoVeiculo === "motorcycle" ? "var(--color-brand-1)" : "",
+    },
   });
 
   // Função para adicionar mais um input ao clicar em adicionar mais um campo de imagem
+
+  const inputRefs = useRef<HTMLInputElement[]>([]);
 
   function addCampoGaleria() {
     const galeria = document.getElementById("galeria") as HTMLElement;
@@ -83,9 +115,6 @@ export default function RegisterAdvertModal() {
 
   // função para mudar o preço para lance inciial
 
-  const [tipoAnuncio, setTipoAnuncio] = useState("sell");
-  const [tipoAnuncioInputValue, setTipoAnuncioInputValue] = useState("venda");
-
   function handleTipoAnuncioChange(event: React.MouseEvent<HTMLButtonElement>) {
     const anuncio = event.currentTarget.classList.contains("btn-leilão")
       ? "auction"
@@ -96,16 +125,15 @@ export default function RegisterAdvertModal() {
       venda: {
         backgroundColor: anuncio === "sell" ? "var(--color-brand-1)" : "",
         color: anuncio === "sell" ? "var(--color-grey-whiteFixed)" : "",
+        border: anuncio === "sell" ? "var(--color-brand-1)" : "",
       },
       leilão: {
         backgroundColor: anuncio === "auction" ? "var(--color-brand-1)" : "",
         color: anuncio === "auction" ? "var(--color-grey-whiteFixed)" : "",
+        border: anuncio === "auction" ? "var(--color-brand-1)" : "",
       },
     });
   }
-
-  const [tipoVeiculoInputValue, setTipoVeiculoInputValue] = useState("veiculo");
-  const [tipoVeiculo, setTipoVeiculo] = useState("veiculo");
 
   function handleTipoVeiculoChange(event: React.MouseEvent<HTMLButtonElement>) {
     const veiculo = event.currentTarget.classList.contains("btn-tipo-carro")
@@ -117,10 +145,12 @@ export default function RegisterAdvertModal() {
       carro: {
         backgroundColor: veiculo === "car" ? "var(--color-brand-1)" : "",
         color: veiculo === "car" ? "var(--color-grey-whiteFixed)" : "",
+        border: veiculo === "car" ? "var(--color-brand-1)" : "",
       },
       moto: {
         backgroundColor: veiculo === "motorcycle" ? "var(--color-brand-1)" : "",
         color: veiculo === "motorcycle" ? "var(--color-grey-whiteFixed)" : "",
+        border: veiculo === "motorcycle" ? "var(--color-brand-1)" : "",
       },
     });
   }

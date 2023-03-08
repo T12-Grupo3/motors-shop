@@ -17,7 +17,6 @@ import api from "../service/api";
 import { IError } from "../interfaces/iError";
 import { iCommentsPreview } from "../interfaces/commentsPreiew";
 import { SetOptional } from "type-fest";
-import { iImageAdverts } from "../interfaces/image_adverts.interface";
 
 export interface IContext {
   auctions: iAdvert[];

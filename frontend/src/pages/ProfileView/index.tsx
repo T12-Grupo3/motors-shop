@@ -15,8 +15,8 @@ import {
 
 const ProfileView = () => {
   const { id } = useParams();
-  const { auctions, cars, motorcycles } = useContext(AdvertContext);
-  const { user, changeName, firstName, lastName, api_read_user } = useContext(UserContext);
+  const { auctions, cars, motorcycles, refreshKey } = useContext(AdvertContext);
+  const { user, changeName, firstName, lastName, api_read_user,  } = useContext(UserContext);
 
   const userId = localStorage.getItem("MOTORSSHOP:USERID");
 
@@ -24,9 +24,10 @@ const ProfileView = () => {
     const getNameUser = async () => {
       const nameUser = await api_read_user(id!);
       changeName(nameUser.name);
+
     };
     getNameUser();
-  }, []);
+  }, [refreshKey]);
 
   const filteredAuctions = auctions.filter((auction) => auction.user.id === id);
 

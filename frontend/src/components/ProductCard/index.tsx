@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { iAdvert } from "../../interfaces/adverts.interfaces";
 import DeleteAdvertsModal from "../../modals/DeleteAdvertsModal";
@@ -34,20 +35,24 @@ const ProductCard = ({ advert }: iProductCard) => {
 
   return (
     <StyledProductCard>
-      <StyledProductImg>
-        <img src={cover_image_adverts} alt={description_adverts} />
-      </StyledProductImg>
-      <StyledProductDescription>
-        <h2>{title_adverts}</h2>
-        <p>{description_adverts}</p>
-      </StyledProductDescription>
+      <Link to={`/product/${id}`}>
+        <StyledProductImg>
+          <img src={cover_image_adverts} alt={description_adverts} />
+        </StyledProductImg>
+        <StyledProductDescription>
+          <h2>{title_adverts}</h2>
+          <p>{description_adverts}</p>
+        </StyledProductDescription>
+      </Link>
 
       {user.id === currentUser ? (
         <></>
       ) : (
         <StyledProductUser>
-          <span>NC</span>
-          <span>{user.name}</span>
+          <Link to={`/profileview/${user.id}`}>
+            <span>{user.name[0]}</span>
+            <span>{user.name}</span>
+          </Link>
         </StyledProductUser>
       )}
 

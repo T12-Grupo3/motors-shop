@@ -1,4 +1,5 @@
 import { iComments } from "./comments.interfaces";
+import { iImageAdverts } from "./image_adverts.interface";
 import { iUserResponse } from "./user.interface";
 
 export interface iAdvertProduct {
@@ -43,7 +44,13 @@ export interface iAdvertUpdate {
   description_adverts?: string;
   isAvailable?: boolean;
   image_adverts?: Array<string>;
-  cover_image_advert?: string
+  cover_image_advert?: string;
+}
+
+export interface iAdvertUpdateExtended extends iAdvertUpdate {
+  tipoAnuncio: string;
+  tipoVeiculo: string;
+  tipoPublicado: boolean;
 }
 
 export interface iImageAdvertRequest {
@@ -63,7 +70,7 @@ export interface iAdvert {
   cover_image_adverts: string;
   createdAt_adverts: Date;
   updatedAt_adverts: Date;
-  imageAdverts: string;
+  imageAdverts: iImageAdverts[];
   user: iUserResponse;
   comments: iComments[];
 }
@@ -76,6 +83,6 @@ export interface iDeleteAdverts extends iIdAdvert {
   handleCloseEdit: () => void;
 }
 
-export interface iEditAdvertModal{
-  advert: iAdvert
+export interface iEditAdvertModal {
+  advert: iAdvert;
 }

@@ -34,13 +34,13 @@ const NavBar = () => {
         </div>
         <nav>
           <li>
-            <Link to={"/"}>Carros</Link>
+            <Link to="/home#cars">Carros</Link>
           </li>
           <li>
-            <Link to={"/"}>Motos</Link>
+            <Link to="/home#motorcycles">Motos</Link>
           </li>
           <li>
-            <Link to={"/"}>Leilão</Link>
+            <Link to="/home#auctions">Leilão</Link>
           </li>
 
           {isLogged ? (

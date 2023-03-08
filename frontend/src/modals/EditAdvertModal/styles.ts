@@ -16,22 +16,12 @@ export const Container = styled.div`
   height: 530px;
   overflow-y: scroll;
 
-  .div-header-modal{
+  .div-header-modal {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     height: 30px;
     margin-bottom: 10px;
-
-    button{
-      background-color: transparent;
-      border: 2px solid  #4529e6;
-      border-radius: 30px;
-      cursor: pointer;
-      align-content: center;
-      font-size: 20px;
-      color: #4529e6;
-    }
   }
 
   .h3-anuncio {
@@ -65,7 +55,7 @@ export const Container = styled.div`
   .btn-tipo-anuncio,
   .btn-tipo-veiculo,
   .btn-tipo-publicado {
-    border: 1.5px solid #4529e6;
+    border: 1.5px solid #adb5bd;
     border-radius: 4px;
     width: 228px;
     height: 48px;
@@ -140,7 +130,7 @@ export const Container = styled.div`
     width: 200px;
   }
 
-  .p-tipo-veiculo{
+  .p-tipo-veiculo {
     font-family: "Inter";
     font-weight: var(--font-heading-3);
     font-size: 14px;
@@ -179,6 +169,7 @@ export const Container = styled.div`
     cursor: pointer;
     padding-top: 25px;
     padding-bottom: 25px;
+    background-color: var(--color-brand-4);
   }
 
   .div-btn-cancela-submit {
@@ -215,4 +206,29 @@ export const Container = styled.div`
     color: var(--color-grey-whiteFixed);
     cursor: pointer;
   }
+
+  .button-x-fechar {
+    border: none;
+    margin-left: 228px;
+    margin-bottom: 36px;
+    font-weight: 400;
+    font-size: x-large;
+    color: var(--color-grey-4);
+    background-color: transparent;
+  }
+`;
+
+export const Input = styled.input`
+border: 1.5px solid #E9ECEF;
+border-radius: 4px;
+height: 48px;
+width: 96px;
+padding: 0px 16px 0px 16px;
+
+Input::placeholder {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-grey-3)
+  font-family: 'Inter';
+}
 `;
