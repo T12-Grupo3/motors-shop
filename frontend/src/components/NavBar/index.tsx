@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Context/UserContext";
 import DeleteUserModal from "../../modals/DeleteUserModal";
@@ -18,8 +18,26 @@ import {
 const NavBar = () => {
   const navigate = useNavigate();
 
-  const { isLogged, logoutProfileView, user, firstName, lastName } =
-    useContext(UserContext);
+  const {
+    isLogged,
+    logoutProfileView,
+    user,
+    currentUserFirstName,
+    currentUserLastName,
+    api_read_user,
+    currentUserName,
+  } = useContext(UserContext);
+
+  const userId = localStorage.getItem("MOTORSSHOP:USERID");
+
+  useEffect(() => {
+    const getNameUser = async () => {
+      const nameUser = await api_read_user(userId!);
+      console.log(nameUser)
+      currentUserName(nameUser.name);
+    };
+    getNameUser();
+  }, []);
 
   return (
     <StyledDiv>
@@ -49,8 +67,8 @@ const NavBar = () => {
                 <StyledUser>
                   <div className="imgProfile">
                     <p>
-                      {firstName}
-                      {lastName}
+                      {currentUserFirstName}
+                      {currentUserLastName}
                     </p>
                   </div>
                   <button type="button">{user.name}</button>

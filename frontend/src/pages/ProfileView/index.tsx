@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CarouselComponent from "../../components/carousel";
 import Footer from "../../components/Footer";
@@ -6,6 +6,7 @@ import NavBar from "../../components/NavBar";
 import ProductCard from "../../components/ProductCard";
 import { AdvertContext } from "../../Context/AdvertContext";
 import { UserContext } from "../../Context/UserContext";
+import { iUserResponse } from "../../interfaces/user.interface";
 import RegisterAdvertModal from "../../modals/RegisterAdvertModal";
 import { StyledProductsContainer } from "../home/style";
 import {
@@ -16,15 +17,17 @@ import {
 const ProfileView = () => {
   const { id } = useParams();
   const { auctions, cars, motorcycles, refreshKey } = useContext(AdvertContext);
-  const { user, changeName, firstName, lastName, api_read_user,  } = useContext(UserContext);
+  const { changeName, firstName, lastName, api_read_user, } = useContext(UserContext);
+  const [profileUser, setProfileUser] = useState<iUserResponse>({} as iUserResponse)
 
   const userId = localStorage.getItem("MOTORSSHOP:USERID");
-
+  
   useEffect(() => {
     const getNameUser = async () => {
-      const nameUser = await api_read_user(id!);
-      changeName(nameUser.name);
-
+      const getUser = await api_read_user(id!);
+      changeName(profileUser.name);
+      
+      setProfileUser(getUser)
     };
     getNameUser();
   }, [refreshKey]);
@@ -49,14 +52,14 @@ const ProfileView = () => {
           </p>
         </div>
         <div className="divName">
-          <p className="profileName"> {user?.name} </p>
-          {user.isAdm ? (
+          <p className="profileName"> {profileUser?.name} </p>
+          {profileUser.isAdm ? (
             <p className="paragraphAdvertiser">Anunciante</p>
           ) : (
             <p className="paragraphAdvertiser">Comprador</p>
           )}
         </div>
-        <p className="textProfile">{user?.description_user}</p>
+        <p className="textProfile">{profileUser?.description_user}</p>
         <RegisterAdvertModal />
       </ContainerUserProfile>
 
