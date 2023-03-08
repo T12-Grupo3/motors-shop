@@ -9,8 +9,6 @@ export const ContainerBlue = styled.div`
     display: flex;
 
 `
-
-
 export const ContainerProduct = styled.div`
 
   color: var(--color-grey-9);
@@ -403,7 +401,7 @@ li{
 .paragraphFoto{
   width: 55px;
   height: 25px;
-  margin: 40px 0px 0px 40px;
+  margin: 25px 0px 0px 40px;
 
 
   font-family: 'Lexend';
@@ -422,8 +420,10 @@ li{
   row-gap: 15px;
 
   display: flex;
-  flex-direction: row; 
-
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  overflow: overlay;
 }
 
 .imgGalery{
@@ -432,7 +432,7 @@ li{
   align-items: center;
   justify-content: center;
 
-  width: 108px;
+  width: 135px;
   height: 108px;
 
   background: var(--color-grey-7);
