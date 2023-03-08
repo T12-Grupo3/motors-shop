@@ -3,7 +3,7 @@ import { IImageAdvertsRequest } from "../../interfaces/image_adverts";
 import { ImageAdverts } from "../../entities/image_adverts.entity";
 import { AppError } from "../../errors/appError";
 
-const updateImageAdvertsService = async({ image_adverts }: IImageAdvertsRequest, id: string): Promise<IImageAdvertsRequest>  => {
+const updateImageAdvertsService = async({ galery_image }: IImageAdvertsRequest, id: string): Promise<IImageAdvertsRequest>  => {
 
     const imageAdvertsRepository = AppDataSource.getRepository(ImageAdverts)
 
@@ -18,7 +18,7 @@ const updateImageAdvertsService = async({ image_adverts }: IImageAdvertsRequest,
     await imageAdvertsRepository.update(
         id,
         {
-            image_adverts: image_adverts ? image_adverts : findImageAdverts.image_adverts,            
+            galery_image: galery_image ? galery_image : findImageAdverts.galery_image,            
         }
     )
 
@@ -26,7 +26,7 @@ const updateImageAdvertsService = async({ image_adverts }: IImageAdvertsRequest,
         id
     })
 
-    return {image_adverts}
+    return {galery_image}
 }
 
 export default updateImageAdvertsService

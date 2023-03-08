@@ -16,12 +16,14 @@ import { AdvertContext } from "../../Context/AdvertContext";
 import { differenceInDays } from "date-fns";
 import EditCommentsModal from "../../modals/EditCommentsModal";
 import { iImageAdverts } from "../../interfaces/image_adverts.interface";
+import ImageVeiculeModal from "../../modals/imageVeiculoModal";
 
 const Product = () => {
   const { id } = useParams();
   const [product, setproduct] = useState<iAdvert>({} as iAdvert);
   const [image, setImage] = useState<iImageAdverts[]>([]);
-
+  const [showModal, setShowModal] = useState(false);
+  const [selectedImage, setSelectedImage] = useState("");
 
   const navigate = useNavigate();
   const { changeName, firstName, lastName, api_read_user, user } =
@@ -179,11 +181,20 @@ const Product = () => {
                     className="imgGlr"
                     src={elem.galery_image}
                     alt=""
+                    onClick={() => {
+                      setSelectedImage(elem.galery_image);
+                      setShowModal(true);
+                    }}
                   />
                 </li>
               ))}
               </ul>
             </div>
+            <ImageVeiculeModal
+              imgSrc={selectedImage}
+              open={showModal}
+              onClose={() => setShowModal(false)}
+            />
             <div className="cardProfile">
               <div className="cardNikeProfile">
                 <span className="nikePerfilClient">
