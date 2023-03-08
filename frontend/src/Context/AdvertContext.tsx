@@ -17,6 +17,8 @@ import api from "../service/api";
 import { IError } from "../interfaces/iError";
 import { iCommentsPreview } from "../interfaces/commentsPreiew";
 import { SetOptional } from "type-fest";
+import { toast } from 'react-toastify'
+
 
 export interface IContext {
   auctions: iAdvert[];
@@ -83,12 +85,15 @@ const AdvertProvider = ({ children }: IProviderProps) => {
   const api_create_adverts = async (data: IRequestAdverts) => {
     try {
       const res = await api.post(`/adverts`, data);
+      toast.success('Anúncio criado com sucesso!', { autoClose: 1000 })
+
 
       setRefreshKey((oldKey) => oldKey + 1);
 
       return res.data;
     } catch (error) {
       console.log(error);
+      toast.error('Ocorreu um erro ao criar seu anúncio, verifique todos os campos preenchidos')
     }
   };
 
@@ -98,6 +103,8 @@ const AdvertProvider = ({ children }: IProviderProps) => {
 
       return res.data;
     } catch (error) {
+      toast.error('ocorreu algum erro na criação das imagens')
+
       console.log(error);
     }
   };
@@ -105,11 +112,13 @@ const AdvertProvider = ({ children }: IProviderProps) => {
   const api_create_comments = async (data: iCommentsRequest) => {
     try {
       const res = await api.post("/comments", data);
+      toast.success('Seu comentário foi enviado com sucesso!', { autoClose: 1000 })
 
       setRefreshKey((oldKey) => oldKey + 1);
 
       return res.data;
     } catch (error) {
+      toast.error('ocorreu algum erro na criação de seu comentário')
       console.log(error);
     }
   };
@@ -129,21 +138,22 @@ const AdvertProvider = ({ children }: IProviderProps) => {
 
       return res.data;
     } catch (error) {
+      toast.error('ocorreu algum erro na visualização de seus comentários, recarregue a página')
       console.log(error);
     }
   };
 
   const api_delete_comments = async (id_comments: string) => {
-    
-   
     try {
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       const res = await api.delete(`/comments/${id_comments}`);
+      toast.success('Seu comentário foi deletado com sucesso!', { autoClose: 1000 })
+
       setHandleDelete(false)
-      
       setRefreshKey(oldKey=>oldKey + 1)
       return res.data;
     } catch (error) {
+      toast.error('ocorreu algum erro na deleção de seu comentário, atualize a página e tente novamente')
       console.log(error);
     }
   };
@@ -151,25 +161,28 @@ const AdvertProvider = ({ children }: IProviderProps) => {
   const api_update_comments = async (id_comments: string, data: iCommentsRequest) => {
     try {
       const res = await api.patch(`/comments/${id_comments}/`, data);
-
+      toast.success('Seu comentário foi editado com sucesso!', { autoClose: 1000 })
       setRefreshKey(oldKey=>oldKey + 1)
 
       return res.data;
     } catch (error) {
+      toast.error('Ocorreu algum erro na edição de seu comentário, verifique se todos os campos foram preenchidos e tente novamente')
       console.log(error);
     }
   };
 
- 
-
   const api_delete_advert = async (id_adverts: string) => {
     try {
       const res = await api.delete(`/adverts/${id_adverts}`);
+      toast.success('Seu anúncio foi excluído com sucesso!', { autoClose: 1000 })
+
       setHandleDelete(false)
       setRefreshKey((oldKey) => oldKey + 1);
 
       return res.data;
     } catch (error) {
+      toast.error('ocorreu algum erro ao excluir seu anúncio, atualize a página e tente novamente')
+
       console.log(error);
     }
   };
@@ -186,6 +199,7 @@ const AdvertProvider = ({ children }: IProviderProps) => {
 
       return res.data;
     } catch (error) {
+      toast.error('ocorreu algum erro na visualização de seus anúncios')
       console.log(error);
     }
   };
@@ -193,11 +207,13 @@ const AdvertProvider = ({ children }: IProviderProps) => {
   const api_update_advert = async (id_advert: string, data: iAdvertUpdate) => {
     try {
       const res = await api.patch(`/adverts/${id_advert}/`, data);
+      toast.success('Seu anúncio foi editado com sucesso!', { autoClose: 1000 })
 
       setRefreshKey((oldKey) => oldKey + 1);
 
       return res.data;
     } catch (error) {
+      toast.error('ocorreu algum erro na edição de seu anúncio, verifique se todos os campos estão preenchidos e tente novamente')
       console.log(error);
     }
   };
