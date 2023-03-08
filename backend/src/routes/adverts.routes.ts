@@ -11,7 +11,7 @@ import isUserMiddleware from "../middleware/isUserMiddleware";
 const advertsRoutes = Router();
 
 // advertsRoutes.post("", authUserMiddleware , isUserMiddleware, isAdmMiddlewar, createAdvertsController);
-advertsRoutes.post("", createAdvertsController);
+advertsRoutes.post("", authUserMiddleware , isAdmMiddlewar, createAdvertsController);
 
 advertsRoutes.get("", ListAdvertsController);
 advertsRoutes.get("/:id", listAdvertsIdController);

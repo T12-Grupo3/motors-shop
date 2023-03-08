@@ -25,7 +25,7 @@ declare global {
                 userId: bstring
                 AdvertsId: string
             },
-            cimage_adverts: {
+            image_adverts: {
                 id: string
                 AdvertsId: string
             }
