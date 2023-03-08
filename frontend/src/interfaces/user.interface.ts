@@ -56,7 +56,7 @@ export interface iLoginRequest {
 export interface iPasswordChangeRequest {
   email: string;
   password: string;
-  password_confirm: string
+  password_confirm: string;
 }
 
 export interface iUserRegisterRecieve extends iAdressRequest {
@@ -73,25 +73,24 @@ export interface iUserRegisterRecieve extends iAdressRequest {
 export interface iUserContext {
   api_create_user: (data: iUserRequest) => Promise<void>;
   api_signin_user: (props: iLoginRequest) => Promise<void>;
-  api_change_password: (props: iPasswordChangeRequest) => Promise<void>
+  api_change_password: (props: iPasswordChangeRequest) => Promise<void>;
   api_update_user: (props: iUserUpdate) => Promise<void>;
   user: iUserResponse;
   isLogged: boolean;
   setIsLogged: React.Dispatch<SetStateAction<boolean>>;
-  logoutProfileView: ()=>void;
-  changeName: (props: string)=>Promise<void>;
+  logoutProfileView: () => void;
+  changeName: (props: string) => Promise<void>;
   firstName: string;
   lastName: string;
-  currentUserFirstName: string
-  currentUserLastName: string
-  currentUserName: (props: string)=>Promise<void>;
-  api_update_address: (props: iAdressRequest) => void
-  api_delete_user: (user_id: string) => void
-  api_read_user: (props: string) => Promise<iUserResponse>
+  currentUserFirstName: string;
+  currentUserLastName: string;
+  currentUserName: (props: string) => Promise<void>;
+  api_update_address: (props: iAdressRequest) => void;
+  api_delete_user: (user_id: string) => void;
+  api_read_user: (props: string) => Promise<iUserResponse>;
+  refreshKeyUser: number;
 }
 
 export interface iUserProvider {
   children: ReactNode;
 }
-
-

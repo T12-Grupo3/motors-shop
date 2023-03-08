@@ -1,37 +1,29 @@
-import * as yup from 'yup';
+import * as yup from "yup";
 
 const schemaRegisterAdverts = yup.object().shape({
-    type_adverts: yup
+  title_adverts: yup
     .string()
-    .required('Campo obrigatório'),
+    .required("Campo obrigatório")
+    .max(200, "Limite de 200 caracteres"),
 
-    title_adverts: yup
+  year_adverts: yup
     .string()
-    .required('Campo obrigatório'),
+    .required("Campo obrigatório")
+    .max(280, "Limite de 280 caracteres"),
 
-    year_adverts: yup
+  price_adverts: yup.number().required("Campo obrigatório"),
+
+  kilometers_adverts: yup
     .string()
-    .required('Campo obrigatório'),
+    .required("Campo obrigatório")
+    .max(280, "Limite de 280 caracteres"),
 
-    price_adverts: yup
-    .number()
-    .required("Campo obrigatório"),
-
-    type_veicule: yup
+  description_adverts: yup
     .string()
-    .required('Campo obrigatório'),
+    .required("Campo obrigatório")
+    .max(280, "Limite de 280 caracteres"),
 
-    kilometers_adverts: yup
-    .string()
-    .required('Campo obrigatório'),
+  cover_image_adverts: yup.string(),
+});
 
-    description_adverts: yup
-    .string()
-    .required('Campo obrigatório'),
-
-    cover_image_adverts: yup
-    .string()
-    
-})
-
-export default schemaRegisterAdverts
+export default schemaRegisterAdverts;
