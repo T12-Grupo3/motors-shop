@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Context/UserContext";
 import DeleteUserModal from "../../modals/DeleteUserModal";
@@ -16,10 +16,31 @@ import {
 } from "./style";
 
 const NavBar = () => {
+  const [userName, setuserName] = useState('')
+
   const navigate = useNavigate();
 
-  const { isLogged, logoutProfileView, user, firstName, lastName } =
-    useContext(UserContext);
+  const {
+    isLogged,
+    logoutProfileView,
+    user,
+    currentUserFirstName,
+    currentUserLastName,
+    api_read_user,
+    currentUserName,
+  } = useContext(UserContext);
+
+  const userId = localStorage.getItem("MOTORSSHOP:USERID");
+
+  useEffect(() => {
+    const getNameUser = async () => {
+      const nameUser = await api_read_user(userId!);
+
+      setuserName(nameUser.name)
+      currentUserName(nameUser.name);
+    };
+    getNameUser();
+  }, [userId, currentUserName, api_read_user]);
 
   return (
     <StyledDiv>
@@ -49,11 +70,11 @@ const NavBar = () => {
                 <StyledUser>
                   <div className="imgProfile">
                     <p>
-                      {firstName}
-                      {lastName}
+                      {currentUserFirstName}
+                      {currentUserLastName}
                     </p>
                   </div>
-                  <button type="button">{user.name}</button>
+                  <button type="button">{userName}</button>
                 </StyledUser>
                 <div className="dropdown-content">
                   <div>
