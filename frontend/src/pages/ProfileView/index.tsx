@@ -16,8 +16,8 @@ import {
 
 const ProfileView = () => {
   const { id } = useParams();
-  const { auctions, cars, motorcycles, refreshKey } = useContext(AdvertContext);
-  const { changeName, firstName, lastName, api_read_user, } = useContext(UserContext);
+  const { auctions, cars, motorcycles, refreshKey} = useContext(AdvertContext);
+  const { changeName, firstName, lastName, api_read_user, refreshKeyUser} = useContext(UserContext);
   const [profileUser, setProfileUser] = useState<iUserResponse>({} as iUserResponse)
 
   const userId = localStorage.getItem("MOTORSSHOP:USERID");
@@ -30,7 +30,7 @@ const ProfileView = () => {
       setProfileUser(getUser)
     };
     getNameUser();
-  }, [refreshKey]);
+  }, [refreshKeyUser, refreshKey]);
 
   const filteredAuctions = auctions.filter((auction) => auction.user.id === id);
 

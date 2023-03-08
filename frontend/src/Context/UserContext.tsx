@@ -19,8 +19,9 @@ const UserProvider = ({ children }: iUserProvider) => {
   const [isLogged, setIsLogged] = useState<boolean>(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [currentUserFirstName, setcurrentUserFirstName] = useState('')
-  const [currentUserLastName, setcurrentUserLastName] = useState('')
+  const [currentUserFirstName, setcurrentUserFirstName] = useState("");
+  const [currentUserLastName, setcurrentUserLastName] = useState("");
+  const [refreshKeyUser, setrefreshKeyUser] = useState(0);
 
   const navigate = useNavigate();
 
@@ -47,7 +48,9 @@ const UserProvider = ({ children }: iUserProvider) => {
     try {
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       const { data } = await api.get(`/users/${userId}`);
-      // setUser(data);
+
+      setrefreshKeyUser((oldKey) => oldKey + 1);
+
       return data;
     } catch (error) {
       console.error(error);
@@ -115,15 +118,15 @@ const UserProvider = ({ children }: iUserProvider) => {
   const currentUserName = async (name: string) => {
     const splicedName = await name?.split(" ");
 
-    setcurrentUserFirstName(splicedName[0].charAt(0))
-    setcurrentUserLastName(splicedName[1].charAt(0))
+    setcurrentUserFirstName(splicedName[0].charAt(0));
+    setcurrentUserLastName(splicedName[1].charAt(0));
   };
 
   const logoutProfileView = () => {
     localStorage.clear();
     localStorage.clear();
     setIsLogged(false);
-    navigate("/home", {replace: true});
+    navigate("/home", { replace: true });
     window.location.reload();
   };
 
@@ -146,7 +149,8 @@ const UserProvider = ({ children }: iUserProvider) => {
         api_read_user,
         currentUserLastName,
         currentUserFirstName,
-        currentUserName
+        currentUserName,
+        refreshKeyUser,
       }}
     >
       {children}

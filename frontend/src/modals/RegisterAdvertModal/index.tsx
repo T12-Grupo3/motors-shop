@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import { useContext, useRef, useState } from "react";
+import { useContext,  useState } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -8,10 +8,13 @@ import { useForm } from "react-hook-form";
 import { Container, Button, Input } from "./styles";
 import schemaRegisterAdverts from "../../Validations/schemaRegisterAdverts";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { IRequestAdvertsExtended } from "../../interfaces/adverts.interfaces";
+import {
+  IRequestAdverts,
+} from "../../interfaces/adverts.interfaces";
 import { AdvertContext } from "../../Context/AdvertContext";
 import { Error } from "../../style/error";
 import RegisterAdvertsConfirm from "../RegisterAdvertsConfirm";
+import ButtonComponent from "../../components/Button";
 
 const style = {
   position: "absolute" as "absolute",
@@ -33,63 +36,32 @@ export default function RegisterAdvertModal() {
 
   const { api_create_adverts } = useContext(AdvertContext);
 
-  const onSubmit = async (data: IRequestAdvertsExtended) => {
-    console.log(data);
+  const [typeVeicule, settypeVeicule] = useState("car");
+  const [typeAdvert, settypeAdvert] = useState("sell");
 
-    const images: string[] = [];
-    const inputs = inputRefs.current;
-    inputs.forEach((input) => {
-      images.push(input.value);
+  const onSubmit = async (data: IRequestAdverts) => {
+    const galery_image: string[] = [];
+    const inputs: NodeListOf<HTMLInputElement> = document.querySelectorAll(
+      '#galeria Input[type="url"]'
+    );
+    inputs.forEach((Input: HTMLInputElement) => {
+      galery_image.push(Input.value);
     });
 
     const formData = {
       ...data,
-      type_adverts: tipoAnuncioInputValue,
-      type_veicule: tipoVeiculoInputValue,
-      galery_image: images,
+      type_adverts: typeAdvert,
+      type_veicule: typeVeicule,
+      galery_image,
     };
 
-    console.log(formData)
-
-    await api_create_adverts(formData);
+    await api_create_adverts(formData).then(() => {
+      setOpen(false);
+      setopenModalConfirm(true);
+    });
   };
 
-  // Função para selecionar tipo de anuncio e veiculo
 
-  const [tipoAnuncio, setTipoAnuncio] = useState<string>("sell");
-  const [tipoAnuncioInputValue, setTipoAnuncioInputValue] = useState("venda");
-  const [tipoAnuncioStyle, setTipoAnuncioStyle] = useState({
-    venda: {
-      backgroundColor: tipoAnuncio === "sell" ? "var(--color-brand-1)" : "",
-      color: tipoAnuncio === "sell" ? "var(--color-grey-whiteFixed)" : "",
-      border: tipoAnuncio === "sell" ? "var(--color-brand-1)" : "",
-    },
-    leilão: {
-      backgroundColor: tipoAnuncio === "auction" ? "var(--color-brand-1)" : "",
-      color: tipoAnuncio === "auction" ? "var(--color-grey-whiteFixed)" : "",
-      border: tipoAnuncio === "auction" ? "var(--color-brand-1)" : "",
-    },
-  });
-
-  const [tipoVeiculoInputValue, setTipoVeiculoInputValue] = useState("veiculo");
-  const [tipoVeiculo, setTipoVeiculo] = useState("car");
-  const [tipoVeiculoStyle, setTipoVeiculoStyle] = useState({
-    carro: {
-      backgroundColor: tipoVeiculo === "car" ? "var(--color-brand-1)" : "",
-      color: tipoVeiculo === "car" ? "var(--color-grey-whiteFixed)" : "",
-      border: tipoVeiculo === "car" ? "var(--color-brand-1)" : "",
-    },
-    moto: {
-      backgroundColor:
-        tipoVeiculo === "motorcycle" ? "var(--color-brand-1)" : "",
-      color: tipoVeiculo === "motorcycle" ? "var(--color-grey-whiteFixed)" : "",
-      border: tipoVeiculo === "motorcycle" ? "var(--color-brand-1)" : "",
-    },
-  });
-
-  // Função para adicionar mais um input ao clicar em adicionar mais um campo de imagem
-
-  const inputRefs = useRef<HTMLInputElement[]>([]);
 
   function addCampoGaleria() {
     const galeria = document.getElementById("galeria") as HTMLElement;
@@ -99,7 +71,7 @@ export default function RegisterAdvertModal() {
 
     const novoTitulo = document.createElement("p");
     novoTitulo.className = "p-img-galeria";
-    novoTitulo.textContent = `${numCampos + 1}° Imagem da galeria`;
+    novoTitulo.textContent = `${numCampos}° Imagem da galeria`;
 
     const novoInput = document.createElement("div");
     ReactDOM.render(
@@ -113,53 +85,12 @@ export default function RegisterAdvertModal() {
     galeria.appendChild(novoCampo);
   }
 
-  // função para mudar o preço para lance inciial
-
-  function handleTipoAnuncioChange(event: React.MouseEvent<HTMLButtonElement>) {
-    const anuncio = event.currentTarget.classList.contains("btn-leilão")
-      ? "auction"
-      : "sell";
-    setTipoAnuncio(anuncio);
-    setTipoAnuncioInputValue(anuncio);
-    setTipoAnuncioStyle({
-      venda: {
-        backgroundColor: anuncio === "sell" ? "var(--color-brand-1)" : "",
-        color: anuncio === "sell" ? "var(--color-grey-whiteFixed)" : "",
-        border: anuncio === "sell" ? "var(--color-brand-1)" : "",
-      },
-      leilão: {
-        backgroundColor: anuncio === "auction" ? "var(--color-brand-1)" : "",
-        color: anuncio === "auction" ? "var(--color-grey-whiteFixed)" : "",
-        border: anuncio === "auction" ? "var(--color-brand-1)" : "",
-      },
-    });
-  }
-
-  function handleTipoVeiculoChange(event: React.MouseEvent<HTMLButtonElement>) {
-    const veiculo = event.currentTarget.classList.contains("btn-tipo-carro")
-      ? "car"
-      : "motorcycle";
-    setTipoVeiculo(veiculo);
-    setTipoVeiculoInputValue(veiculo);
-    setTipoVeiculoStyle({
-      carro: {
-        backgroundColor: veiculo === "car" ? "var(--color-brand-1)" : "",
-        color: veiculo === "car" ? "var(--color-grey-whiteFixed)" : "",
-        border: veiculo === "car" ? "var(--color-brand-1)" : "",
-      },
-      moto: {
-        backgroundColor: veiculo === "motorcycle" ? "var(--color-brand-1)" : "",
-        color: veiculo === "motorcycle" ? "var(--color-grey-whiteFixed)" : "",
-        border: veiculo === "motorcycle" ? "var(--color-brand-1)" : "",
-      },
-    });
-  }
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IRequestAdvertsExtended>({
+  } = useForm<IRequestAdverts>({
     resolver: yupResolver(schemaRegisterAdverts),
   });
 
@@ -188,28 +119,32 @@ export default function RegisterAdvertModal() {
 
                 <p className="p-tipo-anuncio">Tipo de anuncio</p>
                 <div className="div-btn-tipo-anuncio">
-                  <button
-                    className="btn-tipo-anuncio btn-venda"
-                    onClick={handleTipoAnuncioChange}
-                    style={tipoAnuncioStyle.venda}
-                    type="button"
+                  <ButtonComponent
+                    onClick={() => settypeAdvert("sell")}
+                    background_color={typeAdvert === "sell" ? "brand-1" : ""}
+                    color={typeAdvert === "sell" ? "grey-whiteFixed" : "grey-0"}
+                    border={typeAdvert === "sell" ? "brand-1" : "grey-4"}
+                    hover_background_color="brand-1"
+                    hover_border="brand-1"
+                    hover_color="grey-whiteFixed"
                   >
                     Venda
-                  </button>
-                  <button
-                    className="btn-tipo-anuncio btn-leilão"
-                    onClick={handleTipoAnuncioChange}
-                    style={tipoAnuncioStyle.leilão}
-                    type="button"
+                  </ButtonComponent>
+
+                  <ButtonComponent
+                    onClick={() => settypeAdvert("auction")}
+                    background_color={typeAdvert === "auction" ? "brand-1" : ""}
+                    color={
+                      typeAdvert === "auction" ? "grey-whiteFixed" : "grey-0"
+                    }
+                    border={typeAdvert === "auction" ? "brand-1" : "grey-4"}
+                    hover_background_color="brand-1"
+                    hover_border="brand-1"
+                    hover_color="grey-whiteFixed"
                   >
-                    Leilão
-                  </button>
-                  <input
-                    type="hidden"
-                    {...register("type_adverts", {
-                      value: tipoAnuncioInputValue,
-                    })}
-                  />
+                    Leião
+                  </ButtonComponent>
+             
                 </div>
                 <Error>{errors.type_adverts?.message}</Error>
 
@@ -228,10 +163,10 @@ export default function RegisterAdvertModal() {
                 <div className="div-info-p-aqp">
                   <p className="p-ano">Ano</p>
                   <p className="p-quilometragem">Quilometragem</p>
-                  {tipoAnuncio === "sell" && (
+                  {typeAdvert === "sell" && (
                     <p className="p-preço venda-venda">Preço</p>
                   )}
-                  {tipoAnuncio === "auction" && (
+                  {typeAdvert === "auction" && (
                     <p className="p-preço venda-leilão">Lance inicial</p>
                   )}
                 </div>
@@ -271,37 +206,41 @@ export default function RegisterAdvertModal() {
 
                 <p className="p-tipo-veiculo">Tipo de veículo</p>
                 <div className="div-btn-tipo-veiculo">
-                  <button
-                    className={`btn-tipo-carro btn-tipo-veiculo ${
-                      tipoVeiculoInputValue === "carro" ? "active" : ""
-                    }`}
-                    onClick={handleTipoVeiculoChange}
-                    style={tipoVeiculoStyle.carro}
-                    type="button"
+                  <ButtonComponent
+                    onClick={() => settypeVeicule("car")}
+                    background_color={typeVeicule === "car" ? "brand-1" : ""}
+                    color={typeVeicule === "car" ? "grey-whiteFixed" : "grey-0"}
+                    border={typeVeicule === "car" ? "brand-1" : "grey-4"}
+                    hover_background_color="brand-1"
+                    hover_border="brand-1"
+                    hover_color="grey-whiteFixed"
                   >
                     Carro
-                  </button>
-                  <button
-                    className={`btn-tipo-veiculo ${
-                      tipoVeiculoInputValue === "moto" ? "active" : ""
-                    }`}
-                    onClick={handleTipoVeiculoChange}
-                    style={tipoVeiculoStyle.moto}
-                    type="button"
+                  </ButtonComponent>
+
+                  <ButtonComponent
+                    onClick={() => settypeVeicule("motorcycle")}
+                    background_color={
+                      typeVeicule === "motorcycle" ? "brand-1" : ""
+                    }
+                    color={
+                      typeVeicule === "motorcycle"
+                        ? "grey-whiteFixed"
+                        : "grey-0"
+                    }
+                    border={typeVeicule === "motorcycle" ? "brand-1" : "grey-4"}
+                    hover_background_color="brand-1"
+                    hover_border="brand-1"
+                    hover_color="grey-whiteFixed"
                   >
                     Moto
-                  </button>
-                  <input
-                    type="hidden"
-                    {...register("type_veicule", {
-                      value: tipoVeiculoInputValue,
-                    })}
-                  />
+                  </ButtonComponent>
+
                 </div>
                 <Error>{errors.type_veicule?.message}</Error>
 
                 <div id="minha-galeria">
-                  <div id="galeria">
+                  <div>
                     <div>
                       <p className="p-img-capa">Imagem da capa</p>
                       <Input
@@ -311,12 +250,16 @@ export default function RegisterAdvertModal() {
                       />
                       <Error>{errors.cover_image_adverts?.message}</Error>
 
-                      <p className="p-img-galeria">1° Imagem da galeria</p>
-                      <Input
-                        // {...register('galery_image')}
-                        placeholder="Inserir URL da imagem"
-                        type="url"
-                      />
+                      <div id="galeria">
+                        <p className="p-img-galeria">1° Imagem da galeria</p>
+                        <Input
+                          {...register("galery_image")}
+                          placeholder="Inserir URL da imagem"
+                          type="url"
+
+                          // name="galery_image"
+                        />
+                      </div>
                       {/* <Error>{errors.image_adverts?.message}</Error> */}
                     </div>
                   </div>
@@ -325,6 +268,19 @@ export default function RegisterAdvertModal() {
                 <p className="add-campo-img" onClick={addCampoGaleria}>
                   Adicionar campo para imagem da galeria
                 </p>
+
+                <div>
+                  <ButtonComponent onClick={handleClose}>
+                    Cancelar
+                  </ButtonComponent>
+
+                  <ButtonComponent
+                    onClick={() => console.log("")}
+                    type="submit"
+                  >
+                    Criar anúncio
+                  </ButtonComponent>
+                </div>
 
                 <div className="div-btn-cancela-submit">
                   <button className="btn-cancelar" onClick={handleClose}>
