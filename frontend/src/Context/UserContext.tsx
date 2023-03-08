@@ -19,6 +19,8 @@ const UserProvider = ({ children }: iUserProvider) => {
   const [isLogged, setIsLogged] = useState<boolean>(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [currentUserFirstName, setcurrentUserFirstName] = useState('')
+  const [currentUserLastName, setcurrentUserLastName] = useState('')
 
   const navigate = useNavigate();
 
@@ -45,7 +47,7 @@ const UserProvider = ({ children }: iUserProvider) => {
     try {
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       const { data } = await api.get(`/users/${userId}`);
-      setUser(data);
+      // setUser(data);
       return data;
     } catch (error) {
       console.error(error);
@@ -60,7 +62,7 @@ const UserProvider = ({ children }: iUserProvider) => {
     try {
       const res = await api.post("/login", data);
       const { user: userResponse, token } = res.data;
-      setUser(userResponse);
+      // setUser(userResponse);
       setIsLogged(true);
       localStorage.setItem("MOTORSSHOP:TOKEN", token);
       localStorage.setItem("MOTORSSHOP:USERID", userResponse.id);
@@ -73,7 +75,7 @@ const UserProvider = ({ children }: iUserProvider) => {
   const api_update_user = async (data: iUserUpdate) => {
     try {
       const res = await api.patch(`/users/${userId}`, data);
-      setUser(res.data);
+      // setUser(res.data);
     } catch (error) {
       console.error(error);
     }
@@ -82,7 +84,7 @@ const UserProvider = ({ children }: iUserProvider) => {
   const api_update_address = async (data: iAdressRequest) => {
     try {
       const res = await api.patch(`/users/${userId}`, data);
-      setUser(res.data);
+      // setUser(res.data);
     } catch (error) {
       console.error(error);
     }
@@ -97,7 +99,7 @@ const UserProvider = ({ children }: iUserProvider) => {
   const api_change_password = async (data: iPasswordChangeRequest) => {
     try {
       const res = await api.patch(`/pass`, data);
-      setUser(res.data);
+      // setUser(res.data);
     } catch (error) {
       console.error(error);
     }
@@ -110,6 +112,13 @@ const UserProvider = ({ children }: iUserProvider) => {
     setLastName(splicedName[1].charAt(0));
   };
 
+  const currentUserName = async (name: string) => {
+    const splicedName = await name?.split(" ");
+
+    setcurrentUserFirstName(splicedName[0].charAt(0))
+    setcurrentUserFirstName(splicedName[1].charAt(0))
+  };
+
   const logoutProfileView = () => {
     localStorage.clear();
     localStorage.clear();
@@ -117,6 +126,8 @@ const UserProvider = ({ children }: iUserProvider) => {
     navigate("/home", {replace: true});
     window.location.reload();
   };
+
+
 
   return (
     <UserContext.Provider
@@ -135,6 +146,9 @@ const UserProvider = ({ children }: iUserProvider) => {
         api_update_address,
         api_delete_user,
         api_read_user,
+        currentUserLastName,
+        currentUserFirstName,
+        currentUserName
       }}
     >
       {children}

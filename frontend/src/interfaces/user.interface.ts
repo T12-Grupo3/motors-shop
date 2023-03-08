@@ -82,6 +82,9 @@ export interface iUserContext {
   changeName: (props: string)=>Promise<void>;
   firstName: string;
   lastName: string;
+  currentUserFirstName: string
+  currentUserLastName: string
+  currentUserName: (props: string)=>Promise<void>;
   api_update_address: (props: iAdressRequest) => void
   api_delete_user: (user_id: string) => void
   api_read_user: (props: string) => Promise<iUserResponse>
