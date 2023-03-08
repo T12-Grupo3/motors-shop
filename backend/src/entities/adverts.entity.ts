@@ -16,7 +16,8 @@ import { Comments } from "./comments.entity";
 
 @Entity("adverts")
 export class Adverts {
-  @PrimaryGeneratedColumn("uuid")
+
+   @PrimaryGeneratedColumn("uuid")
   readonly id: string;
 
   @Column({ length: 200 })
@@ -34,7 +35,7 @@ export class Adverts {
   @Column({ length: 20 })
   kilometers_adverts: string;
 
-  @Column()
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
   price_adverts: number;
 
   @Column({ length: 240 })

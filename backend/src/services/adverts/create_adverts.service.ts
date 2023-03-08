@@ -32,9 +32,11 @@ const createAdvertsService = async({ galery_image, cover_image_adverts, title_ad
     description_adverts: description_adverts,
     kilometers_adverts: kilometers_adverts,
     cover_image_adverts: cover_image_adverts,
-    user: findUser
-  })
-
+    user: findUser,
+      })
+    
+  newAdverts.price_adverts = Number(price_adverts.toFixed(2));
+  
   await advertsRepository.save(newAdverts)
 
   galery_image.map( async (element)=>{
