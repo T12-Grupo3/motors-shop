@@ -11,6 +11,7 @@ import {
 } from "../interfaces/user.interface";
 import api from "../service/api";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const UserContext = createContext<iUserContext>({} as iUserContext);
 
@@ -53,24 +54,32 @@ const UserProvider = ({ children }: iUserProvider) => {
 
       return data;
     } catch (error) {
+      toast.error('ocorreu algum erro na visualização de seus dados')
       console.error(error);
     }
   };
 
   const api_create_user = async (data: iUserRequest) => {
-    await api.post(`/users`, data).catch((err) => console.log(err));
+    try {
+      await api.post(`/users`, data).catch((err) => console.log(err));
+      toast.success('Seu cadastro foi feito com sucesso, faço o login', { autoClose: 1000 })
+    } catch (error) {
+      toast.error('Ocorreu algum erro ao finalizar seu cadastro, verifique se todos os campos estão preenchidos corretamente.')
+      console.error(error)
+    }
   };
 
   const api_signin_user = async (data: iLoginRequest) => {
     try {
       const res = await api.post("/login", data);
       const { user: userResponse, token } = res.data;
-      // setUser(userResponse);
       setIsLogged(true);
       localStorage.setItem("MOTORSSHOP:TOKEN", token);
       localStorage.setItem("MOTORSSHOP:USERID", userResponse.id);
+      toast.success('Login feito com sucesso!', { autoClose: 1000 })
       navigate("home", { replace: true });
     } catch (error) {
+      toast.error('Email ou senha errados :( tente novamente')
       console.error(error);
     }
   };
@@ -78,8 +87,9 @@ const UserProvider = ({ children }: iUserProvider) => {
   const api_update_user = async (data: iUserUpdate) => {
     try {
       const res = await api.patch(`/users/${userId}`, data);
-      // setUser(res.data);
+      toast.success('Seu perfil foi editado com sucesso!', { autoClose: 1000 })
     } catch (error) {
+      toast.error('Ocorreu algum erro ao editar seu perfil, verifique se todos os campos foram preenchidos corretamente')
       console.error(error);
     }
   };
@@ -87,23 +97,30 @@ const UserProvider = ({ children }: iUserProvider) => {
   const api_update_address = async (data: iAdressRequest) => {
     try {
       const res = await api.patch(`/users/${userId}`, data);
-      // setUser(res.data);
+      toast.success('Seu endreço foi editado com sucesso!', { autoClose: 1000 })
     } catch (error) {
+      toast.error('Ocorreu algum erro ao editar seu endereço, verifique se todos os campos foram preenchidos corretamente')
       console.error(error);
     }
   };
 
   const api_delete_user = async (user_id: string) => {
-    await api.delete(`/users/${user_id}`);
-
-    logoutProfileView();
+    try {
+      await api.delete(`/users/${user_id}`);
+      toast.success('Seu perfil foi excluído, sentiremos sua falta, volte logo :(', { autoClose: 1000 })
+      logoutProfileView();
+    } catch (error) {
+      toast.error('Ocorreu algum erro ao deletar seu perfil, atualize a página e tenta novamente')
+      console.error(error)
+    }
   };
 
   const api_change_password = async (data: iPasswordChangeRequest) => {
     try {
       const res = await api.patch(`/pass`, data);
-      // setUser(res.data);
+      toast.success('Sua senha foi alterada, faça o login', { autoClose: 1000 })
     } catch (error) {
+      toast.error('Ocorreu algum erro ao alterar sua senha, verifique se seu email está correto')
       console.error(error);
     }
   };
@@ -126,7 +143,8 @@ const UserProvider = ({ children }: iUserProvider) => {
     localStorage.clear();
     localStorage.clear();
     setIsLogged(false);
-    navigate("/home", { replace: true });
+    toast.warning('Você foi deslogado, faça login novamente', { autoClose: 1000 })
+    navigate("/home", {replace: true});
     window.location.reload();
   };
 
