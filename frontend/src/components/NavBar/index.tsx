@@ -33,11 +33,11 @@ const NavBar = () => {
   useEffect(() => {
     const getNameUser = async () => {
       const nameUser = await api_read_user(userId!);
-      console.log(nameUser)
       currentUserName(nameUser.name);
     };
     getNameUser();
-  }, []);
+  }, [userId,currentUserName]);
+  
 
   return (
     <StyledDiv>

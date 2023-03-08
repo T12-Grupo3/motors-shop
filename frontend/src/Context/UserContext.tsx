@@ -116,7 +116,7 @@ const UserProvider = ({ children }: iUserProvider) => {
     const splicedName = await name?.split(" ");
 
     setcurrentUserFirstName(splicedName[0].charAt(0))
-    setcurrentUserFirstName(splicedName[1].charAt(0))
+    setcurrentUserLastName(splicedName[1].charAt(0))
   };
 
   const logoutProfileView = () => {
@@ -126,8 +126,6 @@ const UserProvider = ({ children }: iUserProvider) => {
     navigate("/home", {replace: true});
     window.location.reload();
   };
-
-
 
   return (
     <UserContext.Provider
