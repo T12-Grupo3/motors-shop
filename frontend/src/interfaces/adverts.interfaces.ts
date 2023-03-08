@@ -54,7 +54,7 @@ export interface iAdvertUpdateExtended extends iAdvertUpdate {
 }
 
 export interface iImageAdvertRequest {
-  galery_image: string[];
+  galery_image: string;
 }
 
 export interface iAdvert {

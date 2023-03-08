@@ -22,7 +22,7 @@ const ProfileView = () => {
 
   useEffect(() => {
     const getNameUser = async () => {
-      const nameUser = await api_read_user(userId!);
+      const nameUser = await api_read_user(id!);
       changeName(nameUser.name);
 
     };
@@ -68,7 +68,8 @@ const ProfileView = () => {
               <>
               {
                 filteredAuctions.length === 0 ? (
-                  <h5>Você ainda não tem anúncios para leilão</h5>
+                  <></>
+                  // <h5>Você ainda não tem anúncios para leilão</h5>
                 ):(
                   <>
                     <h5>Leilão</h5>
@@ -78,7 +79,8 @@ const ProfileView = () => {
               }
               {
                 filteredCars.length === 0 ? (
-                  <h5>Você ainda não tem anúncios de carros</h5>
+                  <></>
+                  // <h5>Você ainda não tem anúncios de carros</h5>
                 ):(
                   <>
                     <h5>Carros</h5>
@@ -92,7 +94,8 @@ const ProfileView = () => {
               }
               {
                 filteredMotorcycles.length === 0 ? (
-                  <h5>Você ainda não tem anúncios de motos</h5>
+                  <></>
+                  // <h5>Você ainda não tem anúncios de motos</h5>
                 ):(
                   <>
                     <h5>Motos</h5>

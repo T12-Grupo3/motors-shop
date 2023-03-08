@@ -216,7 +216,7 @@ padding: 0px 16px 0px 16px;
 Input::placeholder {
   font-size: 16px;
   font-weight: 400;
-  color: var(--color-grey-3)
+  color: var(--color-grey-3);
   font-family: 'Inter';
 }
 `;
@@ -230,7 +230,7 @@ width: 196px;
 Input::placeholder {
   font-size: 16px;
   font-weight: 400;
-  color: var(--color-grey-3)
+  color: var(--color-grey-3);
   font-family: 'Inter';
 }
 `;

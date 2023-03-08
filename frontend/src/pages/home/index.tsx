@@ -7,6 +7,7 @@ import NavBar from "../../components/NavBar";
 import ProductCard from "../../components/ProductCard";
 import { AdvertContext } from "../../Context/AdvertContext";
 import {
+  ButtonContent,
   StyledContent,
   StyledContentContainer,
   StyledHomeButtons,
@@ -38,6 +39,12 @@ const Home = () => {
             <h2>Velocidade e experiência em um lugar feito para você</h2>
             <p>Um ambiente feito para você explorar o seu melhor</p>
           </div>
+
+          <div className="div-buutons">
+            <ButtonContent>Carros</ButtonContent>
+            <ButtonContent>Motos</ButtonContent>
+          </div>
+
           <StyledHomeButtons>
             <ButtonComponent
               type="button"
@@ -65,6 +72,7 @@ const Home = () => {
               Motos
             </ButtonComponent>
           </StyledHomeButtons>
+
         </StyledContentContainer>
       </StyledContent>
 
