@@ -88,7 +88,7 @@ const NavBar = () => {
                           navigate(`/profileview/${userId}`, { replace: true })
                         }
                       >
-                        Meus anuncios
+                        Meus anúncios
                       </button>
                     ) : (
                       <></>

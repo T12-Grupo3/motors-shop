@@ -24,7 +24,7 @@ export const StyledProductImg = styled.div`
 `;
 
 export const StyledProductDescription = styled.div`
-  height: 200px;
+  height: 100px;
   
   h2 {
     font-size: 16px;
