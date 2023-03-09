@@ -12,6 +12,7 @@ import {
   StyledContentContainer,
   StyledHomeButtons,
   StyledProductsContainer,
+  StyledVeiculesSection,
 } from "./style";
 
 const Home = () => {
@@ -23,7 +24,7 @@ const Home = () => {
     if (location.hash === "#cars") {
       window.location.href = "#cars";
       console.log("cars");
-    } else if (location.hash === "#motorcycle") {
+    } else if (location.hash === "#motorcycles") {
       window.location.href = "#motorcycles";
       console.log("motorcycles");
     } else if (location.hash === "#auctions") {
@@ -75,28 +76,31 @@ const Home = () => {
       </StyledContent>
 
       <StyledProductsContainer>
-        <div>
-          <h5 id="auctions">Leilão</h5>
+        <div id="auctions"></div>
+        <StyledVeiculesSection>
+          <h5>Leilão</h5>
           <CarouselComponent adverts={auctions} />
-        </div>
+        </StyledVeiculesSection>
 
-        <div>
+        <div id="cars"></div>
+        <StyledVeiculesSection>
           <h5>Carros</h5>
-          <div className="containers-vehicules" id="cars">
+          <div className="containers-vehicules">
             {cars.map((advert) => (
               <ProductCard key={advert.id} advert={advert} />
             ))}
           </div>
-        </div>
+        </StyledVeiculesSection>
 
-        <div>
+        <div id="motorcycles"></div>
+        <StyledVeiculesSection>
           <h5>Motos</h5>
-          <div className="containers-vehicules" id="motorcycles">
+          <div className="containers-vehicules">
             {motorcycles.map((advert) => (
               <ProductCard key={advert.id} advert={advert} />
             ))}
           </div>
-        </div>
+        </StyledVeiculesSection>
       </StyledProductsContainer>
 
       <Footer />

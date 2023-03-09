@@ -64,7 +64,7 @@ export const StyledProductsContainer = styled(StyledContainer)`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  height: 1565px;
+  /* height: 1565px; */
   
   h5 {
     font-weight: var(--heading-5-600);
@@ -92,4 +92,8 @@ export const StyledHomeButtons = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`;
+
+export const StyledVeiculesSection = styled.div`
+  margin: 102px 0;
 `;
