@@ -77,7 +77,7 @@ export default function EditAdvertModal({ advert }: iEditAdvertModal) {
   // Função para selecionar tipo de anuncio e veiculo
 
   const [tipoAnuncio, setTipoAnuncio] = useState<string>("sell");
-  const [tipoAnuncioInputValue, setTipoAnuncioInputValue] = useState("venda");
+  const [tipoAnuncioInputValue, setTipoAnuncioInputValue] = useState("sell");
   const [tipoAnuncioStyle, setTipoAnuncioStyle] = useState({
     venda: {
       backgroundColor: tipoAnuncio === "sell" ? "var(--color-brand-1)" : "",
@@ -340,7 +340,7 @@ export default function EditAdvertModal({ advert }: iEditAdvertModal) {
                 <div className="div-btn-tipo-veiculo">
                   <button
                     className={`btn-tipo-carro btn-tipo-veiculo ${
-                      tipoVeiculoInputValue === "carro" ? "active" : ""
+                      tipoVeiculoInputValue === "car" ? "active" : ""
                     }`}
                     onClick={handleTipoVeiculoChange}
                     style={tipoVeiculoStyle.carro}
@@ -350,7 +350,7 @@ export default function EditAdvertModal({ advert }: iEditAdvertModal) {
                   </button>
                   <button
                     className={`btn-tipo-veiculo ${
-                      tipoVeiculoInputValue === "moto" ? "active" : ""
+                      tipoVeiculoInputValue === "motocycle" ? "active" : ""
                     }`}
                     onClick={handleTipoVeiculoChange}
                     style={tipoVeiculoStyle.moto}
