@@ -112,6 +112,7 @@ img{
   top: 770px;
   gap: 32px;
   margin-bottom: 40px;
+  flex-wrap: wrap;
 
   background: var(--color-grey-10);
   border-radius: 4px;
@@ -134,7 +135,7 @@ img{
 }
 
 .pDescription{
-  width: 663px;
+  width: 100%;
   height: 84px;
 
   font-family: 'Inter';
@@ -151,8 +152,8 @@ img{
   }
 
 .caracteristcCar{
-  width: 658px;
-  height: 32.39px;
+  width: 90%;
+  height: 20%;
 
   font-family: 'Lexend';
   font-style: normal;
@@ -279,7 +280,7 @@ li{
   align-items: center;
 
   height: 45px;
-  width: 126px;
+  width: 150px;
 
   color: var(--color-grey-0);
 }
