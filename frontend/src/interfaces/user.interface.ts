@@ -89,6 +89,7 @@ export interface iUserContext {
   api_delete_user: (user_id: string) => void;
   api_read_user: (props: string) => Promise<iUserResponse>;
   refreshKeyUser: number;
+  userName: string
 }
 
 export interface iUserProvider {

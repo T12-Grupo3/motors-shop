@@ -60,13 +60,7 @@ const ProfileView = () => {
           )}
         </div>
         <p className="textProfile">{profileUser?.description_user}</p>
-        {
-          userId === profileUser.id ? (
-            <RegisterAdvertModal />
-          ):(
-            <></>
-          )
-        }
+        { userId === profileUser.id && <RegisterAdvertModal /> }
       </ContainerUserProfile>
 
         <StyledProductsContainer>

@@ -31,8 +31,16 @@ const Product = () => {
   const [selectedImage, setSelectedImage] = useState("");
 
   const navigate = useNavigate();
-  const { changeName, firstName, lastName, api_read_user, user } =
-    useContext(UserContext);
+  const {
+    changeName,
+    firstName,
+    lastName,
+    api_read_user,
+    user,
+    isLogged,
+    userName,
+  } = useContext(UserContext);
+
   const {
     api_create_comments,
     api_read_id_advert,
@@ -79,7 +87,7 @@ const Product = () => {
     };
 
     getProduct(id!);
-  }, [refreshKey]);
+  }, [refreshKey, api_read_user]);
 
   if (product === undefined) {
     navigate("/home", { replace: true });
@@ -103,6 +111,8 @@ const Product = () => {
   }
 
   const daysDiff = calculateDaysDifference();
+
+  console.log(userName);
 
   return (
     <>
@@ -166,13 +176,15 @@ const Product = () => {
               </ul>
             </div>
             <form className="formComments" onSubmit={handleSubmit(onSubmit)}>
-              <div className="liComents">
-                <span className="nikeClient">
-                  {firstName}
-                  {lastName}
-                </span>
-                <span className="liName">{user.name}</span>
-              </div>
+              {isLogged && (
+                <div className="liComents">
+                  <span className="nikeClient">
+                    {firstName}
+                    {lastName}
+                  </span>
+                  <span className="liName">{userName}</span>
+                </div>
+              )}
               <div className="inputForm">
                 <label htmlFor="Comentário">Nome</label>
                 <input
@@ -207,7 +219,6 @@ const Product = () => {
                     />
                   </li>
                 ))}
-
               </ul>
             </div>
             <ImageVeiculeModal

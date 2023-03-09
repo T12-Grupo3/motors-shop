@@ -22,12 +22,17 @@ const Home = () => {
   useEffect(() => {
     if (location.hash === "#cars") {
       window.location.href = "#cars";
+      console.log("cars");
     } else if (location.hash === "#motorcycle") {
       window.location.href = "#motorcycles";
+      console.log("motorcycles");
     } else if (location.hash === "#auctions") {
       window.location.href = "#auctions";
+      console.log("auctions");
     }
   }, [location]);
+
+  // console.log(location);
 
   return (
     <>
@@ -67,7 +72,6 @@ const Home = () => {
               Motos
             </ButtonComponent>
           </StyledHomeButtons>
-
         </StyledContentContainer>
       </StyledContent>
 
