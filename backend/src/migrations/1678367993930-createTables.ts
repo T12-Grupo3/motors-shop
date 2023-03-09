@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 83b857524d8a36744b74b0a008a2ec90ca59e801
 import { MigrationInterface, QueryRunner } from "typeorm";
 
 export class createTables1678367993930 implements MigrationInterface {
