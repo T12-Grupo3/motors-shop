@@ -73,6 +73,11 @@ export const StyledAuctionPageAdm = styled.div`
     background-color: transparent;
     color: var(--color-grey-whiteFixed);
     border: 2px solid var(--color-grey-whiteFixed);
+
+    &:hover{
+      background-color: var(--color-grey-whiteFixed);
+      color: var(--color-brand-1);
+    }
   }
 
   a {
@@ -85,6 +90,11 @@ export const StyledAuctionPageAdm = styled.div`
     padding: 10px;
     width: 73px;
     height: 18px;
+
+    &:hover{
+      background-color: var(--color-grey-whiteFixed);
+      color: var(--color-brand-1);
+    }
   }
 `;
 

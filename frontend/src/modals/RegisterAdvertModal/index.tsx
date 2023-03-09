@@ -97,7 +97,7 @@ export default function RegisterAdvertModal() {
   return (
     <div>
       <RegisterAdvertsConfirm handleConfirm={openModalConfirm} />
-      <Button onClick={handleOpen}>Criar anuncio</Button>
+      <Button onClick={handleOpen}>Criar anúncio</Button>
       <Modal
         open={open}
         closeAfterTransition
@@ -111,13 +111,13 @@ export default function RegisterAdvertModal() {
             <Container>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="div-h3-x">
-                  <h3 className="h3-anuncio">Criar anuncio</h3>
+                  <h3 className="h3-anuncio">Criar anúncio</h3>
                   <button className="button-x-fechar" onClick={handleClose}>
                     X
                   </button>
                 </div>
 
-                <p className="p-tipo-anuncio">Tipo de anuncio</p>
+                <p className="p-tipo-anuncio">Tipo de anúncio</p>
                 <div className="div-btn-tipo-anuncio">
                   <ButtonComponent
                     onClick={() => settypeAdvert("sell")}
