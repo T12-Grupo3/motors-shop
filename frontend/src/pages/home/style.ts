@@ -61,6 +61,11 @@ export const ButtonContent = styled.button`
 `
 
 export const StyledProductsContainer = styled(StyledContainer)`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 1565px;
+  
   h5 {
     font-weight: var(--heading-5-600);
     font-size: 24px;
