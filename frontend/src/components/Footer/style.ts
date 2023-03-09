@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const ContainerFooter = styled.div`
-  background-color: #5126EA;
   color: #F8F9FA;
   width: 100%;
   height: auto;
@@ -9,7 +8,7 @@ export const ContainerFooter = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center ;
-  margin-top: 0px;
+  margin-top: 102px;
 
     .footerMain{
         display: flex;

@@ -16,7 +16,6 @@ import {
 } from "./style";
 
 const NavBar = () => {
-  // const [userName, setuserName] = useState("");
   const [userAdmin, setuserAdmin] = useState(false);
 
   const navigate = useNavigate();
@@ -29,7 +28,7 @@ const NavBar = () => {
     currentUserLastName,
     api_read_user,
     currentUserName,
-    refreshKeyUser,userName
+    refreshKeyUser
   } = useContext(UserContext);
 
   const userId = localStorage.getItem("MOTORSSHOP:USERID");
@@ -39,13 +38,10 @@ const NavBar = () => {
       const nameUser = await api_read_user(userId!);
 
       setuserAdmin(nameUser.isAdm);
-      // setuserName(nameUser.name);
       currentUserName(nameUser.name);
     };
     getNameUser();
   }, [userId, currentUserName, api_read_user, refreshKeyUser]);
-
-  console.log(userName)
 
   return (
     <StyledDiv>
@@ -79,7 +75,7 @@ const NavBar = () => {
                       {currentUserLastName}
                     </p>
                   </div>
-                  <button type="button">{userName}</button>
+                  <button type="button">{user.name}</button>
                 </StyledUser>
                 <div className="dropdown-content">
                   <div>
