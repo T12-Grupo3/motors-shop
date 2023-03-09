@@ -112,7 +112,7 @@ const Product = () => {
 
   const daysDiff = calculateDaysDifference();
 
-  console.log(userName);
+  const price = Number(price_adverts)
 
   return (
     <>
@@ -133,7 +133,7 @@ const Product = () => {
                 </div>
                 <div className="preco">
                   {price_adverts !== undefined &&
-                    price_adverts.toLocaleString("pt-BR", {
+                    price.toLocaleString("pt-BR", {
                       style: "currency",
                       currency: "BRL",
                     })}

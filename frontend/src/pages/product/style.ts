@@ -152,8 +152,8 @@ img{
   }
 
 .caracteristcCar{
-  width: 658px;
-  height: 32.39px;
+  width: 90%;
+  height: 20%;
 
   font-family: 'Lexend';
   font-style: normal;
