@@ -1,11 +1,7 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 83b857524d8a36744b74b0a008a2ec90ca59e801
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class createTables1678367993930 implements MigrationInterface {
-    name = 'createTables1678367993930'
+export class initial1678370492655 implements MigrationInterface {
+    name = 'initial1678370492655'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE "image_adverts" ("id" uuid NOT NULL DEFAULT uuid_generate_v4(), "galery_image" character varying NOT NULL, "advertId" uuid, CONSTRAINT "PK_659bf469f2505bae5d23c71280d" PRIMARY KEY ("id"))`);
