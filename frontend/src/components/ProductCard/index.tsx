@@ -50,8 +50,13 @@ const ProductCard = ({ advert }: iProductCard) => {
       ) : (
         <StyledProductUser>
           <Link to={`/profileview/${user.id}`}>
-            <span>{user.name[0]}</span>
-            <span>{user.name}</span>
+            <div className="div-names">
+              <div className="imgProfile">
+                <p>{user.name[0]}</p>
+              </div>
+              <span>{user.name}</span>
+
+            </div>
           </Link>
         </StyledProductUser>
       )}

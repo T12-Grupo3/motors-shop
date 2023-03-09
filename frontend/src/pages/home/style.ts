@@ -72,6 +72,7 @@ export const StyledProductsContainer = styled(StyledContainer)`
     max-width: 2020px;
     overflow-x: auto;
     gap: 40px;
+    flex-wrap: wrap;
   }
 `;
 

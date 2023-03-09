@@ -1,15 +1,20 @@
 import styled from "styled-components";
 
 export const Button = styled.button`
-  width: 80px;
+  width: 90px;
   height: 38px;
-  border: 1.5px solid #212529;
+  border: 2px solid var(--color-grey-1);
   border-radius: 4px;
   font-family: "Inter";
   font-size: 14px;
-  font-weight: var(--font-heading-2);
+  font-weight: var(--heading-3-500);
   color: var(--color-grey-1);
   cursor: pointer;
+
+  &:hover{
+    background-color: var(--color-grey-1);
+    color: var(--color-grey-10);
+  }
 `;
 
 export const Container = styled.div`
@@ -228,7 +233,7 @@ padding: 0px 16px 0px 16px;
 Input::placeholder {
   font-size: 16px;
   font-weight: 400;
-  color: var(--color-grey-3)
+  color: var(--color-grey-3);
   font-family: 'Inter';
 }
 `;
