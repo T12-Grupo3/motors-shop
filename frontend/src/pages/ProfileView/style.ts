@@ -100,9 +100,13 @@ export const StyledContainerProfile = styled(StyledContainer)`
     background-color: var(--color-grey-9);
 
     .containers-vehicules{
-    display: flex;
-    flex-direction: row;
-
+        display: flex;
+        flex-direction: row;
+        max-width: 2020px;
+        overflow-x: auto;
+        gap: 40px;
+        flex-wrap: wrap;
+        height: 780px;
   }
 
 `
