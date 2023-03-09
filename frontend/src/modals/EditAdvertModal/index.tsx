@@ -83,7 +83,7 @@ export default function EditAdvertModal({ advert }: iEditAdvertModal) {
 
     const novoTitulo = document.createElement("p");
     novoTitulo.className = "p-img-galeria";
-    novoTitulo.textContent = `${numCampos + 1}° Imagem da galeria`;
+    novoTitulo.textContent = `${numCampos}° Imagem da galeria`;
 
     const novoInput = document.createElement("div");
     ReactDOM.render(
@@ -268,7 +268,7 @@ export default function EditAdvertModal({ advert }: iEditAdvertModal) {
                 <p className="p-publicado">Publicado</p>
                 <div className="div-btn-publicado">
                   <ButtonComponent
-                    onClick={() => setIsAvailable(false)}
+                    onClick={() => setIsAvailable(true)}
                     background_color={isAvailable ? "brand-1" : ""}
                     color={isAvailable ? "grey-whiteFixed" : "grey-0"}
                     border={isAvailable ? "brand-1" : "grey-4"}
@@ -311,9 +311,13 @@ export default function EditAdvertModal({ advert }: iEditAdvertModal) {
                   </div>
                 </div>
 
-                <p className="add-campo-img" onClick={addCampoGaleria}>
+                <button
+                  type="button"
+                  className="add-campo-img"
+                  onClick={addCampoGaleria}
+                >
                   Adicionar campo para imagem da galeria
-                </p>
+                </button>
 
                 <div className="div-btn-cancela-submit">
                   <ButtonComponent
@@ -321,12 +325,24 @@ export default function EditAdvertModal({ advert }: iEditAdvertModal) {
                       setOpen(false);
                       setHandleDelete(true);
                     }}
+                    background_color="grey-6"
+                    border="grey-6"
+                    color="grey-2"
+                    hover_background_color="grey-5"
+                    hover_border="grey-5"
+                    hover_color="grey-whiteFixed"
                   >
                     Excluir anúncio
                   </ButtonComponent>
                   <ButtonComponent
                     type="submit"
                     onClick={() => console.log("")}
+                    background_color="brand-1"
+                    border="brand-1"
+                    color="grey-whiteFixed"
+                    hover_background_color="brand-3"
+                    hover_border="brand-3"
+                    hover_color="brand-4"
                   >
                     Salvar alterações
                   </ButtonComponent>

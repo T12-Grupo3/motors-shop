@@ -11,7 +11,7 @@ export const Button = styled.button`
   color: var(--color-grey-1);
   cursor: pointer;
 
-  &:hover{
+  &:hover {
     background-color: var(--color-grey-1);
     color: var(--color-grey-10);
   }
@@ -167,14 +167,14 @@ export const Container = styled.div`
   }
 
   .add-campo-img {
-    font-family: "Inter";
-    font-weight: var(--font-heading-2);
+    font-weight: var(--body-1-600);
     color: var(--color-brand-1);
     font-size: 14px;
-    cursor: pointer;
-    padding-top: 25px;
-    padding-bottom: 25px;
-    background-color: var(--color-brand-4);
+
+    border: 8px;
+    padding: 8px 10px;
+    margin: 15px 0;
+    /* width: 100%; */
   }
 
   .div-btn-cancela-submit {
@@ -224,16 +224,16 @@ export const Container = styled.div`
 `;
 
 export const Input = styled.input`
-border: 1.5px solid #E9ECEF;
-border-radius: 4px;
-height: 48px;
-width: 96px;
-padding: 0px 16px 0px 16px;
+  border: 1.5px solid #e9ecef;
+  border-radius: 4px;
+  height: 48px;
+  width: 90%;
+  padding: 0px 16px 0px 16px;
 
-Input::placeholder {
-  font-size: 16px;
-  font-weight: 400;
-  color: var(--color-grey-3);
-  font-family: 'Inter';
-}
+  Input::placeholder {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--color-grey-3);
+    font-family: "Inter";
+  }
 `;
