@@ -36,8 +36,8 @@ export default function EditAdvertModal({ advert }: iEditAdvertModal) {
 
   const [titleAdverts, settitleAdverts] = useState(advert.title_adverts);
   const [yearAdvert, setyearAdvert] = useState(advert.year_adverts);
-  const [typeAdvert, settypeAdvert] = useState(advert.type_adverts);
-  const [typeVeicule, settypeVeicule] = useState(advert.type_veicule);
+  const [type_adverts, setType_adverts] = useState(advert.type_adverts);
+  const [type_veicule, setType_veicule] = useState(advert.type_veicule);
   const [priceAdvert, setpriceAdvert] = useState(advert.price_adverts);
   const [kilometersAdvert, setkilometersAdvert] = useState(
     advert.kilometers_adverts
@@ -48,145 +48,30 @@ export default function EditAdvertModal({ advert }: iEditAdvertModal) {
   const [coverImageAdvert, setcoverImageAdvert] = useState(
     advert.cover_image_adverts
   );
+  const [isAvailable, setIsAvailable] = useState(advert.isAvailable);
 
   const { api_update_advert, setHandleDelete } = useContext(AdvertContext);
 
   const onSubmit = async (data: iAdvertUpdateExtended) => {
-    console.log(data);
-
-    const images: string[] = [];
+    const image_adverts: string[] = [];
     const inputs: NodeListOf<HTMLInputElement> = document.querySelectorAll(
       '#galeria Input[type="url"]'
     );
     inputs.forEach((Input: HTMLInputElement) => {
-      images.push(Input.value);
+      image_adverts.push(Input.value);
     });
 
     const formData = {
       ...data,
-      type_adverts: tipoAnuncioInputValue,
-      type_veicule: tipoVeiculoInputValue,
-      isAvailable: tipoPublicadoInputValue,
-      image_adverts: images,
+      type_adverts,
+      type_veicule,
+      isAvailable,
+      image_adverts,
     };
 
-    await api_update_advert(advert.id, formData);
+    api_update_advert(advert.id, formData);
     handleCloseEdit();
   };
-
-  // Função para selecionar tipo de anuncio e veiculo
-
-  const [tipoAnuncio, setTipoAnuncio] = useState<string>("sell");
-  const [tipoAnuncioInputValue, setTipoAnuncioInputValue] = useState("sell");
-  const [tipoAnuncioStyle, setTipoAnuncioStyle] = useState({
-    venda: {
-      backgroundColor: tipoAnuncio === "sell" ? "var(--color-brand-1)" : "",
-      color: tipoAnuncio === "sell" ? "var(--color-grey-whiteFixed)" : "",
-      border: tipoAnuncio === "sell" ? "var(--color-brand-1)" : "",
-    },
-    leilão: {
-      backgroundColor: tipoAnuncio === "auction" ? "var(--color-brand-1)" : "",
-      color: tipoAnuncio === "auction" ? "var(--color-grey-whiteFixed)" : "",
-      border: tipoAnuncio === "auction" ? "var(--color-brand-1)" : "",
-    },
-  });
-
-  const [tipoVeiculoInputValue, setTipoVeiculoInputValue] = useState("veiculo");
-  const [tipoVeiculo, setTipoVeiculo] = useState("car");
-  const [tipoVeiculoStyle, setTipoVeiculoStyle] = useState({
-    carro: {
-      backgroundColor: tipoVeiculo === "car" ? "var(--color-brand-1)" : "",
-      color: tipoVeiculo === "car" ? "var(--color-grey-whiteFixed)" : "",
-      border: tipoVeiculo === "car" ? "var(--color-brand-1)" : "",
-    },
-    moto: {
-      backgroundColor:
-        tipoVeiculo === "motorcycle" ? "var(--color-brand-1)" : "",
-      color: tipoVeiculo === "motorcycle" ? "var(--color-grey-whiteFixed)" : "",
-      border: tipoVeiculo === "motorcycle" ? "var(--color-brand-1)" : "",
-    },
-  });
-
-  const [tipoPublicadoInputValue, setTipoPublicadoInputValue] = useState(true);
-  const [tipoPublicado, setTipoPublicado] = useState(false);
-  const [tipoPublicadoStyle, setTipoPublicadoStyle] = useState({
-    sim: {
-      backgroundColor: tipoPublicado === true ? "var(--color-brand-1)" : "",
-      color: tipoPublicado === true ? "var(--color-grey-whiteFixed)" : "",
-      border: tipoPublicado === true ? "var(--color-brand-1)" : "",
-    },
-    não: {
-      backgroundColor: tipoPublicado === false ? "var(--color-brand-1)" : "",
-      color: tipoPublicado === false ? "var(--color-grey-whiteFixed)" : "",
-      border: tipoPublicado === false ? "var(--color-brand-1)" : "",
-    },
-  });
-
-  // função para mudar o preço para lance incial e seleção de buttons
-
-  function handleTipoAnuncioChange(event: React.MouseEvent<HTMLButtonElement>) {
-    const anuncio = event.currentTarget.classList.contains("btn-leilão")
-      ? "auction"
-      : "sell";
-    setTipoAnuncio(anuncio);
-    setTipoAnuncioInputValue(anuncio);
-    setTipoAnuncioStyle({
-      venda: {
-        backgroundColor: anuncio === "sell" ? "var(--color-brand-1)" : "",
-        color: anuncio === "sell" ? "var(--color-grey-whiteFixed)" : "",
-        border: anuncio === "sell" ? "var(--color-brand-1)" : "",
-      },
-      leilão: {
-        backgroundColor: anuncio === "auction" ? "var(--color-brand-1)" : "",
-        color: anuncio === "auction" ? "var(--color-grey-whiteFixed)" : "",
-        border: anuncio === "auction" ? "var(--color-brand-1)" : "",
-      },
-    });
-  }
-
-  function handleTipoVeiculoChange(event: React.MouseEvent<HTMLButtonElement>) {
-    const veiculo = event.currentTarget.classList.contains("btn-tipo-carro")
-      ? "car"
-      : "motorcycle";
-    setTipoVeiculo(veiculo);
-    setTipoVeiculoInputValue(veiculo);
-    setTipoVeiculoStyle({
-      carro: {
-        backgroundColor: veiculo === "car" ? "var(--color-brand-1)" : "",
-        color: veiculo === "car" ? "var(--color-grey-whiteFixed)" : "",
-        border: veiculo === "car" ? "var(--color-brand-1)" : "",
-      },
-      moto: {
-        backgroundColor: veiculo === "motorcycle" ? "var(--color-brand-1)" : "",
-        color: veiculo === "motorcycle" ? "var(--color-grey-whiteFixed)" : "",
-        border: veiculo === "motorcycle" ? "var(--color-brand-1)" : "",
-      },
-    });
-  }
-
-  function handleTipoPublicadoChange(
-    event: React.MouseEvent<HTMLButtonElement>
-  ) {
-    const publicado = event.currentTarget.classList.contains(
-      "btn-tipo-publi-yes"
-    )
-      ? true
-      : false;
-    setTipoPublicado(true);
-    setTipoPublicadoInputValue(true);
-    setTipoPublicadoStyle({
-      sim: {
-        backgroundColor: publicado === true ? "var(--color-brand-1)" : "",
-        color: publicado === true ? "var(--color-grey-whiteFixed)" : "",
-        border: publicado === true ? "var(--color-brand-1)" : "",
-      },
-      não: {
-        backgroundColor: publicado === false ? "var(--color-brand-1)" : "",
-        color: publicado === false ? "var(--color-grey-whiteFixed)" : "",
-        border: publicado === false ? "var(--color-brand-1)" : "",
-      },
-    });
-  }
 
   // Função para adicionar mais um input ao clicar em adicionar mais um campo de imagem
 
@@ -244,29 +129,35 @@ export default function EditAdvertModal({ advert }: iEditAdvertModal) {
 
                 <p className="p-tipo-anuncio">Tipo de anuncio</p>
                 <div className="div-btn-tipo-anuncio">
-                  <button
-                    className="btn-tipo-anuncio btn-venda"
-                    onClick={handleTipoAnuncioChange}
-                    style={tipoAnuncioStyle.venda}
-                    type="button"
+                  <ButtonComponent
+                    onClick={() => setType_adverts("sell")}
+                    background_color={type_adverts === "sell" ? "brand-1" : ""}
+                    color={
+                      type_adverts === "sell" ? "grey-whiteFixed" : "grey-0"
+                    }
+                    border={type_adverts === "sell" ? "brand-1" : "grey-4"}
+                    hover_background_color="brand-1"
+                    hover_border="brand-1"
+                    hover_color="grey-whiteFixed"
                   >
                     Venda
-                  </button>
-                  <button
-                    className="btn-tipo-anuncio btn-leilão"
-                    onClick={handleTipoAnuncioChange}
-                    style={tipoAnuncioStyle.leilão}
-                    type="button"
+                  </ButtonComponent>
+
+                  <ButtonComponent
+                    onClick={() => setType_adverts("auction")}
+                    background_color={
+                      type_adverts === "auction" ? "brand-1" : ""
+                    }
+                    color={
+                      type_adverts === "auction" ? "grey-whiteFixed" : "grey-0"
+                    }
+                    border={type_adverts === "auction" ? "brand-1" : "grey-4"}
+                    hover_background_color="brand-1"
+                    hover_border="brand-1"
+                    hover_color="grey-whiteFixed"
                   >
-                    Leilão
-                  </button>
-                  <input
-                    type="hidden"
-                    {...register("type_adverts", {
-                      value: tipoAnuncioInputValue,
-                    })}
-                    defaultValue={typeAdvert}
-                  />
+                    Leião
+                  </ButtonComponent>
                 </div>
                 <Error>{errors.type_adverts?.message}</Error>
 
@@ -287,10 +178,10 @@ export default function EditAdvertModal({ advert }: iEditAdvertModal) {
                 <div className="div-info-p-aqp">
                   <p className="p-ano">Ano</p>
                   <p className="p-quilometragem">Quilometragem</p>
-                  {tipoAnuncio === "sell" && (
+                  {type_adverts === "sell" && (
                     <p className="p-preço venda-venda">Preço</p>
                   )}
-                  {tipoAnuncio === "auction" && (
+                  {type_adverts === "auction" && (
                     <p className="p-preço venda-leilão">Lance inicial</p>
                   )}
                 </div>
@@ -338,83 +229,82 @@ export default function EditAdvertModal({ advert }: iEditAdvertModal) {
 
                 <p className="p-tipo-veiculo">Tipo de veículo</p>
                 <div className="div-btn-tipo-veiculo">
-                  <button
-                    className={`btn-tipo-carro btn-tipo-veiculo ${
-                      tipoVeiculoInputValue === "car" ? "active" : ""
-                    }`}
-                    onClick={handleTipoVeiculoChange}
-                    style={tipoVeiculoStyle.carro}
-                    type="button"
+                  <ButtonComponent
+                    onClick={() => setType_veicule("car")}
+                    background_color={type_veicule === "car" ? "brand-1" : ""}
+                    color={
+                      type_veicule === "car" ? "grey-whiteFixed" : "grey-0"
+                    }
+                    border={type_veicule === "car" ? "brand-1" : "grey-4"}
+                    hover_background_color="brand-1"
+                    hover_border="brand-1"
+                    hover_color="grey-whiteFixed"
                   >
                     Carro
-                  </button>
-                  <button
-                    className={`btn-tipo-veiculo ${
-                      tipoVeiculoInputValue === "motocycle" ? "active" : ""
-                    }`}
-                    onClick={handleTipoVeiculoChange}
-                    style={tipoVeiculoStyle.moto}
-                    type="button"
+                  </ButtonComponent>
+
+                  <ButtonComponent
+                    onClick={() => setType_veicule("motorcycle")}
+                    background_color={
+                      type_veicule === "motorcycle" ? "brand-1" : ""
+                    }
+                    color={
+                      type_veicule === "motorcycle"
+                        ? "grey-whiteFixed"
+                        : "grey-0"
+                    }
+                    border={
+                      type_veicule === "motorcycle" ? "brand-1" : "grey-4"
+                    }
+                    hover_background_color="brand-1"
+                    hover_border="brand-1"
+                    hover_color="grey-whiteFixed"
                   >
                     Moto
-                  </button>
-                  <input
-                    type="hidden"
-                    {...register("type_veicule", {
-                      value: tipoVeiculoInputValue,
-                    })}
-                    defaultValue={typeVeicule}
-                  />
+                  </ButtonComponent>
                 </div>
                 <Error>{errors.type_veicule?.message}</Error>
 
                 <p className="p-publicado">Publicado</p>
                 <div className="div-btn-publicado">
-                  <button
-                    value="true"
-                    className={`btn-tipo-publicado btn-tipo-publi-yes ${
-                      tipoPublicadoInputValue === true ? "active" : ""
-                    }`}
-                    onClick={handleTipoPublicadoChange}
-                    style={tipoPublicadoStyle.sim}
-                    type="button"
+                  <ButtonComponent
+                    onClick={() => setIsAvailable(false)}
+                    background_color={isAvailable ? "brand-1" : ""}
+                    color={isAvailable ? "grey-whiteFixed" : "grey-0"}
+                    border={isAvailable ? "brand-1" : "grey-4"}
+                    hover_background_color="brand-1"
+                    hover_border="brand-1"
+                    hover_color="grey-whiteFixed"
                   >
                     Sim
-                  </button>
-
-                  <button
-                    value="false"
-                    className={`btn-tipo-publicado btn-tipo-publi-no ${
-                      tipoPublicadoInputValue === false ? "active" : ""
-                    }`}
-                    onClick={handleTipoPublicadoChange}
-                    style={tipoPublicadoStyle.não}
-                    type="button"
+                  </ButtonComponent>
+                  <ButtonComponent
+                    onClick={() => setIsAvailable(false)}
+                    background_color={isAvailable ? "" : "brand-1"}
+                    color={isAvailable ? "grey-0" : "grey-whiteFixed"}
+                    border={isAvailable ? "grey-4" : "brand-1"}
+                    hover_background_color="brand-1"
+                    hover_border="brand-1"
+                    hover_color="grey-whiteFixed"
                   >
                     Não
-                  </button>
-                  <input
-                    type="hidden"
-                    {...register("isAvailable", {
-                      value: tipoPublicadoInputValue,
-                    })}
-                  />
+                  </ButtonComponent>
                 </div>
                 <Error>{errors.isAvailable?.message}</Error>
 
                 <div id="minha-galeria">
-                  <div id="galeria">
-                    <div>
-                      <p className="p-img-capa">Imagem da capa</p>
-                      <Input
-                        {...register("cover_image_advert")}
-                        placeholder="Inserir URL da imagem"
-                        type="url"
-                        value={coverImageAdvert}
-                        onChange={(e) => setcoverImageAdvert(e.target.value)}
-                      />
-                      <Error>{errors.image_adverts?.message}</Error>
+                  <div>
+                    <p className="p-img-capa">Imagem da capa</p>
+                    <Input
+                      {...register("cover_image_advert")}
+                      placeholder="Inserir URL da imagem"
+                      type="url"
+                      value={coverImageAdvert}
+                      onChange={(e) => setcoverImageAdvert(e.target.value)}
+                    />
+                    <Error>{errors.image_adverts?.message}</Error>
 
+                    <div id="galeria">
                       <p className="p-img-galeria">1° Imagem da galeria</p>
                       <Input placeholder="Inserir URL da imagem" type="url" />
                     </div>
@@ -427,7 +317,6 @@ export default function EditAdvertModal({ advert }: iEditAdvertModal) {
 
                 <div className="div-btn-cancela-submit">
                   <ButtonComponent
-                    type="button"
                     onClick={() => {
                       setOpen(false);
                       setHandleDelete(true);
@@ -435,9 +324,12 @@ export default function EditAdvertModal({ advert }: iEditAdvertModal) {
                   >
                     Excluir anúncio
                   </ButtonComponent>
-                  <button className="btn-submit" type="submit">
+                  <ButtonComponent
+                    type="submit"
+                    onClick={() => console.log("")}
+                  >
                     Salvar alterações
-                  </button>
+                  </ButtonComponent>
                 </div>
               </form>
             </Container>
