@@ -115,6 +115,7 @@ export default function EditAdvertModal({ advert }: iEditAdvertModal) {
         BackdropProps={{
           timeout: 500,
         }}
+        onBackdropClick={handleCloseEdit}
       >
         <Fade in={open}>
           <Box sx={style}>

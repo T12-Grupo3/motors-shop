@@ -148,6 +148,7 @@ export default function EditCommentsModal({id_comments}: iIdComments) {
         BackdropProps={{
           timeout: 500,
         }}
+        onBackdropClick={handleCloseEdit}
       >
         <Fade in={open}>
           <Box sx={style}>

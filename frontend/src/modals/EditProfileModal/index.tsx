@@ -45,8 +45,8 @@ export default function EditProfileModal() {
     try {
       await api.patch(`/users/${userId}`, data);
 
-      console.log(data)
-      handleClose()
+      console.log(data);
+      handleClose();
     } catch (error) {
       console.error(error);
     }
@@ -59,7 +59,7 @@ export default function EditProfileModal() {
   return (
     <div>
       <Button onClick={handleOpen}>Editar perfil</Button>
-      <Modal open={open} onClose={handleClose}>
+      <Modal open={open} onClose={handleClose} onBackdropClick={handleClose}>
         <Box sx={style}>
           <Container>
             <form onSubmit={handleSubmit(api_update_user)}>

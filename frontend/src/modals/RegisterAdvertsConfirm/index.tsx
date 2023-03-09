@@ -23,7 +23,7 @@ interface iRegisterAdvertsConfirm {
 export default function RegisterAdvertsConfirm({
   handleConfirm = true,
 }: iRegisterAdvertsConfirm) {
-  const [open, setOpen] = useState(handleConfirm);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const openModal = (isOpen: boolean) => {
@@ -41,6 +41,7 @@ export default function RegisterAdvertsConfirm({
         BackdropProps={{
           timeout: 500,
         }}
+        onBackdropClick={() => setOpen(false)}
       >
         <Fade in={open}>
           <Box sx={style}>

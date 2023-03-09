@@ -48,6 +48,7 @@ export default function DeleteUserModal({ user_id }: iDeleteUserModal) {
         BackdropProps={{
           timeout: 500,
         }}
+        onBackdropClick={() => sethandleDelete(false)}
       >
         <Fade in={open}>
           <Box sx={style}>
