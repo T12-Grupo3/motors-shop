@@ -37,7 +37,6 @@ const Home = () => {
   return (
     <>
       <NavBar />
-
       <StyledContent>
         <StyledContentContainer>
           <div>
@@ -76,22 +75,27 @@ const Home = () => {
       </StyledContent>
 
       <StyledProductsContainer>
-        <h5 id="auctions">Leilão</h5>
-        <CarouselComponent adverts={auctions} />
-
-        <h5>Carros</h5>
-        <div className="containers-vehicules" id="cars">
-          {cars.map((advert) => (
-            <ProductCard key={advert.id} advert={advert} />
-          ))}
+        <div>
+          <h5 id="auctions">Leilão</h5>
+          <CarouselComponent adverts={auctions} />
         </div>
 
-        <h5>Motos</h5>
+        <div>
+          <h5>Carros</h5>
+          <div className="containers-vehicules" id="cars">
+            {cars.map((advert) => (
+              <ProductCard key={advert.id} advert={advert} />
+            ))}
+          </div>
+        </div>
 
-        <div className="containers-vehicules" id="motorcycles">
-          {motorcycles.map((advert) => (
-            <ProductCard key={advert.id} advert={advert} />
-          ))}
+        <div>
+          <h5>Motos</h5>
+          <div className="containers-vehicules" id="motorcycles">
+            {motorcycles.map((advert) => (
+              <ProductCard key={advert.id} advert={advert} />
+            ))}
+          </div>
         </div>
       </StyledProductsContainer>
 
