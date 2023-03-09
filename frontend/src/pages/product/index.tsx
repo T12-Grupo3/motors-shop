@@ -173,9 +173,11 @@ const Product = () => {
                     </div>
                     <div className="divComents">
                       <p>{elem.comments} </p>
-                      <div>
-                        <EditCommentsModal id_comments={elem.id} />
-                      </div>
+                      {user.id === userId && (
+                        <div>
+                          <EditCommentsModal id_comments={elem.id} />
+                        </div>
+                      )}
                     </div>
                   </li>
                 ))}
