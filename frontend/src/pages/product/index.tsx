@@ -112,7 +112,7 @@ const Product = () => {
 
   const daysDiff = calculateDaysDifference();
 
-  console.log(userName);
+  const price = Number(price_adverts)
 
   return (
     <>
@@ -133,14 +133,14 @@ const Product = () => {
                 </div>
                 <div className="preco">
                   {price_adverts !== undefined &&
-                    price_adverts.toLocaleString("pt-BR", {
+                    price.toLocaleString("pt-BR", {
                       style: "currency",
                       currency: "BRL",
                     })}
                 </div>
               </div>
               <a
-                href={`https://api.whatsapp.com/send?phone=+55+48998363692&text=Ol%C3%A1%2C%20venho%20por%20meio%20do%20seu%20anúncio%20pelo%20site%20motor-shop,%20o%20veiculo%20ainda%20está%20disponível?`}
+                href={`https://api.whatsapp.com/send?phone=+55+${profileUser.phone_number}&text=Ol%C3%A1%2C%20venho%20por%20meio%20do%20seu%20anúncio%20pelo%20site%20motor-shop,%20o%20veiculo%20ainda%20está%20disponível?`}
                 className="button-buy"
               >
                 Comprar
