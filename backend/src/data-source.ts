@@ -6,7 +6,6 @@ import { ImageAdverts } from "./entities/image_adverts.entity";
 import { User } from "./entities/user.entity";
 import { Comments } from "./entities/comments.entity";
 import { Addresses } from "./entities/addresses.entity";
-import { initial1678306818442 } from "./migrations/1678306818442-initial";
 import { createTables1678367993930 } from "./migrations/1678367993930-createTables";
 
 const isProduction = process.env.NODE_ENV === "production";
