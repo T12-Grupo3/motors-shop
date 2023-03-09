@@ -11,6 +11,7 @@ const updateAdvertService = async ({
   price_adverts,
   kilometers_adverts,
   description_adverts,
+  cover_image_adverts,
 }: IAdvertsUpdate) => {
   const advertRepository = AppDataSource.getRepository(Adverts);
 
@@ -24,6 +25,7 @@ const updateAdvertService = async ({
     price_adverts,
     kilometers_adverts,
     description_adverts,
+    cover_image_adverts,
   };
 
   await advertRepository.update(findAdvert!.id, advertUpdated);

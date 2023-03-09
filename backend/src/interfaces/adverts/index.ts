@@ -2,8 +2,8 @@ export interface IAdvertsRequest {
   title_adverts: string;
   year_adverts: string;
   type_adverts: string;
-  type_veicule: string
-  price_adverts: number
+  type_veicule: string;
+  price_adverts: number;
   kilometers_adverts: string;
   description_adverts: string;
   galery_image: string[];
@@ -16,8 +16,8 @@ export interface IAdverts {
   title_adverts: string;
   year_adverts: string;
   type_adverts: string;
-  type_veicule: string
-  price_adverts: number
+  type_veicule: string;
+  price_adverts: number;
   kilometers_adverts: string;
   description_adverts: string;
   createdAt_adverts: Date;
@@ -32,13 +32,12 @@ export interface IAdvertsUpdate {
   year_adverts: string;
   type_adverts: string;
   type_veicule: string;
-  price_adverts: number
+  price_adverts: number;
   kilometers_adverts: string;
   description_adverts: string;
-
- 
+  cover_image_adverts: string;
 }
 
 export interface IAdvertsDelete {
-   isAvailable: boolean;
+  isAvailable: boolean;
 }

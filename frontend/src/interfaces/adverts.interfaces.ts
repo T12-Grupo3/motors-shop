@@ -44,7 +44,7 @@ export interface iAdvertUpdate {
   description_adverts?: string;
   isAvailable?: boolean;
   image_adverts?: Array<string>;
-  cover_image_advert?: string;
+  cover_image_adverts?: string;
 }
 
 export interface iAdvertUpdateExtended extends iAdvertUpdate {
