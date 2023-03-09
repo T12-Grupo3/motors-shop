@@ -87,7 +87,6 @@ const AdvertProvider = ({ children }: IProviderProps) => {
       const res = await api.post(`/adverts`, data);
       toast.success('Anúncio criado com sucesso!', { autoClose: 1000 })
 
-
       setRefreshKey((oldKey) => oldKey + 1);
 
       return res.data;
@@ -145,7 +144,6 @@ const AdvertProvider = ({ children }: IProviderProps) => {
 
   const api_delete_comments = async (id_comments: string) => {
     try {
-      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       const res = await api.delete(`/comments/${id_comments}`);
       toast.success('Seu comentário foi deletado com sucesso!', { autoClose: 1000 })
 

@@ -47,12 +47,10 @@ const UserProvider = ({ children }: iUserProvider) => {
   }, [token, userId]);
 
   useEffect(() => {
-    console.log(user)
     setuserName(user?.name);
   }, [user]);
 
   const api_read_user = async (userId: string) => {
-    api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     const { data } = await api.get(`/users/${userId}`);
 
     return data;

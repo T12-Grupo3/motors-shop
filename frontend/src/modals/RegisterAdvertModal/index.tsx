@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import { useContext,  useState } from "react";
+import { useContext, useState } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -8,9 +8,7 @@ import { useForm } from "react-hook-form";
 import { Container, Button, Input } from "./styles";
 import schemaRegisterAdverts from "../../Validations/schemaRegisterAdverts";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {
-  IRequestAdverts,
-} from "../../interfaces/adverts.interfaces";
+import { IRequestAdverts } from "../../interfaces/adverts.interfaces";
 import { AdvertContext } from "../../Context/AdvertContext";
 import { Error } from "../../style/error";
 import RegisterAdvertsConfirm from "../RegisterAdvertsConfirm";
@@ -61,8 +59,6 @@ export default function RegisterAdvertModal() {
     });
   };
 
-
-
   function addCampoGaleria() {
     const galeria = document.getElementById("galeria") as HTMLElement;
     const numCampos = galeria.childElementCount;
@@ -85,7 +81,6 @@ export default function RegisterAdvertModal() {
     galeria.appendChild(novoCampo);
   }
 
-
   const {
     register,
     handleSubmit,
@@ -105,6 +100,7 @@ export default function RegisterAdvertModal() {
         BackdropProps={{
           timeout: 500,
         }}
+        onBackdropClick={handleClose}
       >
         <Fade in={open}>
           <Box sx={style}>
@@ -144,7 +140,6 @@ export default function RegisterAdvertModal() {
                   >
                     Leião
                   </ButtonComponent>
-             
                 </div>
                 <Error>{errors.type_adverts?.message}</Error>
 
@@ -235,7 +230,6 @@ export default function RegisterAdvertModal() {
                   >
                     Moto
                   </ButtonComponent>
-
                 </div>
                 <Error>{errors.type_veicule?.message}</Error>
 
@@ -280,22 +274,6 @@ export default function RegisterAdvertModal() {
                   >
                     Criar anúncio
                   </ButtonComponent>
-                </div>
-
-                <div className="div-btn-cancela-submit">
-                  <button className="btn-cancelar" onClick={handleClose}>
-                    Cancelar
-                  </button>
-                  <button
-                    className="btn-submit"
-                    type="submit"
-                    onClick={() => {
-                      setOpen(false);
-                      setopenModalConfirm(true);
-                    }}
-                  >
-                    Criar anúncio
-                  </button>
                 </div>
               </form>
             </Container>
