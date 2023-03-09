@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 import { iAdvert } from "../../interfaces/adverts.interfaces";
-import { ContainerBlue, ContainerProduct } from "./style";
+import { ContainerBlue, ContainerProduct, StyledOfflineButton } from "./style";
 import schemaInputComments from "../../Validations/schemaInputComments";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
@@ -18,6 +18,7 @@ import EditCommentsModal from "../../modals/EditCommentsModal";
 import { iImageAdverts } from "../../interfaces/image_adverts.interface";
 import ImageVeiculeModal from "../../modals/imageVeiculoModal";
 import { iUserResponse } from "../../interfaces/user.interface";
+import { toast } from "react-toastify";
 
 const Product = () => {
   const { id } = useParams();
@@ -62,13 +63,18 @@ const Product = () => {
   });
 
   const onSubmit = async ({ comments }: iCommentsRegisterRecieve) => {
-    const advertComments = {
-      comments,
-      advertsId: id,
-      userId: user.id,
-    };
+    if (isLogged) {
+      const advertComments = {
+        comments,
+        advertsId: id,
+        userId: user.id,
+      };
 
-    api_create_comments(advertComments);
+      api_create_comments(advertComments);
+    } else {
+      navigate("/login", { replace: true });
+      toast.error("É preciso estar conectado para publicar um comentário.");
+    }
   };
 
   useEffect(() => {
@@ -112,7 +118,7 @@ const Product = () => {
 
   const daysDiff = calculateDaysDifference();
 
-  const price = Number(price_adverts)
+  const price = Number(price_adverts);
 
   return (
     <>
@@ -167,9 +173,11 @@ const Product = () => {
                     </div>
                     <div className="divComents">
                       <p>{elem.comments} </p>
-                      <div>
-                        <EditCommentsModal id_comments={elem.id} />
-                      </div>
+                      {user.id === userId && (
+                        <div>
+                          <EditCommentsModal id_comments={elem.id} />
+                        </div>
+                      )}
                     </div>
                   </li>
                 ))}
@@ -195,9 +203,13 @@ const Product = () => {
                   {...register("comments")}
                 />
                 {errors.comments?.message}
-                <button className="button-buy button-buy-post" type="submit">
-                  Comentar
-                </button>
+                {isLogged ? (
+                  <button className="button-buy button-buy-post" type="submit">
+                    Comentar
+                  </button>
+                ) : (
+                  <StyledOfflineButton>Comentar</StyledOfflineButton>
+                )}
               </div>
             </form>
           </div>
