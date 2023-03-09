@@ -28,6 +28,8 @@ const ProductCardAuction = ({advert}: iProductCard) => {
 
   const currentUser = localStorage.getItem("MOTORSSHOP:USERID");
 
+  const price = Number(price_adverts)
+
   return (
     <StyledAuctionContainer>
       <StyledDescription
@@ -41,7 +43,7 @@ const ProductCardAuction = ({advert}: iProductCard) => {
             <span>{year_adverts}</span>
             <span>{`${kilometers_adverts} KM`}</span>
           </div>
-          <p>{price_adverts.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</p>
+          <p>{price.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</p>
         </StyledTags>
       </StyledDescription>
 

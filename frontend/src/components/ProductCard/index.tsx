@@ -33,6 +33,8 @@ const ProductCard = ({ advert }: iProductCard) => {
 
   const navigate = useNavigate();
 
+  const price = Number(price_adverts)
+
   return (
     <StyledProductCard>
       <Link to={`/product/${id}`}>
@@ -67,7 +69,7 @@ const ProductCard = ({ advert }: iProductCard) => {
           <span> {`${kilometers_adverts} KM`} </span>
         </div>
         <p>
-          {price_adverts.toLocaleString("pt-BR", {
+          {price.toLocaleString("pt-BR", {
             style: "currency",
             currency: "BRL",
           })}

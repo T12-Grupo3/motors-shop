@@ -77,7 +77,9 @@ export const StyledProductsContainer = styled(StyledContainer)`
     max-width: 2020px;
     overflow-x: auto;
     gap: 40px;
+    row-gap: 45px;
     flex-wrap: wrap;
+    min-height: 400px;
   }
 `;
 
