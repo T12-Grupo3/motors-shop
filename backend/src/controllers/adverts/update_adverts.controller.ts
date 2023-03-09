@@ -10,6 +10,7 @@ const updateAdvertController = async (req: Request, res: Response) => {
     price_adverts,
     kilometers_adverts,
     description_adverts,
+    cover_image_adverts,
   } = req.body;
   const { id } = req.params;
 
@@ -29,6 +30,7 @@ const updateAdvertController = async (req: Request, res: Response) => {
     price_adverts,
     kilometers_adverts,
     description_adverts,
+    cover_image_adverts,
   });
 
   return res.status(200).json({ message: "Service updated!", advert: advert });

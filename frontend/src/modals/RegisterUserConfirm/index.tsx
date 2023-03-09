@@ -25,7 +25,7 @@ interface iRegisterUserConfirm {
 export default function RegisterUserConfirm({
   handleConfirm = true,
 }: iRegisterUserConfirm) {
-  const [open, setOpen] = useState(handleConfirm);
+  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -44,6 +44,7 @@ export default function RegisterUserConfirm({
         BackdropProps={{
           timeout: 500,
         }}
+        onBackdropClick={() => setOpen(false)}
       >
         <Fade in={open}>
           <Box sx={style}>

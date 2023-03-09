@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  height: 530px;
+  /* height: 530px; */
   overflow-y: scroll;
+  padding: 15px;
 
   .div-header-modal {
     display: flex;
@@ -22,19 +23,12 @@ export const Container = styled.div`
   .btn-x {
     border-style: none;
     color: var(--color-grey-4);
+    background-color: transparent;
   }
 
   .div-info-profile {
     display: flex;
     flex-direction: column;
-  }
-
-  input {
-    margin-top: 2px;
-    margin-bottom: 17px;
-    border: 1.5px solid #e9ecef;
-    border-radius: 4px;
-    height: 38px;
   }
 
   label {
@@ -53,32 +47,6 @@ export const Container = styled.div`
     padding: 12px 28px;
     gap: 20px;
   }
-
-  .btn-cancel {
-    width: 126px;
-    height: 48px;
-    border: 1.5px solid #dee2e6;
-    border-radius: 4px;
-    background: var(--color-grey-6);
-    font-family: "Inter";
-    font-size: 16px;
-    font-weight: var(--font-heading-2);
-    color: var(--color-grey-2);
-    cursor: pointer;
-  }
-
-  .btn-submit {
-    width: 193px;
-    height: 48px;
-    border: 1.5px solid #4529e6;
-    border-radius: 4px;
-    background: var(--color-brand-1);
-    font-family: "Inter";
-    font-size: 16px;
-    font-weight: var(--font-heading-2);
-    color: var(--color-grey-whiteFixed);
-    cursor: pointer;
-  }
 `;
 
 export const Button = styled.button`
@@ -89,4 +57,18 @@ export const Button = styled.button`
   line-height: 28px;
   color: var(--color-grey-2);
   border-style: none;
+`;
+
+export const StyledProfileInputs = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+
+  input {
+    height: 40px;
+    border: 1.5px solid var(--color-grey-3);
+    border-radius: 5px;
+    margin: 8px 0;
+    padding: 5px;
+  }
 `;

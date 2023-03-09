@@ -115,6 +115,7 @@ export default function EditAdvertModal({ advert }: iEditAdvertModal) {
         BackdropProps={{
           timeout: 500,
         }}
+        onBackdropClick={handleCloseEdit}
       >
         <Fade in={open}>
           <Box sx={style}>
@@ -296,7 +297,7 @@ export default function EditAdvertModal({ advert }: iEditAdvertModal) {
                   <div>
                     <p className="p-img-capa">Imagem da capa</p>
                     <Input
-                      {...register("cover_image_advert")}
+                      {...register("cover_image_adverts")}
                       placeholder="Inserir URL da imagem"
                       type="url"
                       value={coverImageAdvert}
