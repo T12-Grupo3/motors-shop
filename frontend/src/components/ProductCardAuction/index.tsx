@@ -30,13 +30,17 @@ const ProductCardAuction = ({advert}: iProductCard) => {
 
   const price = Number(price_adverts)
 
+  const limit = (string = '', limit = 0) => { 
+    return string.substring(0, limit)
+   }
+
   return (
     <StyledAuctionContainer>
       <StyledDescription
         backgroundImage={cover_image_adverts}>
         <div>
           <h2>{title_adverts}</h2>
-          <p>{description_adverts}</p>
+          <p>{limit(description_adverts, 120)}</p>
         </div>
         <StyledTags>
           <div>

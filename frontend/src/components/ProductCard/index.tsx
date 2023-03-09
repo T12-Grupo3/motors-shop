@@ -33,7 +33,11 @@ const ProductCard = ({ advert }: iProductCard) => {
 
   const navigate = useNavigate();
 
-  const price = Number(price_adverts)
+  const price = Number(price_adverts);
+
+  const limit = (string = "", limit = 0) => {
+    return string.substring(0, limit);
+  };
 
   return (
     <StyledProductCard>
@@ -42,8 +46,8 @@ const ProductCard = ({ advert }: iProductCard) => {
           <img src={cover_image_adverts} alt={description_adverts} />
         </StyledProductImg>
         <StyledProductDescription>
-          <h2>{title_adverts}</h2>
-          <p>{description_adverts}</p>
+          <h2>{limit(title_adverts)}</h2>
+          <p>{limit(description_adverts, 120)}</p>
         </StyledProductDescription>
       </Link>
 
@@ -57,7 +61,6 @@ const ProductCard = ({ advert }: iProductCard) => {
                 <p>{user.name[0]}</p>
               </div>
               <span>{user.name}</span>
-
             </div>
           </Link>
         </StyledProductUser>

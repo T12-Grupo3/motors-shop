@@ -279,9 +279,12 @@ li{
   align-items: center;
 
   height: 45px;
-  width: 126px;
 
   color: var(--color-grey-0);
+
+   span {
+    margin-right: 10px;
+   }
 }
 
 .divComents{
